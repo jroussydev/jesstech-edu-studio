@@ -1,27 +1,26 @@
 # 04 — Architecture · JessTech Edu Studio V1
 
-> Version 0.1 — 12/10/2026 — statut : à valider
+> Version 0.2 — 17/10/2026 — statut : à valider
 
 ## 1. Décisions techniques
 | Décision | Choix | Pourquoi |
 |---|---|---|
 | Rendu des pages | React dans le navigateur, impression via `window.print()` | Le navigateur gère polices locales, emojis et SVG ; remplace wkhtmltoimage |
 | Stack | Vite + React + TypeScript | Connue, rapide à démarrer, typage du modèle de données |
-| Style de l'interface | Tailwind | Barre de réglages et écrans de l'app |
+| Style de l'interface | Tailwind v4 (plugin `@tailwindcss/vite`) | Barre de réglages et écrans de l'app |
 | Style des pages imprimées | CSS dédié (`tokens.css`, `impression.css`) | Contrôle fin de `@page`, des variables de couleur et des unités `cqw` |
 | Données | Fichiers JSON dans le dépôt | Pas de backend en V1, versionné avec Git |
 | Aléatoire | Générateur à graine (mulberry32) | Pages reproductibles (RG3) |
-| Polices | paquets `@fontsource/andika` et `@fontsource/grandstander` | Fichiers `.woff2` servis localement, aucun appel réseau à l'impression |
+| Polices | paquets `@fontsource/andika` (400, 700) et `@fontsource/grandstander` (600, 800), importés dans `main.tsx` | Vite empaquette les `.woff2` : servis localement, aucun appel réseau à l'impression |
 | Illustrations | SVG en composants React (pictogrammes) + PNG (Filou, couverture) | Les SVG suivent les couleurs du thème ; Filou vient de Procreate |
 
 ## 2. Arborescence
 ```
 jesstech-edu-studio/
 ├── docs/                         00 à 07, journal/, methode/ (voir docs/README.md)
-├── public/
-│   └── fonts/                    andika-*.woff2, grandstander-*.woff2
+├── public/                       favicon
 ├── src/
-│   ├── main.tsx
+│   ├── main.tsx                  imports des polices et des styles
 │   ├── App.tsx                   accueil + routage simple
 │   ├── app/                      interface (Tailwind)
 │   │   ├── BarreReglages.tsx
@@ -52,6 +51,7 @@ jesstech-edu-studio/
 │   ├── lib/                      rng.ts, melange.ts
 │   ├── types.ts                  modèle de données
 │   └── styles/
+│       ├── interface.css         Tailwind + polices de l'interface
 │       ├── tokens.css            couleurs (couleur + noir et blanc)
 │       └── impression.css        @page, sauts de page, masquage de l'interface
 └── donnees/
@@ -199,13 +199,13 @@ donnees/*.json ──► composer.ts ──► Page[] ──► Apercu.tsx ─�
 - `impression.css` : `@page { size: … ; margin: 0 }` injecté selon le format, `break-after: page` sur chaque feuille, interface masquée.
 
 ## 7. Plan de démarrage (mardi 13)
-1. `npm create vite@latest jesstech-edu-studio -- --template react-ts` dans le dépôt existant, puis Tailwind.
+1. Projet Vite React + TypeScript (déjà créé au premier commit), puis Tailwind, polices `@fontsource` et TypeScript `strict`. Les dossiers de `src/` et `donnees/` sont créés au fil des étapes, quand ils reçoivent du code.
 2. `types.ts`, `lib/rng.ts`, `styles/tokens.css`, `styles/impression.css`.
 3. `Feuille.tsx` + une page vide A4/A5 qui s'imprime correctement.
 4. Porter depuis l'aperçu : `Panneau`, `Consigne`, `FilouExplique`, puis `PageActivites` de la mission 4.
 
 Commits prévus :
-- `chore: initialisation Vite, React, TypeScript et Tailwind`
+- `chore: installe tailwind et les polices andika et grandstander`
 - `feat: modèle de données et générateur aléatoire à graine`
 - `feat: feuille imprimable A4/A5 et thème couleur / noir et blanc`
 - `feat: page activités de la mission 4`

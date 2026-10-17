@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-17 — Polices empaquetées par Vite depuis @fontsource
+Décision : Andika et Grandstander sont importées depuis les paquets `@fontsource` dans `main.tsx` ; Vite copie lui-même les `.woff2` dans le build. Plus de dossier `public/fonts/`.
+Pourquoi : un seul mécanisme, aucun fichier de police à copier ni à mettre à jour à la main, toujours aucun appel réseau à l'impression.
+Écarté : copier les `.woff2` dans `public/fonts/` avec des `@font-face` écrits à la main.
+
 ## 2026-10-17 — Catalogue des jeux par catégorie et difficulté
 Décision : chaque jeu a une catégorie, des difficultés associées, un support et des variantes de forme ; un même jeu ne revient jamais avec la même forme dans un cahier (RG14 à RG20).
 Pourquoi : éviter les répétitions et adapter le cahier aux difficultés de l'enfant.
