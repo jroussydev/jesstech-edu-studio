@@ -30,6 +30,7 @@ Vite + React + TypeScript + Tailwind (interface uniquement). Pages imprimées en
 - Avant chaque étape : expliquer brièvement le plan (fichiers créés ou modifiés, et pourquoi), puis coder.
 - Petites étapes testables ; à la fin de chaque étape, proposer un message de commit et attendre ma validation avant de committer.
 - Commits : préfixes `feat`, `fix`, `refactor`, `docs`, `chore`, messages en français.
+- Ne pas ajouter de ligne Co-Authored-By aux commits : la collaboration est indiquée dans le README.
 - Répondre en français.
 
 ## Commandes
