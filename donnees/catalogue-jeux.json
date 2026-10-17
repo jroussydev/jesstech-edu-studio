@@ -1,0 +1,2279 @@
+{
+  "categories": {
+    "MF": "Motricité fine",
+    "GR": "Graphisme",
+    "EC": "Écriture",
+    "LE": "Lecture et lettres",
+    "PH": "Sons et syllabes",
+    "VO": "Vocabulaire",
+    "OR": "Langage oral",
+    "CO": "Compréhension",
+    "LO": "Logique",
+    "NB": "Nombres",
+    "ES": "Espace et repérage",
+    "TE": "Temps",
+    "PV": "Perception visuelle",
+    "AT": "Attention",
+    "ME": "Mémoire",
+    "MG": "Motricité globale",
+    "CR": "Créativité",
+    "EM": "Émotions et vivre ensemble"
+  },
+  "difficultes": {
+    "consignes": "Comprendre les consignes",
+    "vocabulaire": "Vocabulaire, sens des mots",
+    "expression": "S'exprimer à l'oral, faire des phrases",
+    "prononciation": "Prononciation, articulation",
+    "sons": "Entendre les sons et les syllabes",
+    "lecture": "Lettres et lecture",
+    "ecriture": "Écriture, graphisme",
+    "motricite": "Motricité fine",
+    "attention": "Attention, concentration",
+    "memoire": "Mémoire",
+    "espace": "Repérage dans l'espace",
+    "nombres": "Nombres",
+    "visuel": "Perception visuelle"
+  },
+  "supports": {
+    "fiche": "fiche à faire sur le cahier",
+    "decoupe": "à découper puis à jouer",
+    "jeu": "jeu à plusieurs (plateau, cartes)",
+    "vivre": "à vivre sans crayon (oral, geste, maison)",
+    "bricolage": "bricolage à faire ensemble"
+  },
+  "generation": {
+    "auto": "code seul",
+    "pictos": "code + pictos du thème",
+    "texte": "code + textes rédigés",
+    "scene": "illustration dédiée"
+  },
+  "jeux": [
+    {
+      "id": "gommettes",
+      "nom": "Colle les gommettes sur les ronds",
+      "categorie": "MF",
+      "secondaires": [
+        "CR"
+      ],
+      "difficultes": [
+        "motricite",
+        "attention"
+      ],
+      "niveaux": "TPS-MS",
+      "materiel": "gommettes",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "ronds sur un dessin",
+        "ligne de ronds à suivre",
+        "remplir une forme",
+        "quantité imposée",
+        "couleur imposée par rond"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "dechireColle",
+      "nom": "Déchire et colle des morceaux de papier",
+      "categorie": "MF",
+      "secondaires": [
+        "CR"
+      ],
+      "difficultes": [
+        "motricite"
+      ],
+      "niveaux": "TPS-PS",
+      "materiel": "papier, colle",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "remplir une citrouille",
+        "feuillage d'un arbre",
+        "mosaïque libre"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "decoupage",
+      "nom": "Découpe sur le trait",
+      "categorie": "MF",
+      "secondaires": [
+        "GR"
+      ],
+      "difficultes": [
+        "motricite",
+        "ecriture"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "ciseaux à bouts ronds",
+      "generation": "auto",
+      "support": "decoupe",
+      "variantes": [
+        "frange (PS)",
+        "ligne droite",
+        "vague",
+        "zigzag",
+        "contour d'une forme (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "pateModeler",
+      "nom": "Pose la pâte à modeler sur le modèle",
+      "categorie": "MF",
+      "secondaires": [
+        "EC"
+      ],
+      "difficultes": [
+        "motricite",
+        "ecriture"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "pâte à modeler",
+      "generation": "auto",
+      "support": "vivre",
+      "variantes": [
+        "lettre du mot",
+        "forme simple",
+        "chiffre"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "empreintes",
+      "nom": "Fais des empreintes avec ton doigt",
+      "categorie": "MF",
+      "secondaires": [
+        "CR"
+      ],
+      "difficultes": [
+        "motricite"
+      ],
+      "niveaux": "TPS-PS",
+      "materiel": "feutre ou peinture",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "feuilles d'un arbre",
+        "pépins de citrouille",
+        "étoiles du ciel"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "coloriage",
+      "nom": "Colorie le dessin",
+      "categorie": "MF",
+      "secondaires": [
+        "CR",
+        "AT"
+      ],
+      "difficultes": [
+        "motricite",
+        "attention"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "crayons",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "grandes zones (TPS)",
+        "zones moyennes",
+        "petites zones (GS)",
+        "coloriage géant"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "cheminDoigt",
+      "nom": "Suis le chemin avec ton doigt",
+      "categorie": "GR",
+      "secondaires": [
+        "ES"
+      ],
+      "difficultes": [
+        "motricite",
+        "ecriture",
+        "attention"
+      ],
+      "niveaux": "TPS-PS",
+      "materiel": "doigt",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "vague",
+        "zigzag",
+        "spirale",
+        "boucles",
+        "escalier",
+        "créneaux",
+        "ligne brisée",
+        "avec obstacles",
+        "double chemin",
+        "colimaçon"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "pointilles",
+      "nom": "Suis les pointillés avec ton crayon",
+      "categorie": "GR",
+      "secondaires": [
+        "MF"
+      ],
+      "difficultes": [
+        "ecriture",
+        "motricite"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "traits horizontaux",
+        "traits verticaux",
+        "obliques",
+        "vagues",
+        "ponts",
+        "coupes",
+        "boucles",
+        "ronds",
+        "spirales",
+        "zigzags"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "graphismeDeco",
+      "nom": "Décore avec des motifs",
+      "categorie": "GR",
+      "secondaires": [
+        "CR"
+      ],
+      "difficultes": [
+        "ecriture"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "pluie (traits)",
+        "toile (ronds)",
+        "écailles (ponts)",
+        "herbe (traits obliques)",
+        "fumée (boucles)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "reliePoints",
+      "nom": "Relie les points dans l'ordre",
+      "categorie": "GR",
+      "secondaires": [
+        "NB",
+        "AT"
+      ],
+      "difficultes": [
+        "nombres",
+        "ecriture",
+        "attention"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "de 1 à 5",
+        "de 1 à 10",
+        "de A à J (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "labyrinthe",
+      "nom": "Trace le chemin dans le labyrinthe",
+      "categorie": "ES",
+      "secondaires": [
+        "GR",
+        "AT"
+      ],
+      "difficultes": [
+        "espace",
+        "attention"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "grille carrée",
+        "grille ronde",
+        "en forme d'objet",
+        "avec objets à ramasser",
+        "grand labyrinthe final"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "symetrie",
+      "nom": "Complète l'autre moitié",
+      "categorie": "ES",
+      "secondaires": [
+        "GR",
+        "PV"
+      ],
+      "difficultes": [
+        "espace",
+        "visuel"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "quadrillage 6×6",
+        "quadrillage 8×8",
+        "dessin à points"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "quadrillage",
+      "nom": "Reproduis le dessin case par case",
+      "categorie": "ES",
+      "secondaires": [
+        "AT"
+      ],
+      "difficultes": [
+        "espace",
+        "attention"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "4×4",
+        "5×5",
+        "6×6"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "repasseLettres",
+      "nom": "Repasse les lettres du mot",
+      "categorie": "EC",
+      "secondaires": [
+        "LE"
+      ],
+      "difficultes": [
+        "ecriture",
+        "lecture"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "capitales",
+        "script",
+        "cursive (fin GS)",
+        "grandes lettres puis petites"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "prenom",
+      "nom": "Écris ton prénom",
+      "categorie": "EC",
+      "secondaires": [
+        "LE"
+      ],
+      "difficultes": [
+        "ecriture"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "retrouve et entoure (PS)",
+        "repasse les pointillés",
+        "copie sous le modèle",
+        "seul"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "copieMot",
+      "nom": "Copie le mot du jour",
+      "categorie": "EC",
+      "secondaires": [
+        "LE"
+      ],
+      "difficultes": [
+        "ecriture",
+        "lecture"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "avec pointillés",
+        "avec modèle",
+        "seul dans les cases"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "geste",
+      "nom": "Trace la lettre en suivant les flèches",
+      "categorie": "EC",
+      "secondaires": [
+        "GR"
+      ],
+      "difficultes": [
+        "ecriture"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "lettre capitale",
+        "lettre cursive"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "lettresAColorier",
+      "nom": "Colorie les lettres du mot",
+      "categorie": "LE",
+      "secondaires": [
+        "EC",
+        "MF"
+      ],
+      "difficultes": [
+        "lecture",
+        "motricite"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayons",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "mot du jour",
+        "prénom",
+        "initiale seule"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "trouveLettre",
+      "nom": "Entoure toutes les lettres pareilles",
+      "categorie": "LE",
+      "secondaires": [
+        "PV"
+      ],
+      "difficultes": [
+        "lecture",
+        "visuel"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "capitales",
+        "avec lettres proches (C, G, O)",
+        "script (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "memeMot",
+      "nom": "Entoure le même mot",
+      "categorie": "LE",
+      "secondaires": [
+        "PV"
+      ],
+      "difficultes": [
+        "lecture",
+        "visuel"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "mots très différents",
+        "mots proches (CHAT, CHUT)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "capitaleScript",
+      "nom": "Relie la capitale et la minuscule",
+      "categorie": "LE",
+      "secondaires": [],
+      "difficultes": [
+        "lecture"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "lettres du mot",
+        "lettres du prénom"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "motImage",
+      "nom": "Relie l'image à son mot",
+      "categorie": "LE",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "lecture",
+        "vocabulaire"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 mots",
+        "4 mots",
+        "mots en script"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "reconstitueMot",
+      "nom": "Colle les lettres dans l'ordre",
+      "categorie": "LE",
+      "secondaires": [
+        "EC",
+        "MF"
+      ],
+      "difficultes": [
+        "lecture",
+        "ecriture"
+      ],
+      "niveaux": "GS",
+      "materiel": "ciseaux, colle",
+      "generation": "auto",
+      "support": "decoupe",
+      "variantes": [
+        "avec modèle au-dessus",
+        "modèle caché"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "syllabes",
+      "nom": "Frappe les syllabes et colorie un rond par syllabe",
+      "categorie": "PH",
+      "secondaires": [
+        "OR"
+      ],
+      "difficultes": [
+        "sons",
+        "prononciation"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "mots de 1 à 2 syllabes",
+        "mots de 2 à 3 syllabes",
+        "mots de 3 à 4 syllabes"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "sonAttaque",
+      "nom": "Entoure les images qui commencent par le même son",
+      "categorie": "PH",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "sons",
+        "prononciation"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "sons longs (f, s, ch, m)",
+        "sons courts (b, p, t)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "rimes",
+      "nom": "Relie les mots qui riment",
+      "categorie": "PH",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "sons"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "2 paires (MS)",
+        "3 à 4 paires (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "pareilPasPareil",
+      "nom": "Pareil ou pas pareil ? (l'adulte dit deux mots)",
+      "categorie": "PH",
+      "secondaires": [
+        "OR"
+      ],
+      "difficultes": [
+        "prononciation",
+        "sons"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "aucun",
+      "generation": "texte",
+      "support": "vivre",
+      "variantes": [
+        "voyelles",
+        "consonnes proches (p/b, t/d)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "devinetteSonore",
+      "nom": "Qui fait ce bruit ?",
+      "categorie": "PH",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "prononciation",
+        "vocabulaire"
+      ],
+      "niveaux": "TPS-PS",
+      "materiel": "aucun",
+      "generation": "pictos",
+      "support": "vivre",
+      "variantes": [
+        "cris d'animaux",
+        "bruits de la maison"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "comptine",
+      "nom": "Dis la comptine avec les gestes",
+      "categorie": "OR",
+      "secondaires": [
+        "PH",
+        "ME"
+      ],
+      "difficultes": [
+        "prononciation",
+        "expression",
+        "memoire"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "aucun",
+      "generation": "texte",
+      "support": "vivre",
+      "variantes": [
+        "2 vers (TPS)",
+        "4 vers",
+        "avec rimes à compléter"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "imagier",
+      "nom": "Mon imagier",
+      "categorie": "VO",
+      "secondaires": [],
+      "difficultes": [
+        "vocabulaire"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "aucun",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 mots par page",
+        "6 mots par page"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "montreObjet",
+      "nom": "Montre l'objet demandé",
+      "categorie": "VO",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "consignes"
+      ],
+      "niveaux": "TPS-PS",
+      "materiel": "doigt",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "parmi 2",
+        "parmi 4",
+        "« Montre ce qui vole »"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "categories",
+      "nom": "Range dans la bonne maison",
+      "categorie": "VO",
+      "secondaires": [
+        "LO"
+      ],
+      "difficultes": [
+        "vocabulaire"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon ou découpage",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "2 maisons",
+        "3 maisons",
+        "avec intrus"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "contraires",
+      "nom": "Entoure le grand / le petit…",
+      "categorie": "VO",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "consignes"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "grand / petit",
+        "plein / vide",
+        "dedans / dehors",
+        "jour / nuit"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "quiFaitQuoi",
+      "nom": "Relie chaque personnage à son objet",
+      "categorie": "VO",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "vocabulaire"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 paires",
+        "4 paires"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "devinette",
+      "nom": "Écoute la devinette et entoure la réponse",
+      "categorie": "VO",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "consignes"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "texte",
+      "support": "fiche",
+      "variantes": [
+        "2 indices",
+        "3 indices"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "raconteImage",
+      "nom": "Raconte ce que tu vois",
+      "categorie": "OR",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "expression",
+        "vocabulaire"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "aucun",
+      "generation": "scene",
+      "support": "vivre",
+      "variantes": [
+        "qui ? où ?",
+        "que fait-il ?",
+        "que va-t-il se passer ?"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "phraseTrous",
+      "nom": "Termine la phrase de Filou",
+      "categorie": "OR",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "expression",
+        "vocabulaire"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "aucun",
+      "generation": "texte",
+      "support": "vivre",
+      "variantes": [
+        "un mot manquant",
+        "fin de phrase à inventer"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "marionnettes",
+      "nom": "Joue l'histoire avec les marionnettes",
+      "categorie": "OR",
+      "secondaires": [
+        "MF",
+        "CR"
+      ],
+      "difficultes": [
+        "expression",
+        "prononciation"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "ciseaux, pailles",
+      "generation": "pictos",
+      "support": "bricolage",
+      "variantes": [
+        "amis du thème",
+        "personnages de la mission"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "questionsHistoire",
+      "nom": "Réponds aux questions sur l'histoire",
+      "categorie": "CO",
+      "secondaires": [
+        "ME"
+      ],
+      "difficultes": [
+        "consignes",
+        "memoire"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "texte",
+      "support": "fiche",
+      "variantes": [
+        "qui ?",
+        "où ?",
+        "pourquoi ? (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "ordreHistoire",
+      "nom": "Remets l'histoire dans l'ordre",
+      "categorie": "CO",
+      "secondaires": [
+        "TE"
+      ],
+      "difficultes": [
+        "consignes",
+        "memoire"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "ciseaux, colle",
+      "generation": "scene",
+      "support": "decoupe",
+      "variantes": [
+        "2 images (PS)",
+        "3 images",
+        "4 images (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "suisConsigne",
+      "nom": "Fais ce que dit la consigne (« Colorie le chat en bas »)",
+      "categorie": "CO",
+      "secondaires": [
+        "ES"
+      ],
+      "difficultes": [
+        "consignes",
+        "espace"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayons",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "1 consigne",
+        "2 consignes à la suite (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "vraiFaux",
+      "nom": "Vrai ou faux ?",
+      "categorie": "CO",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "consignes",
+        "vocabulaire"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "texte",
+      "support": "fiche",
+      "variantes": [
+        "3 phrases",
+        "4 phrases"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "suite",
+      "nom": "Continue la suite",
+      "categorie": "LO",
+      "secondaires": [
+        "AT"
+      ],
+      "difficultes": [
+        "attention"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "AB",
+        "AAB",
+        "ABB",
+        "ABC",
+        "couleurs",
+        "tailles"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "intrus",
+      "nom": "Entoure l'intrus",
+      "categorie": "LO",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "attention"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "objet différent",
+        "catégorie différente (GS)"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "tri",
+      "nom": "Trie par couleur, taille ou forme",
+      "categorie": "LO",
+      "secondaires": [],
+      "difficultes": [
+        "attention"
+      ],
+      "niveaux": "TPS-MS",
+      "materiel": "crayon ou découpage",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "couleur",
+        "taille",
+        "forme"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "ranger",
+      "nom": "Range du plus petit au plus grand",
+      "categorie": "LO",
+      "secondaires": [
+        "NB"
+      ],
+      "difficultes": [
+        "nombres"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "ciseaux, colle",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 objets",
+        "4 objets",
+        "5 objets"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "sudoku",
+      "nom": "Sudoku d'images",
+      "categorie": "LO",
+      "secondaires": [
+        "ES",
+        "AT"
+      ],
+      "difficultes": [
+        "attention",
+        "espace"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon ou gommettes",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3×3",
+        "4×4"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "compter",
+      "nom": "Compte et entoure le bon nombre",
+      "categorie": "NB",
+      "secondaires": [],
+      "difficultes": [
+        "nombres"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "jusqu'à 5",
+        "jusqu'à 10",
+        "objets en désordre ou alignés"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "autantQue",
+      "nom": "Colle autant de gommettes que de…",
+      "categorie": "NB",
+      "secondaires": [
+        "MF"
+      ],
+      "difficultes": [
+        "nombres",
+        "motricite"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "gommettes",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "jusqu'à 3",
+        "jusqu'à 6",
+        "jusqu'à 10"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "coloriageMagique",
+      "nom": "Colorie selon les numéros",
+      "categorie": "NB",
+      "secondaires": [
+        "MF",
+        "AT"
+      ],
+      "difficultes": [
+        "nombres",
+        "attention"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayons",
+      "generation": "scene",
+      "support": "fiche",
+      "variantes": [
+        "3 couleurs",
+        "5 couleurs"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "de",
+      "nom": "Relie le dé et le nombre",
+      "categorie": "NB",
+      "secondaires": [],
+      "difficultes": [
+        "nombres"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "dé ↔ quantité",
+        "dé ↔ chiffre"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "plusMoins",
+      "nom": "Entoure le groupe où il y en a le plus",
+      "categorie": "NB",
+      "secondaires": [
+        "PV"
+      ],
+      "difficultes": [
+        "nombres"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "écart grand",
+        "écart petit"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "trouveLeMeme",
+      "nom": "Trouve le même que le modèle",
+      "categorie": "PV",
+      "secondaires": [
+        "AT"
+      ],
+      "difficultes": [
+        "visuel",
+        "attention",
+        "consignes"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "crayon ou doigt",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "1 parmi 2 (TPS)",
+        "1 parmi 4",
+        "détails fins (GS)"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "ombres",
+      "nom": "Relie chaque image à son ombre",
+      "categorie": "PV",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "visuel",
+        "vocabulaire"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "crayon ou doigt",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "2 objets",
+        "3 objets",
+        "4 objets"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "chercheTrouve",
+      "nom": "Cherche et trouve",
+      "categorie": "PV",
+      "secondaires": [
+        "AT"
+      ],
+      "difficultes": [
+        "attention",
+        "visuel"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "grille",
+        "scène en désordre",
+        "objets tournés"
+      ],
+      "dejaCode": true,
+      "nouveau": false
+    },
+    {
+      "id": "differences",
+      "nom": "Trouve les différences",
+      "categorie": "PV",
+      "secondaires": [
+        "AT"
+      ],
+      "difficultes": [
+        "attention",
+        "visuel"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "scene",
+      "support": "fiche",
+      "variantes": [
+        "2 à 3 différences",
+        "5 différences",
+        "7 différences (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "puzzle",
+      "nom": "Puzzle à découper",
+      "categorie": "PV",
+      "secondaires": [
+        "ES",
+        "MF"
+      ],
+      "difficultes": [
+        "visuel",
+        "espace",
+        "motricite"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "ciseaux, colle",
+      "generation": "pictos",
+      "support": "decoupe",
+      "variantes": [
+        "2 à 3 pièces",
+        "4 pièces",
+        "6 à 9 pièces (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "memory",
+      "nom": "Mémory à découper",
+      "categorie": "ME",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "memoire",
+        "vocabulaire"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "ciseaux",
+      "generation": "pictos",
+      "support": "jeu",
+      "variantes": [
+        "image ↔ image",
+        "image ↔ mot (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "disparu",
+      "nom": "Qu'est-ce qui a disparu ?",
+      "categorie": "ME",
+      "secondaires": [
+        "PV"
+      ],
+      "difficultes": [
+        "memoire",
+        "visuel"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 objets",
+        "5 objets"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "positions",
+      "nom": "Sur, sous, devant, derrière, à côté",
+      "categorie": "ES",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "espace",
+        "vocabulaire",
+        "consignes"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon ou gommettes",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "sur / sous",
+        "devant / derrière",
+        "à côté / entre (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "avantApres",
+      "nom": "Relie ce qui vient avant et après",
+      "categorie": "TE",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "consignes"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "scene",
+      "support": "fiche",
+      "variantes": [
+        "2 images",
+        "jour / nuit"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "bouge",
+      "nom": "Bouge comme les amis de Filou",
+      "categorie": "MG",
+      "secondaires": [
+        "VO",
+        "AT"
+      ],
+      "difficultes": [
+        "attention",
+        "vocabulaire"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "aucun",
+      "generation": "pictos",
+      "support": "vivre",
+      "variantes": [
+        "vole comme la chauve-souris",
+        "balaie comme la sorcière",
+        "saute comme une citrouille qui roule"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "dessineSuite",
+      "nom": "Dessine ce qui manque",
+      "categorie": "CR",
+      "secondaires": [
+        "GR"
+      ],
+      "difficultes": [
+        "ecriture",
+        "expression"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayons",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "le chapeau de la sorcière",
+        "les yeux de la citrouille",
+        "un ami pour Filou"
+      ],
+      "dejaCode": false,
+      "nouveau": false
+    },
+    {
+      "id": "jeuOie",
+      "nom": "Le jeu de l'oie de Filou",
+      "categorie": "NB",
+      "secondaires": [
+        "OR",
+        "CO"
+      ],
+      "difficultes": [
+        "nombres",
+        "expression",
+        "attention"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "dé, pions",
+      "generation": "pictos",
+      "support": "jeu",
+      "variantes": [
+        "20 cases (MS)",
+        "30 cases avec cases défis (GS)",
+        "cases « dis un mot du thème »"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "loto",
+      "nom": "Le loto des mots",
+      "categorie": "VO",
+      "secondaires": [
+        "OR",
+        "PV"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "expression"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "ciseaux",
+      "generation": "pictos",
+      "support": "jeu",
+      "variantes": [
+        "4 cases (TPS)",
+        "6 cases",
+        "9 cases avec mots écrits (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "dominos",
+      "nom": "Les dominos d'images",
+      "categorie": "LO",
+      "secondaires": [
+        "VO",
+        "PV"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "visuel"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "ciseaux",
+      "generation": "pictos",
+      "support": "jeu",
+      "variantes": [
+        "image ↔ image",
+        "image ↔ ombre",
+        "image ↔ mot (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "bataille",
+      "nom": "La bataille des nombres",
+      "categorie": "NB",
+      "secondaires": [],
+      "difficultes": [
+        "nombres"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "ciseaux",
+      "generation": "auto",
+      "support": "jeu",
+      "variantes": [
+        "constellations jusqu'à 6",
+        "chiffres jusqu'à 10"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "chasseTresor",
+      "nom": "La chasse au trésor de Filou dans la maison",
+      "categorie": "CO",
+      "secondaires": [
+        "ES",
+        "MG"
+      ],
+      "difficultes": [
+        "consignes",
+        "espace",
+        "vocabulaire"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "cartes à découper",
+      "generation": "pictos",
+      "support": "vivre",
+      "variantes": [
+        "3 indices en images",
+        "5 indices",
+        "indices avec positions (sous, derrière)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "trainSyllabes",
+      "nom": "Le train des syllabes : place chaque image dans le wagon qui a le bon nombre de syllabes",
+      "categorie": "PH",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "sons",
+        "prononciation"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "ciseaux, colle",
+      "generation": "pictos",
+      "support": "decoupe",
+      "variantes": [
+        "wagons de 1 à 2 syllabes",
+        "wagons de 1 à 3 syllabes"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "cheminSons",
+      "nom": "Le chemin des sons : passe seulement par les images qui commencent par le son du jour",
+      "categorie": "PH",
+      "secondaires": [
+        "ES"
+      ],
+      "difficultes": [
+        "sons",
+        "espace"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "son « ch »",
+        "son « b »",
+        "son « s »"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "perroquet",
+      "nom": "Le perroquet : répète des mots de plus en plus longs",
+      "categorie": "OR",
+      "secondaires": [
+        "PH",
+        "ME"
+      ],
+      "difficultes": [
+        "prononciation",
+        "memoire"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "aucun",
+      "generation": "texte",
+      "support": "vivre",
+      "variantes": [
+        "mots de 1 à 2 syllabes",
+        "mots de 3 syllabes",
+        "petites phrases"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "grimaces",
+      "nom": "Les grimaces de Filou (gonfle les joues, tire la langue, fais un bisou)",
+      "categorie": "OR",
+      "secondaires": [
+        "MG"
+      ],
+      "difficultes": [
+        "prononciation"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "miroir",
+      "generation": "pictos",
+      "support": "vivre",
+      "variantes": [
+        "3 grimaces",
+        "5 grimaces",
+        "grimaces enchaînées"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "souffle",
+      "nom": "Les jeux de souffle : fais avancer le fantôme en papier avec une paille",
+      "categorie": "MG",
+      "secondaires": [
+        "OR"
+      ],
+      "difficultes": [
+        "prononciation",
+        "attention"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "paille, papier",
+      "generation": "pictos",
+      "support": "vivre",
+      "variantes": [
+        "souffle libre",
+        "parcours tracé",
+        "course à deux"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "dessinDicte",
+      "nom": "Le dessin dicté : écoute et dessine (« une lune en haut à droite »)",
+      "categorie": "CO",
+      "secondaires": [
+        "ES",
+        "OR"
+      ],
+      "difficultes": [
+        "consignes",
+        "espace"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayons",
+      "generation": "texte",
+      "support": "fiche",
+      "variantes": [
+        "2 consignes",
+        "4 consignes avec positions"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "ecouteColorie",
+      "nom": "Écoute et colorie (« le chapeau en violet »)",
+      "categorie": "CO",
+      "secondaires": [
+        "VO"
+      ],
+      "difficultes": [
+        "consignes",
+        "vocabulaire"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayons",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "1 consigne de couleur",
+        "3 consignes"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "dicteeGommettes",
+      "nom": "La dictée de gommettes (« une gommette sous la lune »)",
+      "categorie": "CO",
+      "secondaires": [
+        "ES",
+        "MF"
+      ],
+      "difficultes": [
+        "consignes",
+        "espace",
+        "motricite"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "gommettes",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "sur / sous",
+        "à côté / entre",
+        "3 consignes à la suite"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "emotions",
+      "nom": "Comment se sent Filou ? Relie le visage et l'émotion",
+      "categorie": "EM",
+      "secondaires": [
+        "VO",
+        "OR"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "expression"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "content / triste",
+        "peur / colère",
+        "surpris / fier (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "meteoCoeur",
+      "nom": "La météo de mon cœur : colorie comment tu te sens aujourd'hui",
+      "categorie": "EM",
+      "secondaires": [
+        "OR"
+      ],
+      "difficultes": [
+        "expression"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayons",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "3 visages",
+        "5 visages"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "habilleFilou",
+      "nom": "Habille Filou : découpe et colle ce qu'on te demande",
+      "categorie": "CO",
+      "secondaires": [
+        "VO",
+        "MF"
+      ],
+      "difficultes": [
+        "consignes",
+        "vocabulaire",
+        "motricite"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "ciseaux, colle",
+      "generation": "pictos",
+      "support": "decoupe",
+      "variantes": [
+        "1 vêtement",
+        "3 vêtements",
+        "tenue complète d'un thème"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "quiSuisJe",
+      "nom": "Qui suis-je ? Écoute les indices et entoure",
+      "categorie": "VO",
+      "secondaires": [
+        "CO",
+        "ME"
+      ],
+      "difficultes": [
+        "vocabulaire",
+        "consignes",
+        "memoire"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "texte",
+      "support": "fiche",
+      "variantes": [
+        "2 indices",
+        "3 indices",
+        "indices en images seulement (PS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "maJournee",
+      "nom": "Ma journée : remets dans l'ordre matin, midi, soir",
+      "categorie": "TE",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "consignes"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "ciseaux, colle",
+      "generation": "pictos",
+      "support": "decoupe",
+      "variantes": [
+        "3 moments",
+        "4 moments"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "recette",
+      "nom": "La recette de Filou en images : cuisinez ensemble",
+      "categorie": "CO",
+      "secondaires": [
+        "TE",
+        "NB"
+      ],
+      "difficultes": [
+        "consignes",
+        "nombres"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "cuisine",
+      "generation": "pictos",
+      "support": "vivre",
+      "variantes": [
+        "3 étapes",
+        "5 étapes avec quantités"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "motsCroises",
+      "nom": "Les mots croisés en images",
+      "categorie": "LE",
+      "secondaires": [
+        "EC"
+      ],
+      "difficultes": [
+        "lecture",
+        "ecriture"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 mots courts",
+        "4 mots"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "motsMeles",
+      "nom": "Les mots mêlés",
+      "categorie": "LE",
+      "secondaires": [
+        "PV",
+        "AT"
+      ],
+      "difficultes": [
+        "lecture",
+        "visuel",
+        "attention"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "3 mots, grille 5×5",
+        "4 mots, grille 6×6"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "coloriageLettres",
+      "nom": "Le coloriage codé par lettres (A = orange)",
+      "categorie": "LE",
+      "secondaires": [
+        "MF"
+      ],
+      "difficultes": [
+        "lecture",
+        "motricite"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayons",
+      "generation": "scene",
+      "support": "fiche",
+      "variantes": [
+        "2 lettres",
+        "4 lettres"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "motLong",
+      "nom": "Entoure le mot le plus long",
+      "categorie": "LE",
+      "secondaires": [
+        "PH"
+      ],
+      "difficultes": [
+        "lecture",
+        "sons"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "2 mots",
+        "3 mots"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "ecrisEnLAir",
+      "nom": "Écris en l'air et dans le dos (jeu à deux)",
+      "categorie": "GR",
+      "secondaires": [
+        "MG"
+      ],
+      "difficultes": [
+        "ecriture"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "aucun",
+      "generation": "auto",
+      "support": "vivre",
+      "variantes": [
+        "traits et ronds",
+        "lettres du prénom"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "plateauSel",
+      "nom": "Trace dans le plateau de sel ou de semoule",
+      "categorie": "GR",
+      "secondaires": [
+        "MF"
+      ],
+      "difficultes": [
+        "ecriture",
+        "motricite"
+      ],
+      "niveaux": "TPS-GS",
+      "materiel": "plateau, sel",
+      "generation": "auto",
+      "support": "vivre",
+      "variantes": [
+        "traits libres",
+        "formes",
+        "lettres (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "cartesLacer",
+      "nom": "La carte à lacer (carton percé, laine)",
+      "categorie": "MF",
+      "secondaires": [
+        "AT"
+      ],
+      "difficultes": [
+        "motricite",
+        "attention"
+      ],
+      "niveaux": "TPS-MS",
+      "materiel": "carton, laine, perforatrice",
+      "generation": "pictos",
+      "support": "bricolage",
+      "variantes": [
+        "4 trous",
+        "8 trous",
+        "suivre un contour"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "pinces",
+      "nom": "Les pinces à linge : accroche le bon nombre",
+      "categorie": "MF",
+      "secondaires": [
+        "NB"
+      ],
+      "difficultes": [
+        "motricite",
+        "nombres"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "pinces à linge",
+      "generation": "auto",
+      "support": "bricolage",
+      "variantes": [
+        "couleurs (PS)",
+        "nombres jusqu'à 5",
+        "nombres jusqu'à 10"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "encastrement",
+      "nom": "Remets chaque forme dans son trou",
+      "categorie": "PV",
+      "secondaires": [
+        "MF"
+      ],
+      "difficultes": [
+        "visuel",
+        "motricite"
+      ],
+      "niveaux": "TPS-PS",
+      "materiel": "ciseaux (adulte)",
+      "generation": "pictos",
+      "support": "decoupe",
+      "variantes": [
+        "3 formes",
+        "5 formes"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "problemes",
+      "nom": "Les petits problèmes de Filou en images (3 bonbons, on en ajoute 1)",
+      "categorie": "NB",
+      "secondaires": [
+        "CO"
+      ],
+      "difficultes": [
+        "nombres",
+        "consignes"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "ajouter",
+        "retirer",
+        "partager entre 2"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "partage",
+      "nom": "Partage les bonbons entre les amis",
+      "categorie": "NB",
+      "secondaires": [
+        "MF"
+      ],
+      "difficultes": [
+        "nombres"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "gommettes ou crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "entre 2",
+        "entre 3"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "formes",
+      "nom": "Colorie les formes (ronds en orange, carrés en bleu)",
+      "categorie": "LO",
+      "secondaires": [
+        "ES"
+      ],
+      "difficultes": [
+        "visuel",
+        "consignes"
+      ],
+      "niveaux": "PS-GS",
+      "materiel": "crayons",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "ronds et carrés",
+        "+ triangles",
+        "+ rectangles (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "tangram",
+      "nom": "Le tangram de Filou",
+      "categorie": "ES",
+      "secondaires": [
+        "LO",
+        "PV"
+      ],
+      "difficultes": [
+        "espace",
+        "visuel"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "ciseaux",
+      "generation": "auto",
+      "support": "decoupe",
+      "variantes": [
+        "3 pièces avec contour intérieur",
+        "5 pièces",
+        "silhouette seule (GS)"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "pixelArt",
+      "nom": "Le pixel art : colorie les cases comme le modèle",
+      "categorie": "ES",
+      "secondaires": [
+        "AT",
+        "NB"
+      ],
+      "difficultes": [
+        "espace",
+        "attention"
+      ],
+      "niveaux": "GS",
+      "materiel": "crayons",
+      "generation": "auto",
+      "support": "fiche",
+      "variantes": [
+        "6×6",
+        "8×8",
+        "10×10"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    },
+    {
+      "id": "kim",
+      "nom": "Le jeu de Kim : observe, cache, retrouve",
+      "categorie": "ME",
+      "secondaires": [
+        "PV",
+        "AT"
+      ],
+      "difficultes": [
+        "memoire",
+        "attention"
+      ],
+      "niveaux": "MS-GS",
+      "materiel": "crayon",
+      "generation": "pictos",
+      "support": "fiche",
+      "variantes": [
+        "3 objets",
+        "5 objets",
+        "7 objets"
+      ],
+      "dejaCode": false,
+      "nouveau": true
+    }
+  ]
+}

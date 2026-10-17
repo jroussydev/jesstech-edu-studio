@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le cahier d'Halloween de Clara (aperçu Edu Studio)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Grandstander:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --ui-bg:#EFE8DC; --ui-fg:#3A2A1F; --ui-bar:#FFFDF8; --ui-line:#D9C8AE; --ui-accent:#6B4423;
+  --papier:#FFFFFF; --trait:#3A2A1F; --bois-fonce:#6B4423; --bois:#9C6B3C; --bois-clair:#C8975A;
+  --panneau-texte:#FFF6E6; --citrouille:#E57A2E; --mousse:#6E9A47; --or:#E8B547; --echarpe:#4C7AB3;
+  --violet:#6A4C93; --peau:#F6D9C0;
+  --fantome:#FFFFFF; --encadre:#FBF1E1; --histoire:#EEF4E6; --chemin:#F6DFBC; --doux:#7A6555;
+  --gommette-a:#E57A2E; --gommette-b:#4C7AB3; --gommette-c:#6E9A47;
+  --semaine-1:#E57A2E; --semaine-2:#4C7AB3; --repere:var(--semaine-1);
+  --image-filtre:none; --s:.8;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--ui-bg:#1E1915;--ui-fg:#F1E8DA;--ui-bar:#2A231D;--ui-line:#46392D;--ui-accent:#E8B547}
+}
+:root[data-theme="dark"]{--ui-bg:#1E1915;--ui-fg:#F1E8DA;--ui-bar:#2A231D;--ui-line:#46392D;--ui-accent:#E8B547}
+:root[data-impression="nb"]{
+  --trait:#222; --bois-fonce:#333; --bois:#BDBDBD; --bois-clair:#E2E2E2; --panneau-texte:#1E1E1E;
+  --citrouille:#9E9E9E; --mousse:#6F6F6F; --or:#CFCFCF; --echarpe:#7A7A7A; --violet:#5A5A5A; --peau:#EEEEEE;
+  --encadre:#F2F2F2; --histoire:#F2F2F2; --chemin:#E4E4E4; --doux:#555;
+  --gommette-a:#666; --gommette-b:#666; --gommette-c:#666; --semaine-1:#444; --semaine-2:#444;
+  --image-filtre:grayscale(1) contrast(1.05);
+}
+body{margin:0;background:var(--ui-bg);color:var(--ui-fg);font-family:Andika,"Trebuchet MS",Verdana,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ui-bar);border-bottom:1px solid var(--ui-line)}
+.barre-in{max-width:1100px;margin:0 auto;padding:10px 14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.barre h1{margin:0;font-family:Grandstander,Andika,sans-serif;font-weight:800;font-size:1.05rem;color:var(--ui-accent);margin-right:auto}
+.groupe{display:flex;align-items:center;gap:6px;border:0;margin:0;padding:0}
+.groupe legend{float:left;font-size:.85rem;margin-right:4px;opacity:.8}
+.groupe label{position:relative}
+.groupe input{position:absolute;opacity:0;inset:0;margin:0}
+.groupe span{display:inline-block;padding:5px 12px;border:1px solid var(--ui-line);border-radius:999px;font-size:.9rem;cursor:pointer;user-select:none}
+.groupe input:checked + span{background:var(--ui-accent);border-color:var(--ui-accent);color:var(--ui-bar)}
+.groupe input:focus-visible + span, .imprimer:focus-visible, .aller:focus-visible{outline:2px solid var(--ui-accent);outline-offset:2px}
+.imprimer,.aller{font:inherit;font-size:.9rem;padding:6px 14px;border-radius:999px;border:1px solid var(--ui-accent);background:transparent;color:var(--ui-fg);cursor:pointer}
+.aller{padding:5px 10px;max-width:15rem}
+.aide{flex-basis:100%;margin:0;font-size:.8rem;opacity:.7}
+
+.pages{display:flex;flex-direction:column;align-items:center;gap:26px;padding:18px 12px 60px}
+.spread{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pw-cadre{width:calc(794px * var(--s));height:calc(1123px * var(--s));overflow:hidden;box-shadow:0 2px 14px rgba(60,40,20,.22);background:var(--papier)}
+.spread-pages{display:flex;flex-direction:column;gap:22px}
+.pw{display:flex;flex-direction:column;gap:6px}
+.page-label{font-size:.85rem;opacity:.75}
+.legende{display:none}
+/* vue planche : doubles pages côte à côte, en miniature */
+
+.vue-planche .pages{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:22px 18px;max-width:1100px;margin:0 auto}
+.vue-planche .spread-pages{flex-direction:row;gap:0}
+.vue-planche .page-label{display:none}
+.vue-planche .legende{display:block;font-size:.78rem;text-align:center;max-width:calc(2 * 794px * var(--s));opacity:.85}
+.vue-planche .pw-cadre{cursor:zoom-in}
+
+.page{container-type:inline-size;display:grid;width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;background:var(--papier);color:var(--trait);overflow:hidden}
+.feuille{min-height:0;display:flex;flex-direction:column;gap:2.2cqw;padding:5.5cqw 5.5cqw 3cqw}
+.folio{text-align:center;font-size:calc(1.8cqw * var(--kp,1) * var(--kb,1));color:var(--doux);margin-top:-.8cqw}
+
+.panneau{position:relative;background:
+   repeating-linear-gradient(176deg, transparent 0 1.6cqw, rgba(0,0,0,.05) 1.6cqw 1.8cqw),
+   linear-gradient(180deg,var(--bois-clair),var(--bois));
+  border:.5cqw solid var(--bois-fonce);border-radius:1.8cqw;padding:1cqw 4.2cqw 1.1cqw;color:var(--panneau-texte)}
+.panneau::before,.panneau::after{content:"";position:absolute;top:50%;width:1.4cqw;height:1.4cqw;margin-top:-.7cqw;border-radius:50%;background:var(--bois-fonce)}
+.panneau::before{left:1.4cqw}.panneau::after{right:1.4cqw}
+.panneau h2{margin:0;font-family:Grandstander,Andika,sans-serif;font-weight:800;font-size:calc(4cqw * var(--kp,1) * var(--kb,1));line-height:1.05;text-shadow:0 .25cqw 0 rgba(0,0,0,.18)}
+.tag{display:inline-block;margin-bottom:.3cqw;padding:.2cqw 1.8cqw;border-radius:999px;background:var(--repere);color:var(--papier);font-family:Grandstander,Andika,sans-serif;font-weight:600;font-size:calc(2.2cqw * var(--kp,1) * var(--kb,1))}
+.entete{display:flex;align-items:center;justify-content:space-between;gap:3cqw}
+.entete .panneau{flex:1}
+.entete .prenom{font-size:calc(2.4cqw * var(--kp,1) * var(--kb,1));text-align:right;line-height:1.2}
+.entete .prenom b{display:block;font-family:Grandstander,Andika,sans-serif;font-size:calc(3.6cqw * var(--kp,1) * var(--kb,1));color:var(--bois-fonce)}
+
+.explique,.histoire{border:.4cqw solid var(--bois-fonce);border-radius:2.6cqw;padding:1.4cqw 2.4cqw;min-height:0}
+.explique{background:var(--encadre);display:flex;flex-direction:column;gap:.8cqw}
+.explique .haut{display:flex;align-items:center;gap:1.8cqw}
+.explique img{flex:none;width:8.5cqw;height:auto;display:block;filter:var(--image-filtre)}
+.histoire{background:var(--histoire);display:grid;grid-template-columns:5.5cqw 1fr;gap:2cqw;align-items:center}
+.histoire svg{width:100%;height:auto;display:block}
+.explique h3,.histoire h3{margin:0;font-family:Grandstander,Andika,sans-serif;font-weight:600;font-size:calc(2.3cqw * var(--kp,1) * var(--kb,1));color:var(--doux)}
+.mot{display:flex;flex-wrap:wrap;gap:0 1.6cqw;align-items:baseline}
+.mot .maj{font-weight:700;font-size:calc(3.4cqw * var(--kp,1) * var(--kb,1));letter-spacing:.2cqw;color:var(--bois-fonce)}
+.mot .min{font-size:calc(2.6cqw * var(--kp,1) * var(--kb,1));color:var(--bois-fonce)}
+.explique p,.histoire p{margin:0;font-size:calc(2.35cqw * var(--kp,1) * var(--kb,1));line-height:1.35}
+.explique .question{margin-top:.6cqw;font-weight:700}
+.rangee-zones > .explique{flex:1;min-width:0;justify-content:center}
+.explique,.histoire,.case,.carte,.recit,.bravo,.etape,.consigne,.parent{overflow:hidden}
+.consigne,.consignes,.histoire,.parent,.recit,.bravo,.etape,.entete,.folio{flex:none}
+.zones{flex:1;min-height:0;display:flex;flex-direction:column;gap:2.4cqw}
+.zone{flex:1;min-height:0;display:flex;flex-direction:column;border:.35cqw solid var(--bois-fonce);border-radius:2.4cqw;padding:1.6cqw 2.2cqw}
+.rangee-zones{min-height:0;display:flex;gap:2.4cqw}
+.rangee-zones > .zone{flex:1;min-width:0}
+.rangee-zones.demi .consigne{align-items:flex-start}
+.consigne{display:flex;align-items:center;gap:1.4cqw;font-size:calc(2.4cqw * var(--kp,1) * var(--kb,1));font-weight:700;line-height:1.3;margin-bottom:.6cqw}
+.consignes{display:flex;flex-wrap:wrap;gap:0 4cqw}
+.consigne .n{flex:none;width:4cqw;height:4cqw;border-radius:50%;background:var(--repere);color:var(--papier);display:grid;place-items:center;font-family:Grandstander,Andika,sans-serif;font-size:calc(2.3cqw * var(--kp,1) * var(--kb,1))}
+.consigne svg{flex:none;width:4.6cqw;height:4.6cqw}
+.contenu{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.contenu > svg{width:100%;height:100%;display:block}
+.parent{margin:0;font-size:calc(1.95cqw * var(--kp,1) * var(--kb,1));line-height:1.35;color:var(--doux);border-top:.3cqw dashed var(--doux);padding-top:1cqw}
+.parent b{color:var(--trait)}
+.parent br{display:block;content:'';margin-top:.6cqw}
+.lettres{text-align:center;font-family:Grandstander,Andika,sans-serif;font-weight:800;line-height:1;color:var(--papier);-webkit-text-stroke:.45cqw var(--trait);paint-order:stroke;white-space:nowrap}
+
+.couverture .feuille{gap:3cqw;padding-bottom:5.5cqw}
+.couverture .panneau{text-align:center;padding:2.6cqw 6cqw}
+.couverture .panneau h2{font-size:calc(8.4cqw * var(--kp,1) * var(--kb,1))}
+.sous-titre{margin:.6cqw 0 0;font-size:calc(3cqw * var(--kp,1) * var(--kb,1));font-weight:700}
+.illustration{flex:1;min-height:0;border:.5cqw solid var(--bois-fonce);border-radius:3cqw;overflow:hidden}
+.illustration img{width:100%;height:100%;object-fit:cover;object-position:52% 50%;display:block;filter:var(--image-filtre)}
+.appartient{text-align:center;font-size:calc(3.2cqw * var(--kp,1) * var(--kb,1))}
+.appartient b{display:block;margin-top:.6cqw;font-family:Grandstander,Andika,sans-serif;font-size:calc(8cqw * var(--kp,1) * var(--kb,1));color:var(--bois-fonce)}
+
+.recit{background:var(--encadre);border:.4cqw solid var(--bois-fonce);border-radius:3cqw;padding:3cqw 4cqw;font-size:calc(3.4cqw * var(--kp,1) * var(--kb,1));line-height:1.5}
+.recit p{margin:0}
+.etapes{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-around;gap:2cqw}
+.etape{display:grid;grid-template-columns:7cqw 12cqw 1fr;gap:3cqw;align-items:center;font-size:calc(3.6cqw * var(--kp,1) * var(--kb,1));font-weight:700}
+.etape .n{width:7cqw;height:7cqw;border-radius:50%;background:var(--repere);color:var(--papier);display:grid;place-items:center;font-family:Grandstander,Andika,sans-serif;font-size:calc(4cqw * var(--kp,1) * var(--kb,1))}
+.etape svg{width:12cqw;height:12cqw}
+.ouv-bas{display:grid;grid-template-columns:26cqw 1fr;gap:3cqw;align-items:end}
+.ouv-bas img{width:100%;filter:var(--image-filtre)}
+
+.cartes{flex:1;min-height:0;display:flex;flex-direction:column;gap:2.4cqw}
+.carte{flex:1;min-height:0;display:grid;grid-template-columns:1.1fr 1fr;gap:3cqw;align-items:center;border:.5cqw solid var(--repere);border-radius:3cqw;padding:2cqw 3cqw}
+.carte svg{width:100%;height:100%;max-height:100%}
+.carte .maj{display:block;font-weight:700;font-size:calc(6cqw * var(--kp,1) * var(--kb,1));letter-spacing:.3cqw;color:var(--bois-fonce)}
+.carte .min{display:block;font-size:calc(5cqw * var(--kp,1) * var(--kb,1));color:var(--bois-fonce)}
+
+.semaine{display:flex;flex-direction:column;gap:1.2cqw;flex:1;min-height:0}
+.semaine h3{margin:0;display:flex;align-items:center;gap:1.6cqw;font-family:Grandstander,Andika,sans-serif;font-weight:600;font-size:calc(3.4cqw * var(--kp,1) * var(--kb,1));color:var(--bois-fonce)}
+.semaine h3::before{content:"";width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--c)}
+.rangee{flex:1;min-height:0;display:grid;grid-template-columns:repeat(5,1fr);gap:2cqw}
+.case{display:flex;flex-direction:column;align-items:center;gap:.6cqw;border:.3cqw dashed var(--bois-clair);border-radius:2cqw;padding:1.4cqw .8cqw;text-align:center;min-height:0}
+.case svg{width:100%;flex:1;min-height:0}
+.case .num{font-family:Grandstander,Andika,sans-serif;font-weight:800;font-size:calc(3.4cqw * var(--kp,1) * var(--kb,1));color:var(--c)}
+.case .t{font-size:calc(1.9cqw * var(--kp,1) * var(--kb,1));line-height:1.2;color:var(--doux)}
+.case.large{flex:1;flex-direction:row;justify-content:center;gap:3cqw}
+.case.large svg{flex:none;width:14cqw;height:100%}
+.case.large .t{font-size:calc(2.8cqw * var(--kp,1) * var(--kb,1));color:var(--bois-fonce);font-weight:700}
+.bravo{display:grid;grid-template-columns:16cqw 1fr;gap:3cqw;align-items:center;background:var(--encadre);border:.4cqw solid var(--bois-fonce);border-radius:3cqw;padding:1.6cqw 3cqw}
+.bravo img{width:100%;display:block;filter:var(--image-filtre)}
+.bravo p{margin:0;font-size:calc(3cqw * var(--kp,1) * var(--kb,1));line-height:1.4}
+
+@media print{
+  @page{size:210mm 297mm;margin:0}
+  :root{padding:0}
+  html,body{background:#fff}
+  .barre,.page-label,.legende{display:none !important}
+  .pages,.spread,.spread-pages,.pw{display:block !important;padding:0;gap:0}
+  .pw-cadre{width:auto !important;height:auto !important;overflow:visible;box-shadow:none}
+  .page{width:210mm !important;height:297mm !important;transform:none !important;break-after:page}
+}
+.explique p,.histoire p{font-size:calc(3.1cqw * var(--kp,1) * var(--kb,1))}
+.consigne{font-size:calc(2.9cqw * var(--kp,1) * var(--kb,1))}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="silhouette"><feFlood style="flood-color:var(--trait)"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+</defs></svg>
+<header class="barre">
+  <div class="barre-in">
+    <h1>Le cahier de Clara, aperçu A4</h1>
+    <fieldset class="groupe"><legend>Vue</legend>
+      <label><input type="radio" name="vue" value="pages" checked><span>Pages</span></label>
+      <label><input type="radio" name="vue" value="planche"><span>Planche</span></label>
+    </fieldset>
+    <fieldset class="groupe"><legend>Impression</legend>
+      <label><input type="radio" name="impression" value="couleur" checked><span>Couleur</span></label>
+      <label><input type="radio" name="impression" value="nb"><span>Noir et blanc</span></label>
+    </fieldset>
+    <select class="aller" id="aller" aria-label="Aller à une page"></select>
+    <button class="imprimer" type="button" id="imprimer">Imprimer</button>
+    <p class="aide">Vue Planche : touchez une double page pour l'ouvrir en grand. Pour imprimer : bouton ou Ctrl + P, puis « Enregistrer en PDF ».</p>
+  </div>
+</header>
+<main class="pages" id="pages"></main>
+<script>
+const IMG = { couverture: "../donnees/themes/halloween/images/couverture.jpg", citrouille: "../donnees/themes/halloween/images/filou-citrouille.png", cape: "../donnees/themes/halloween/images/filou-cape.png", sorcier: "../donnees/themes/halloween/images/filou-sorcier.png", fantome: "../donnees/themes/halloween/images/filou-fantome.png" };
+const PRENOM = 'Clara';
+
+/* ---------- Outils ---------- */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function melange(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const place=(c,x,y,w,h,vb)=>`<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${vb}">${c}</svg>`;
+const C=(c,l)=>l?'var(--papier)':c;
+const T='var(--trait)';
+
+/* ---------- Dessins (l = version à colorier) ---------- */
+function fantome(o={}, l=false){
+  const sw=l?3.4:3;
+  let s=`<path d="M20 102 V45 A30 30 0 0 1 80 45 V102 L70 94 L60 102 L50 94 L40 102 L30 94 Z" fill="${C('var(--fantome)',l)}" stroke="${T}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+  if(o.bras) s+=`<path d="M21 64 Q7 58 10 45 M79 64 Q93 58 90 45" fill="none" stroke="${T}" stroke-width="${sw}" stroke-linecap="round"/>`;
+  s+= o.yeux==='ovale' ? `<ellipse cx="40" cy="48" rx="3.5" ry="7" fill="${T}"/><ellipse cx="60" cy="48" rx="3.5" ry="7" fill="${T}"/>` : `<circle cx="40" cy="48" r="5" fill="${T}"/><circle cx="60" cy="48" r="5" fill="${T}"/>`;
+  s+= o.bouche==='o' ? `<circle cx="50" cy="65" r="5" fill="none" stroke="${T}" stroke-width="${sw}"/>` : `<path d="M41 62 Q50 71 59 62" fill="none" stroke="${T}" stroke-width="${sw}" stroke-linecap="round"/>`;
+  if(o.noeud) s+=`<path d="M50 16 L39 8 L39 24 Z M50 16 L61 8 L61 24 Z" fill="${C('var(--citrouille)',l)}" stroke="${T}" stroke-width="2.4" stroke-linejoin="round"/><circle cx="50" cy="16" r="3.5" fill="${T}"/>`;
+  return s;
+}
+function citrouille(l=false){
+  const f=C('var(--citrouille)',l);
+  return `<path d="M50 22 Q47 10 56 5" fill="none" stroke="${l?T:'var(--mousse)'}" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="31" cy="56" rx="22" ry="30" fill="${f}" stroke="${T}" stroke-width="3"/><ellipse cx="69" cy="56" rx="22" ry="30" fill="${f}" stroke="${T}" stroke-width="3"/><ellipse cx="50" cy="56" rx="20" ry="32" fill="${f}" stroke="${T}" stroke-width="3"/>`;
+}
+function chat(l=false){
+  const f=C('var(--bois-fonce)',l);
+  return `<path d="M30 92 Q22 62 40 54 L60 54 Q78 62 70 92 Z" fill="${f}" stroke="${T}" stroke-width="3"/>
+  <path d="M70 86 Q92 80 86 58" fill="none" stroke="${T}" stroke-width="4" stroke-linecap="round"/>
+  <path d="M28 38 L30 10 L46 26 Z M72 38 L70 10 L54 26 Z" fill="${f}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="50" cy="38" r="22" fill="${f}" stroke="${T}" stroke-width="3"/>
+  <circle cx="42" cy="36" r="4" fill="${l?T:'var(--or)'}"/><circle cx="58" cy="36" r="4" fill="${l?T:'var(--or)'}"/>
+  <path d="M46 46 Q50 50 54 46" fill="none" stroke="${l?T:'var(--papier)'}" stroke-width="2" stroke-linecap="round"/>`;
+}
+function chauveSouris(l=false){
+  const f=C('var(--bois-fonce)',l);
+  return `<path d="M50 40 Q30 18 6 30 Q16 38 14 50 Q26 44 32 54 Q40 46 50 52 Q60 46 68 54 Q74 44 86 50 Q84 38 94 30 Q70 18 50 40 Z" fill="${f}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="50" cy="46" rx="11" ry="14" fill="${f}" stroke="${T}" stroke-width="3"/>
+  <path d="M42 34 L41 24 L47 32 M58 34 L59 24 L53 32" fill="${f}" stroke="${T}" stroke-width="2.4" stroke-linejoin="round"/>
+  <circle cx="45" cy="44" r="2.6" fill="${l?T:'var(--papier)'}"/><circle cx="55" cy="44" r="2.6" fill="${l?T:'var(--papier)'}"/>`;
+}
+function araignee(l=false){
+  let p=''; [-1,1].forEach(d=>{ [18,30,42,54].forEach((y,i)=>{ p+=`M${50+d*10} ${52+i*3} Q${50+d*30} ${y} ${50+d*38} ${y+16}`; }); });
+  return `<path d="M50 0 V36" stroke="${T}" stroke-width="1.6"/><path d="${p}" fill="none" stroke="${T}" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="50" cy="56" r="16" fill="${C('var(--bois-fonce)',l)}" stroke="${T}" stroke-width="3"/>
+  <circle cx="44" cy="52" r="4" fill="var(--papier)" stroke="${l?T:'none'}" stroke-width="1"/><circle cx="56" cy="52" r="4" fill="var(--papier)" stroke="${l?T:'none'}" stroke-width="1"/>
+  <circle cx="44" cy="53" r="1.8" fill="${T}"/><circle cx="56" cy="53" r="1.8" fill="${T}"/>`;
+}
+function lune(l=false){ return `<path d="M58 8 A42 42 0 1 0 92 72 A33 33 0 1 1 58 8 Z" fill="${C('var(--or)',l)}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>`; }
+function bonbon(l=false){
+  return `<path d="M30 30 L6 12 L10 30 L6 48 Z M70 30 L94 12 L90 30 L94 48 Z" fill="${C('var(--echarpe)',l)}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="50" cy="30" rx="24" ry="18" fill="${C('var(--citrouille)',l)}" stroke="${T}" stroke-width="3"/>
+  <path d="M40 15 Q46 30 40 45 M55 13 Q61 30 55 47" fill="none" stroke="${T}" stroke-width="2.4"/>`;
+}
+function chapeau(l=false){
+  return `<path d="M26 78 Q40 60 45 36 Q50 14 72 8 Q60 26 62 44 Q65 64 76 78 Z" fill="${C('var(--violet)',l)}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="50" cy="80" rx="45" ry="10" fill="${C('var(--violet)',l)}" stroke="${T}" stroke-width="3"/>
+  <path d="M31 68 Q51 74 71 68 L73 76 Q51 82 29 76 Z" fill="${C('var(--or)',l)}" stroke="${T}" stroke-width="2.4" stroke-linejoin="round"/>`;
+}
+function sorciere(l=false){
+  return `<path d="M24 52 Q16 82 28 100 L40 72 Z M76 52 Q84 82 72 100 L60 72 Z" fill="${C('var(--citrouille)',l)}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="50" cy="68" r="25" fill="${C('var(--peau)',l)}" stroke="${T}" stroke-width="3"/>
+  <circle cx="41" cy="66" r="3.6" fill="${T}"/><circle cx="59" cy="66" r="3.6" fill="${T}"/>
+  <path d="M42 78 Q50 85 58 78" fill="none" stroke="${T}" stroke-width="3" stroke-linecap="round"/>
+  ${place(chapeau(l), 4, -4, 92, 64, '0 0 100 100')}`;
+}
+function balai(l=false){
+  return `<path d="M82 6 L42 60" stroke="${T}" stroke-width="10" stroke-linecap="round"/><path d="M82 6 L42 60" stroke="${C('var(--bois-clair)',l)}" stroke-width="5" stroke-linecap="round"/>
+  <path d="M42 56 L16 92 Q34 100 58 90 L60 66 Z" fill="${C('var(--or)',l)}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M30 80 L44 64 M40 88 L50 68" stroke="${T}" stroke-width="2"/>
+  <path d="M38 58 L60 70" stroke="${T}" stroke-width="7" stroke-linecap="round"/>`;
+}
+function toile(){
+  let s=''; const pts=r=>[...Array(8)].map((_,i)=>{const a=i*Math.PI/4;return [50+r*Math.cos(a),50+r*Math.sin(a)]});
+  pts(46).forEach(([x,y])=>{ s+=`M50 50 L${x.toFixed(1)} ${y.toFixed(1)}`; });
+  [14,27,40].forEach(r=>{ const p=pts(r); s+=`M${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`; p.slice(1).concat([p[0]]).forEach(([x,y])=>{ s+=`L${x.toFixed(1)} ${y.toFixed(1)}`; }); });
+  return `<path d="${s}" fill="none" stroke="${T}" stroke-width="2.4" stroke-linejoin="round"/>`;
+}
+function feuille(l=false){
+  return `<path d="M50 90 Q14 70 18 40 Q24 14 50 6 Q76 14 82 40 Q86 70 50 90 Z" fill="${C('var(--or)',l)}" stroke="${T}" stroke-width="3"/>
+  <path d="M50 98 V16 M50 60 L32 44 M50 46 L68 32 M50 76 L34 64 M50 66 L68 54" fill="none" stroke="${T}" stroke-width="2.4" stroke-linecap="round"/>`;
+}
+function moulin(l=false){
+  return `<rect x="30" y="44" width="40" height="50" fill="${C('var(--bois-clair)',l)}" stroke="${T}" stroke-width="3"/>
+  <path d="M26 46 L50 26 L74 46 Z" fill="${C('var(--citrouille)',l)}" stroke="${T}" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="43" y="70" width="14" height="24" fill="${C('var(--bois-fonce)',l)}" stroke="${T}" stroke-width="2"/>
+  <path d="M50 30 L18 8 M50 30 L82 8 M50 30 L22 56 M50 30 L80 56" stroke="${T}" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="30" r="4" fill="${T}"/>`;
+}
+
+const OBJ = {
+  citrouille:   { f:citrouille, vb:'0 0 100 90',  min:'citrouille', pl:'citrouilles', art:'la' },
+  chat:         { f:chat, vb:'0 0 100 100', min:'chat', pl:'chats', art:'le' },
+  chauveSouris: { f:chauveSouris, vb:'0 6 100 64', min:'chauve-souris', pl:'chauves-souris', art:'la' },
+  fantome:      { f:l=>fantome({yeux:'rond',bouche:'sourire',bras:true},l), vb:'0 0 100 110', min:'fantôme', pl:'fantômes', art:'le' },
+  lune:         { f:lune, vb:'0 0 100 100', min:'lune', pl:'lunes', art:'la' },
+  bonbon:       { f:bonbon, vb:'0 0 100 60', min:'bonbon', pl:'bonbons', art:'le' },
+  sorciere:     { f:sorciere, vb:'0 -4 100 110', min:'sorcière', pl:'sorcières', art:'la' },
+  chapeau:      { f:chapeau, vb:'0 0 100 92', min:'chapeau', pl:'chapeaux', art:'le' },
+  balai:        { f:balai, vb:'0 0 100 100', min:'balai', pl:'balais', art:'le' },
+  araignee:     { f:araignee, vb:'0 0 100 92', min:'araignée', pl:'araignées', art:"l'" },
+  toile:        { f:toile, vb:'0 0 100 100', min:'toile', pl:'toiles', art:'la' },
+  feuille:      { f:feuille, vb:'0 0 100 100', min:'feuille', pl:'feuilles', art:'la' },
+  moulin:       { f:moulin, vb:'0 0 100 100', min:'moulin', pl:'moulins', art:'le' }
+};
+const maj = k => OBJ[k].min.toUpperCase();
+const dessin = (k,x,y,w,h,l=false) => place(OBJ[k].f(l), x, y, w, h, OBJ[k].vb);
+const leX = k => OBJ[k].art==="l'" ? "l'"+OBJ[k].min : OBJ[k].art+' '+OBJ[k].min;
+
+/* ---------- Pictogrammes de consigne ---------- */
+const PICTOS = {
+  entoure:`<ellipse cx="24" cy="24" rx="20" ry="14" fill="none" stroke="var(--bois-fonce)" stroke-width="3" stroke-dasharray="5 4"/><circle cx="24" cy="24" r="6" fill="var(--citrouille)"/>`,
+  compte:`<circle cx="10" cy="30" r="5" fill="var(--bois-fonce)"/><circle cx="24" cy="18" r="5" fill="var(--bois-fonce)"/><circle cx="38" cy="30" r="5" fill="var(--bois-fonce)"/><path d="M8 42 H40" stroke="var(--citrouille)" stroke-width="3" stroke-linecap="round"/>`,
+  chemin:`<path d="M6 40 C16 8 32 44 40 12" fill="none" stroke="var(--bois-fonce)" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round"/><path d="M33 13 L41 9 L43 18" fill="none" stroke="var(--citrouille)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>`,
+  relie:`<circle cx="9" cy="14" r="5" fill="var(--bois-fonce)"/><circle cx="39" cy="34" r="5" fill="var(--bois-fonce)"/><path d="M13 17 L35 31" stroke="var(--citrouille)" stroke-width="3.4" stroke-linecap="round"/>`,
+  colorie:`<path d="M9 39 L13 27 L33 7 L41 15 L21 35 Z" fill="var(--citrouille)" stroke="var(--bois-fonce)" stroke-width="2.6" stroke-linejoin="round"/><path d="M13 27 L21 35 M9 39 L14 37" stroke="var(--bois-fonce)" stroke-width="2.6" stroke-linecap="round"/>`,
+  colle:`<circle cx="22" cy="24" r="15" fill="var(--echarpe)" stroke="var(--bois-fonce)" stroke-width="2.6"/><path d="M33 13 Q42 10 40 22 Z" fill="var(--papier)" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linejoin="round"/>`,
+  livre:`<path d="M24 12 Q14 6 4 9 V40 Q14 37 24 43 Q34 37 44 40 V9 Q34 6 24 12 Z" fill="var(--papier)" stroke="var(--bois-fonce)" stroke-width="2.6" stroke-linejoin="round"/><path d="M24 12 V43" stroke="var(--bois-fonce)" stroke-width="2.6"/><path d="M9 18 H19 M9 25 H19 M29 18 H39 M29 25 H39" stroke="var(--mousse)" stroke-width="2.4" stroke-linecap="round"/>`,
+  ciseaux:`<circle cx="12" cy="36" r="7" fill="none" stroke="var(--bois-fonce)" stroke-width="3"/><circle cx="30" cy="38" r="7" fill="none" stroke="var(--bois-fonce)" stroke-width="3"/><path d="M16 30 L40 6 M26 32 L18 8" stroke="var(--bois-fonce)" stroke-width="3" stroke-linecap="round"/>`,
+  paille:`<rect x="20" y="4" width="8" height="40" rx="3" fill="var(--echarpe)" stroke="var(--bois-fonce)" stroke-width="2.4"/><circle cx="24" cy="12" r="9" fill="var(--citrouille)" stroke="var(--bois-fonce)" stroke-width="2.4"/>`,
+  bouche:`<path d="M8 22 Q24 6 40 22 Q24 42 8 22 Z" fill="var(--papier)" stroke="var(--bois-fonce)" stroke-width="2.6"/><path d="M14 22 Q24 28 34 22" fill="none" stroke="var(--citrouille)" stroke-width="2.6" stroke-linecap="round"/>`,
+  doigt:`<rect x="19" y="4" width="10" height="24" rx="5" fill="var(--papier)" stroke="var(--bois-fonce)" stroke-width="2.6"/><rect x="11" y="22" width="26" height="22" rx="8" fill="var(--papier)" stroke="var(--bois-fonce)" stroke-width="2.6"/>`,
+  oreille:`<path d="M30 40 Q22 44 18 36 Q14 28 20 24 Q14 14 24 8 Q36 4 38 18 Q39 26 32 30 Q28 33 30 40 Z" fill="var(--papier)" stroke="var(--bois-fonce)" stroke-width="2.6" stroke-linejoin="round"/><path d="M26 18 Q30 14 32 20" fill="none" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linecap="round"/>`
+};
+const picto = n => `<svg viewBox="0 0 48 48" aria-hidden="true">${PICTOS[n]}</svg>`;
+
+/* ---------- Générateurs d'activités ---------- */
+const svg = (W,H,c,label) => `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}">${c}</svg>`;
+const boite = (x,y,w,h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="var(--encadre)" stroke="var(--bois-fonce)" stroke-width="1.6"/>`;
+const point = (x,y) => `<circle cx="${x}" cy="${y}" r="4" fill="var(--bois-fonce)"/>`;
+
+const GEN = {
+  trouveLeMeme(a, r){
+    const m={yeux:'rond',bouche:'sourire',bras:true,noeud:true};
+    const o=melange([m,{...m,noeud:false},{...m,bouche:'o'},{...m,bras:false}],r);
+    const w=90,h=99,pas=106,x0=144,W=x0+4*pas,H=128;
+    let s=`<rect x="3" y="4" width="112" height="${H-8}" rx="10" fill="none" stroke="var(--doux)" stroke-width="2" stroke-dasharray="6 5"/><text x="59" y="${H-12}" text-anchor="middle" font-size="12" fill="var(--doux)" font-family="Andika, sans-serif">modèle</text>`;
+    s+=place(fantome(m),14,8,w,h,'0 0 100 110')+`<line x1="128" y1="10" x2="128" y2="${H-10}" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linecap="round"/>`;
+    o.forEach((v,i)=>{ s+=place(fantome(v),x0+i*pas,14,w,h,'0 0 100 110'); });
+    return svg(W,H,s,'Trouve le même');
+  },
+  compter(a, r, demi){
+    const n=4+Math.floor(r()*4), cases=melange([...Array(10).keys()],r).slice(0,n), choix=melange([n,n+1,n-2],r);
+    const chiffre=(x,y,v)=>boite(x,y,44,32)+`<text x="${x+22}" y="${y+24}" text-anchor="middle" font-size="23" font-weight="700" fill="${T}" font-family="Andika, sans-serif">${v}</text>`;
+    let s=''; cases.forEach(c=>{ s+=dessin(a.objet, 2+(c%5)*39+(r()*6-3), 4+Math.floor(c/5)*53+(r()*6-3), 38, 42); });
+    if(demi){ s+=`<line x1="10" y1="118" x2="190" y2="118" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linecap="round"/>`; choix.forEach((v,i)=>{ s+=chiffre(22+i*56,130,v); }); return svg(200,168,s,'Compte'); }
+    s+=`<line x1="204" y1="8" x2="204" y2="102" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linecap="round"/>`; choix.forEach((v,i)=>{ s+=chiffre(220,4+i*35,v); });
+    return svg(272,110,s,'Compte');
+  },
+  labyrinthe(a, r, demi, ctx){
+    const C_=demi?5:7, R_=demi?6:4, cel=[...Array(C_*R_)].map(()=>({n:1,e:1,s:1,w:1,v:0})), opp={n:'s',s:'n',e:'w',w:'e'}, pile=[0]; cel[0].v=1;
+    while(pile.length){ const i=pile[pile.length-1],x=i%C_,y=Math.floor(i/C_),v=[];
+      if(y>0&&!cel[i-C_].v)v.push(['n',i-C_]); if(x<C_-1&&!cel[i+1].v)v.push(['e',i+1]); if(y<R_-1&&!cel[i+C_].v)v.push(['s',i+C_]); if(x>0&&!cel[i-1].v)v.push(['w',i-1]);
+      if(!v.length){pile.pop();continue} const [d,j]=v[Math.floor(r()*v.length)]; cel[i][d]=0; cel[j][opp[d]]=0; cel[j].v=1; pile.push(j); }
+    cel[0].w=0; cel[C_*R_-1].e=0;
+    const k=22,ox=38,oy=6; let p='';
+    for(let y=0;y<R_;y++)for(let x=0;x<C_;x++){const c=cel[y*C_+x],X=ox+x*k,Y=oy+y*k; if(c.n)p+=`M${X} ${Y}h${k}`; if(c.w)p+=`M${X} ${Y}v${k}`; if(y===R_-1&&c.s)p+=`M${X} ${Y+k}h${k}`; if(x===C_-1&&c.e)p+=`M${X+k} ${Y}v${k}`;}
+    const W=ox*2+C_*k, H=oy*2+R_*k;
+    let s=`<path d="${p}" fill="none" stroke="var(--bois-fonce)" stroke-width="3.4" stroke-linecap="round"/>`;
+    s+=`<image href="${ctx.filou}" x="0" y="${oy+k/2-20}" width="36" height="40" preserveAspectRatio="xMidYMid meet" style="filter:var(--image-filtre)"/>`;
+    s+=dessin(a.arrivee, ox+C_*k+2, oy+(R_-1)*k+k/2-18, 34, 34);
+    return svg(W,H,s,'Labyrinthe');
+  },
+  ombres(a, r, demi){
+    if(demi){ const n=a.objets.length, bas=melange(a.objets,r); let s='';
+      a.objets.forEach((k,i)=>{ s+=dessin(k,4,4+i*60,52,52)+point(66,30+i*60); });
+      bas.forEach((k,i)=>{ s+=point(104,30+i*60)+`<g filter="url(#silhouette)">${dessin(k,114,4+i*60,52,52)}</g>`; });
+      return svg(170,n*60+4,s,'Ombres'); }
+    const n=a.objets.length, bas=melange(a.objets,r), W=n*72, H=150; let s='';
+    a.objets.forEach((k,i)=>{ s+=dessin(k,8+i*72,2,56,56)+point(36+i*72,66); });
+    bas.forEach((k,i)=>{ s+=point(36+i*72,86)+`<g filter="url(#silhouette)">${dessin(k,8+i*72,94,56,56)}</g>`; });
+    return svg(W,H,s,'Ombres');
+  },
+  chercheEtTrouve(a, r, demi){
+    const cols=demi?4:7, rows=demi?4:3, n=demi?3+Math.floor(r()*2):4+Math.floor(r()*2), tot=cols*rows;
+    const cibles=new Set(melange([...Array(tot).keys()],r).slice(0,n)); let s='';
+    for(let i=0;i<tot;i++){ const k=cibles.has(i)?a.cible:a.autres[Math.floor(r()*a.autres.length)];
+      const x=(i%cols)*44+4+(r()*6-3), y=Math.floor(i/cols)*44+4+(r()*6-3), ang=(r()*30-15).toFixed(0);
+      s+=`<g transform="rotate(${ang} ${x+18} ${y+18})">${dessin(k,x,y,36,36)}</g>`; }
+    return svg(cols*44+4, rows*44+4, s, 'Cherche et trouve');
+  },
+  intrus(a, r, demi){
+    const items=melange([a.objet,a.objet,a.objet,a.intrus],r); let s='';
+    if(demi){ items.forEach((k,i)=>{ s+=dessin(k,6+(i%2)*80,6+Math.floor(i/2)*80,68,68); }); return svg(166,166,s,'Intrus'); }
+    items.forEach((k,i)=>{ s+=dessin(k,8+i*78,6,64,64); }); return svg(316,76,s,'Intrus');
+  },
+  suite(a, r){
+    const seq=[a.a,a.b,a.a,a.b]; let s='';
+    seq.forEach((k,i)=>{ s+=dessin(k,6+i*56,6,46,46); });
+    s+=`<rect x="${6+4*56}" y="6" width="46" height="46" rx="8" fill="none" stroke="var(--citrouille)" stroke-width="2.4" stroke-dasharray="5 4"/><text x="${29+4*56}" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="var(--citrouille)" font-family="Andika, sans-serif">?</text>`;
+    s+=`<line x1="20" y1="66" x2="260" y2="66" stroke="var(--bois-fonce)" stroke-width="2" stroke-linecap="round"/>`;
+    melange([a.a,a.b,a.c],r).forEach((k,i)=>{ const x=52+i*64; s+=boite(x,78,54,54)+dessin(k,x+5,82,44,44); });
+    return svg(286,138,s,'Suite logique');
+  },
+  associer(a, r, demi){
+    const mots=melange(a.objets,r), n=a.objets.length; let s='';
+    if(!demi){ /* pleine largeur : images en haut, mots en bas */
+      a.objets.forEach((k,i)=>{ s+=dessin(k,10+i*80,2,60,56)+point(40+i*80,66); });
+      mots.forEach((k,i)=>{ s+=point(40+i*80,88)+`<text x="${40+i*80}" y="${110}" text-anchor="middle" font-size="${maj(k).length>9?11:14}" font-weight="700" fill="${T}" font-family="Andika, sans-serif">${maj(k)}</text>`; });
+      return svg(n*80,116,s,'Associer');
+    }
+    a.objets.forEach((k,i)=>{ s+=dessin(k,6,6+i*60,50,50)+point(70,31+i*60); });
+    mots.forEach((k,i)=>{ s+=point(118,31+i*60)+`<text x="130" y="${38+i*60}" font-size="17" font-weight="700" fill="${T}" font-family="Andika, sans-serif">${maj(k)}</text>`; });
+    return svg(250,n*60+2,s,'Associer');
+  }
+};
+Object.assign(GEN, {
+  montreLeMeme(a, r, demi){
+    const opts=melange([a.objet,a.autre],r);
+    if(demi){ /* modèle en haut, choix en dessous */
+      let s=`<rect x="64" y="2" width="112" height="112" rx="10" fill="none" stroke="var(--doux)" stroke-width="2" stroke-dasharray="6 5"/>`+dessin(a.objet,74,8,92,92);
+      s+=`<text x="120" y="110" text-anchor="middle" font-size="11" fill="var(--doux)" font-family="Andika, sans-serif">modèle</text><line x1="20" y1="124" x2="220" y2="124" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linecap="round"/>`;
+      opts.forEach((k,i)=>{ s+=dessin(k,10+i*124,134,96,96); });
+      return svg(240,234,s,'Montre le même'); }
+    const W=144+2*120, H=128;
+    let s=`<rect x="3" y="4" width="112" height="${H-8}" rx="10" fill="none" stroke="var(--doux)" stroke-width="2" stroke-dasharray="6 5"/><text x="59" y="${H-10}" text-anchor="middle" font-size="12" fill="var(--doux)" font-family="Andika, sans-serif">modèle</text>`;
+    s+=dessin(a.objet,14,10,90,96)+`<line x1="128" y1="10" x2="128" y2="${H-10}" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-linecap="round"/>`;
+    opts.forEach((k,i)=>{ s+=dessin(k,146+i*120,14,100,100); });
+    return svg(W,H,s,'Montre le même');
+  },
+  montreObjet(a, r, demi){
+    const items=melange([a.cible,...a.autres.slice(0,3)],r); let s='';
+    if(demi){ items.forEach((k,i)=>{ s+=dessin(k,6+(i%2)*84,6+Math.floor(i/2)*84,72,72); }); return svg(174,174,s,'Montre'); }
+    items.forEach((k,i)=>{ s+=dessin(k,8+i*84,6,72,72); }); return svg(344,84,s,'Montre');
+  },
+  chemin(a, r, demi, ctx){
+    const d='M62 78 C110 10 150 118 196 58 S238 36 246 52';
+    let s=`<path d="${d}" fill="none" stroke="var(--chemin)" stroke-width="30" stroke-linecap="round"/><path d="${d}" fill="none" stroke="var(--bois-fonce)" stroke-width="2.6" stroke-dasharray="7 7" stroke-linecap="round"/><circle cx="62" cy="78" r="6" fill="var(--citrouille)" stroke="${T}" stroke-width="2"/>`;
+    s+=`<image href="${ctx.filou}" x="0" y="38" width="56" height="62" preserveAspectRatio="xMidYMid meet" style="filter:var(--image-filtre)"/>`;
+    s+=dessin(a.arrivee,244,18,54,54);
+    return svg(300,120,s,'Chemin');
+  },
+  gommettesSur(a, r, demi){
+    const n=a.n||3, coul=['var(--gommette-a)','var(--gommette-b)','var(--gommette-c)']; let s='';
+    const pos = demi ? [...Array(n)].map((_,i)=>[6+(i%2)*84,6+Math.floor(i/2)*84]) : [...Array(n)].map((_,i)=>[8+i*92,6]);
+    pos.forEach(([x,y],i)=>{ s+=dessin(a.objet,x,y,76,76,true)+`<circle cx="${x+38}" cy="${y+40}" r="13" fill="${coul[i%3]}" fill-opacity=".16" stroke="${coul[i%3]}" stroke-width="2" stroke-dasharray="4 3"/>`; });
+    return demi ? svg(176, Math.ceil(n/2)*84+4, s,'Gommettes') : svg(n*92+4, 88, s,'Gommettes');
+  },
+  traits(a, r, demi, ctx){
+    const n=a.cibles.length; let s='';
+    a.cibles.forEach((k,i)=>{ const y=8+i*58;
+      s+=`<image href="${ctx.filou}" x="2" y="${y}" width="44" height="48" preserveAspectRatio="xMidYMid meet" style="filter:var(--image-filtre)"/>`;
+      s+=`<circle cx="54" cy="${y+26}" r="4" fill="var(--citrouille)"/><path d="M60 ${y+26} H236" stroke="var(--bois-fonce)" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>`;
+      s+=dessin(k,244,y,50,50); });
+    return svg(300, n*58+6, s, 'Traits à suivre');
+  }
+});
+const CONSIGNES = {
+  montreLeMeme: a=>['doigt','Montre le même.'],
+  montreObjet: a=>['doigt',`Montre ${leX(a.cible)}.`],
+  chemin: a=>['doigt','Suis le chemin avec ton doigt.'],
+  gommettesSur: a=>['colle',`Colle une gommette sur chaque ${OBJ[a.objet].min}.`],
+  traits: a=>['chemin','Suis les pointillés avec ton crayon.'],
+  trouveLeMeme: a=>['entoure','Entoure le fantôme pareil au modèle.'],
+  compter: a=>['compte',`Entoure le nombre de ${OBJ[a.objet].pl}.`],
+  labyrinthe: a=>['chemin',`Trace le chemin de Filou jusqu'${OBJ[a.arrivee].art==='le'?'au '+OBJ[a.arrivee].min:'à '+leX(a.arrivee)}.`],
+  ombres: a=>['doigt',"Montre l'ombre de chaque image."],
+  chercheEtTrouve: a=>['entoure',`Entoure tous les ${OBJ[a.cible].pl}.`.replace('tous les chauves','toutes les chauves').replace('tous les citrouilles','toutes les citrouilles').replace('tous les feuilles','toutes les feuilles').replace('tous les araignées','toutes les araignées')],
+  intrus: a=>['entoure',"Entoure l'intrus : celui qui n'est pas pareil."],
+  suite: a=>['entoure','Entoure ce qui vient après.'],
+  associer: a=>['relie','Relie chaque image à son mot.']
+};
+
+/* ---------- Contenu du cahier ---------- */
+const MISSIONS = [
+  { n:1, s:1, titre:'La citrouille géante', mots:['citrouille'], graine:101, disposition:[['explique',0],[1]],
+    explique:{ texte:"La citrouille est un gros légume orange.", question:'Montre-moi la citrouille !' },
+    histoire:"Filou trouve une citrouille géante ! Elle est toute ronde et orange.",
+    activites:[ {type:'montreLeMeme', objet:'citrouille', autre:'chat'}, {type:'chemin', arrivee:'citrouille'} ], scene:['citrouille'] },
+  { n:2, s:1, titre:'Le chat du village', mots:['chat'], graine:202, disposition:[['explique',0],[1]],
+    explique:{ texte:"Le chat fait miaou.", question:'Comment fait le chat ?' },
+    histoire:"Un chat dort sur le mur. Miaou ! Il vient avec Filou.",
+    activites:[ {type:'montreObjet', cible:'chat', autres:['citrouille','lune','feuille']}, {type:'traits', cibles:['chat','chat','chat']} ], scene:['chat'] },
+  { n:3, s:1, titre:'La grotte des chauves-souris', mots:['chauveSouris'], graine:303, disposition:[['explique',0],[1]],
+    explique:{ texte:"La chauve-souris vole la nuit.", question:'Montre-moi ses ailes !' },
+    histoire:"Dans la grotte, une petite chauve-souris dort la tête en bas. Chut !",
+    activites:[ {type:'ombres', objets:['chauveSouris','chat']}, {type:'chemin', arrivee:'chauveSouris'} ], scene:['chauveSouris'] },
+  { n:4, s:1, titre:'Le fantôme du vieux moulin', mots:['fantome'], graine:404, disposition:[['explique',0],[1]],
+    explique:{ texte:"Le fantôme, c'est pour jouer : bouh !", question:'Fais « bouh » tout doucement !' },
+    histoire:"Un petit fantôme fait « bouh ! ». Filou lui dit bonjour.",
+    activites:[ {type:'montreLeMeme', objet:'fantome', autre:'citrouille'}, {type:'chemin', arrivee:'moulin'} ], scene:['fantome'] },
+  { n:5, s:1, titre:'La nuit des bonbons', mots:['lune','bonbon'], graine:505, disposition:[['explique',0],[1]],
+    explique:{ texte:"La lune brille la nuit. Le bonbon, c'est sucré.", question:'Montre-moi la lune !' },
+    histoire:"La lune brille. Filou trouve des bonbons pour la fête !",
+    activites:[ {type:'montreObjet', cible:'lune', autres:['bonbon','chat','fantome']}, {type:'gommettesSur', objet:'bonbon', n:3} ], scene:['bonbon','lune'] },
+  { n:6, s:2, titre:'Le chapeau de la sorcière', mots:['sorciere','chapeau'], graine:606, disposition:[['explique',0],[1]],
+    explique:{ texte:"La sorcière a un grand chapeau.", question:'Où est le chapeau ?' },
+    histoire:"Le vent fait s'envoler le chapeau de la sorcière. Filou le rattrape !",
+    activites:[ {type:'montreLeMeme', objet:'chapeau', autre:'bonbon'}, {type:'traits', cibles:['chapeau','chapeau','chapeau']} ], scene:['sorciere'] },
+  { n:7, s:2, titre:'Le balai envolé', mots:['balai'], graine:707, disposition:[['explique',0],[1]],
+    explique:{ texte:"Le balai sert à balayer.", question:'Fais semblant de balayer !' },
+    histoire:"Le balai s'est envolé ! Filou le retrouve dans un buisson.",
+    activites:[ {type:'ombres', objets:['balai','chapeau']}, {type:'chemin', arrivee:'balai'} ], scene:['balai'] },
+  { n:8, s:2, titre:"La toile de l'araignée", mots:['araignee','toile'], graine:808, disposition:[['explique',0],[1]],
+    explique:{ texte:"L'araignée a beaucoup de pattes. Sa maison, c'est la toile.", question:'Montre-moi la toile !' },
+    histoire:"Une petite araignée fait une grande toile pour la fête.",
+    activites:[ {type:'montreObjet', cible:'araignee', autres:['toile','balai','chat']}, {type:'gommettesSur', objet:'araignee', n:3} ], scene:['araignee'] },
+  { n:9, s:2, titre:'La pluie de feuilles', mots:['feuille'], graine:909, disposition:[['explique',0],[1]],
+    explique:{ texte:"En automne, les feuilles tombent.", question:'De quelle couleur sont les feuilles ?' },
+    histoire:"Le vent souffle. Les feuilles tombent : jaunes, orange, rouges !",
+    activites:[ {type:'gommettesSur', largeur:'demi', objet:'feuille', n:4}, {type:'traits', cibles:['feuille','feuille','feuille']} ], scene:['feuille'] },
+  { n:10, s:2, titre:'Le grand déguisement', mots:[], graine:1010, disposition:[['explique',0],[1]],
+    explique:{ texte:"Tu connais plein de mots d'Halloween ! Montre et dis : citrouille, chat, fantôme, lune.", question:'Lequel tu préfères ?', maj:'HALLOWEEN', min:'Halloween' },
+    histoire:"Filou met un grand drap blanc. Coucou ! C'est Filou le fantôme !",
+    activites:[ {type:'ombres', objets:['fantome','citrouille']}, {type:'montreObjet', cible:'chat', autres:['lune','balai','araignee']} ], scene:['fantome'] }
+];
+const IMAGIER = { 1:['citrouille','chat','chauveSouris','fantome','lune','bonbon'], 2:['sorciere','chapeau','balai','araignee','toile','feuille'] };
+const costume = n => n<=2 ? IMG.citrouille : n<=5 ? IMG.cape : n<=9 ? IMG.sorcier : IMG.fantome;
+
+/* ---------- Pages ---------- */
+const entete = (tag, titre, repere) => `<div class="entete"><div class="panneau"><span class="tag">${tag}</span><h2>${titre}</h2></div><div class="prenom">Prénom<b>${PRENOM}</b></div></div>`;
+const consigne = (n, pic, txt) => `<div class="consigne"><span class="n">${n}</span>${picto(pic)}<span>${txt}</span></div>`;
+const feuilleP = (num, contenu, style='', cls='') => `<div class="page ${cls}" id="p${String(num).replace(' ','')}" style="${style}"><div class="feuille">${contenu}<div class="folio">${num}</div></div></div>`;
+const reperer = s => `--repere:var(--semaine-${s})`;
+
+function pageCouverture(num){
+  return `<div class="page couverture" id="p${num}"><div class="feuille">
+    <div class="panneau"><h2>Le cahier d'Halloween de Filou</h2><p class="sous-titre">2 semaines d'aventures, de jeux et de coloriages</p></div>
+    <div class="illustration"><img src="${IMG.couverture}" alt="Filou le petit renard dans la forêt d'automne"></div>
+    <div class="appartient">Ce cahier appartient à<b>${PRENOM}</b></div></div></div>`;
+}
+function pageOuverture(num){
+  return feuilleP(num, `
+    <div class="panneau"><span class="tag">Avant de commencer</span><h2>L'aventure de Filou</h2></div>
+    <div class="recit"><p>Halloween approche ! Filou, le petit renard, prépare la grande fête de la forêt. Chaque jour, il part en mission pour trouver un ami ou un trésor. Aide-le : à la fin, il retrouvera tous ses amis à la fête !</p></div>
+    <div class="etapes">
+      <div class="etape"><span class="n">1</span>${picto('oreille')}<span>J'écoute l'histoire de Filou.</span></div>
+      <div class="etape"><span class="n">2</span>${picto('colorie')}<span>Je fais les jeux de la mission.</span></div>
+      <div class="etape"><span class="n">3</span><svg viewBox="0 0 100 90" aria-hidden="true">${citrouille()}</svg><span>Je colorie ma citrouille, page 3.</span></div>
+    </div>
+    <div class="ouv-bas"><img src="${IMG.citrouille}" alt="Filou avec une citrouille sur la tête"><p class="parent"><b>Pour l'adulte :</b> une mission par jour, du lundi au vendredi. Lisez tout à voix haute et faites avec Clara. Quelques minutes par page suffisent : arrêtez dès qu'elle se lasse.</p></div>`);
+}
+function pageCitrouilles(num){
+  const titres = MISSIONS.map(m=>m.titre);
+  const semaine = s => `<section class="semaine" style="--c:var(--semaine-${s})"><h3>Semaine ${s}</h3><div class="rangee">${titres.slice((s-1)*5,s*5).map((t,i)=>`<div class="case"><span class="num">${(s-1)*5+i+1}</span><svg viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${citrouille(true)}</svg><span class="t">${t}</span></div>`).join('')}</div></section>`;
+  return feuilleP(num, `${entete('Mon tableau','Mes citrouilles')}
+    ${consigne(1,'colorie','Ta mission est finie ? Colorie sa citrouille.')}
+    ${semaine(1)}${semaine(2)}
+    <section class="semaine" style="--c:var(--or);flex:.7"><h3>Mission finale</h3><div class="case large"><svg viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${citrouille(true)}</svg><span class="t">La dernière ligne droite : la citrouille dorée !</span></div></section>`);
+}
+function pageImagier(num, s, partie){
+  const mots = IMAGIER[s].slice(partie*3, partie*3+3);
+  return feuilleP(num, `${entete(`Semaine ${s}`, partie===0 ? 'Mon imagier' : 'Mon imagier (suite)')}
+    <div class="cartes">${mots.map(k=>`<div class="carte"><svg viewBox="${OBJ[k].vb}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${OBJ[k].min}">${OBJ[k].f()}</svg><div><span class="maj">${maj(k)}</span><span class="min">${OBJ[k].min}</span></div></div>`).join('')}</div>
+    <p class="parent"><b>Pour l'adulte :</b> montrez chaque image, dites le mot, faites-le répéter. Ces mots reviennent toute la semaine.</p>`, reperer(s));
+}
+function pageActivites(num, m){
+  /* disposition propre à chaque mission : rangées de 1 ou 2 blocs ; « explique » est un bloc comme les autres */
+  let k=0;
+  const nommer = m.mots.length ? m.mots.map(x=>OBJ[x].min).join(' » et « ') : 'chaque mot';
+  const motsAff = m.explique.maj ? [[m.explique.maj, m.explique.min]] : m.mots.map(x=>[maj(x), OBJ[x].min]);
+  const explique = `<aside class="explique"><div class="haut"><img src="${costume(m.n)}" alt="Filou"><div><h3>Filou t'explique</h3>
+      <div class="mot">${motsAff.map(([a,b])=>`<span class="maj">${a}</span><span class="min">${b}</span>`).join('')}</div></div></div>
+      <p>${m.explique.texte}</p><p class="question">${m.explique.question}</p></aside>`;
+  const rangees = m.disposition.map(rg=>{ const demi=rg.length===2;
+    return `<div class="rangee-zones${demi?' demi':''}" style="flex:${demi?1.5:1}">${rg.map(item=>{
+      if(item==='explique') return explique;
+      const a=m.activites[item]; k++; const [pic,txt]=CONSIGNES[a.type](a);
+      return `<section class="zone">${consigne(k,pic,txt)}<div class="contenu">${GEN[a.type](a, rng(m.graine+item*97), demi, {filou:costume(m.n)})}</div></section>`; }).join('')}</div>`; }).join('');
+  return feuilleP(num, `${entete(`Mission ${m.n}, semaine ${m.s}`, m.titre)}
+    <div class="zones">${rangees}</div>
+    <p class="parent"><b>Pour l'adulte :</b> lisez la phrase, montrez l'image et dites « ${nommer} ». Laissez Clara répéter et montrer du doigt. Lisez aussi chaque consigne : 5 minutes par jeu suffisent.</p>`, reperer(m.s));
+}
+function scene(m){
+  const [a,b] = m.scene, coul=['var(--gommette-a)','var(--gommette-b)','var(--gommette-c)'];
+  const ronds=[[24,28],[80,20],[24,104],[178,104],[118,34]];
+  let s=`<path d="M0 196 Q50 176 100 190 T200 186" fill="none" stroke="${T}" stroke-width="2.4" stroke-linecap="round"/>`;
+  if(a!=='lune' && b!=='lune') s+=place(lune(true),142,6,50,50,'0 0 100 100');
+  ronds.forEach(([x,y],i)=>{ s+=`<circle cx="${x}" cy="${y}" r="13" fill="${coul[i%3]}" fill-opacity=".14" stroke="${coul[i%3]}" stroke-width="1.8" stroke-dasharray="3.5 3"/>`; });
+  if(b==='lune') s+=place(lune(true),142,6,50,50,'0 0 100 100');
+  s+=dessin(a,40,52,124,134,true);
+  if(b && b!=='lune') s+=dessin(b,4,140,54,52,true);
+  return svg(200,200,s,'Dessin à colorier');
+}
+function pageCreative(num, m){
+  return feuilleP(num, `${entete(`Mission ${m.n}, semaine ${m.s}`, m.titre)}
+    <aside class="histoire">${picto('livre')}<div><h3>L'histoire du jour</h3><p>${m.histoire}</p></div></aside>
+    <div class="zones">
+      <section class="zone"><div class="consignes">${consigne(1,'colorie','Colorie le dessin.')}${consigne(2,'colle','Colle une gommette sur chaque rond.')}</div><div class="contenu">${scene(m)}</div></section>
+    </div>`, reperer(m.s));
+}
+function amis(x,y,w){
+  let s=`<path d="M${x} ${y} Q${x+w/2} ${y+12} ${x+w} ${y}" fill="none" stroke="var(--bois-fonce)" stroke-width="1.6"/>`;
+  for(let i=0;i<7;i++){ const fx=x+8+i*(w-16)/6, fy=y+4+Math.sin(i/6*Math.PI)*6; s+=`<path d="M${fx-4} ${fy} L${fx+4} ${fy} L${fx} ${fy+8} Z" fill="${['var(--citrouille)','var(--or)','var(--mousse)'][i%3]}"/>`; }
+  ['chat','chauveSouris','fantome','araignee','citrouille'].forEach((k,i)=>{ s+=dessin(k, x+4+i*(w-8)/5, y+18, w/5.4, w/5.4); });
+  return s;
+}
+function pageFinale(num){
+  const d='M30 40 H160 Q190 40 190 70 Q190 100 160 100 H50 Q20 100 20 130 Q20 160 50 160 H160 Q190 160 190 190 Q190 220 160 220 H70';
+  let s=`<path d="${d}" fill="none" stroke="var(--chemin)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="var(--bois-fonce)" stroke-width="2.4" stroke-dasharray="7 7" stroke-linecap="round"/>`;
+  s+=`<image href="${IMG.fantome}" x="0" y="4" width="40" height="40" style="filter:var(--image-filtre)"/>`;
+  [['chat',96,4],['chauveSouris',150,108],['araignee',18,170],['fantome',122,124]].forEach(([k,x,y])=>{ s+=dessin(k,x,y,30,30); });
+  s+=amis(10,236,190);
+  return feuilleP(num, `${entete('Mission finale','La dernière ligne droite')}
+    <aside class="histoire">${picto('livre')}<div><h3>L'histoire du jour</h3><p>Filou va à la fête. Ses amis l'attendent !</p></div></aside>
+    <div class="zones"><section class="zone">${consigne(1,'doigt',"Suis le chemin avec ton doigt jusqu'à la fête.")}<div class="contenu">${svg(210,292,s,'Grand chemin')}</div></section></div>
+    <p class="parent"><b>Pour l'adulte :</b> arrêtez-vous à chaque ami sur le chemin et dites son nom ensemble : <b>chat, chauve-souris, fantôme, araignée</b>.</p>`, '--repere:var(--or)');
+}
+function pageBravo(num){
+  let s=`<path d="M0 26 Q100 50 200 26" fill="none" stroke="${T}" stroke-width="1.8"/>`;
+  for(let i=0;i<9;i++){ const x=12+i*22, y=30+Math.sin(i/8*Math.PI)*12; s+=`<path d="M${x-7} ${y} L${x+7} ${y} L${x} ${y+14} Z" fill="var(--papier)" stroke="${T}" stroke-width="1.6" stroke-linejoin="round"/>`; }
+  s+=`<path d="M0 232 Q60 214 110 226 T200 222" fill="none" stroke="${T}" stroke-width="2.4"/>`;
+  s+=dessin('citrouille',58,120,86,78,true)+dessin('chat',4,150,52,52,true)+dessin('fantome',146,128,52,58,true)+dessin('chauveSouris',20,58,56,36,true)
+    +place(araignee(true),150,40,40,40,'0 0 100 92')+dessin('sorciere',80,48,46,52,true)+dessin('bonbon',150,200,36,22,true)+dessin('feuille',10,206,24,24,true)+dessin('feuille',112,204,22,22,true);
+  return feuilleP(num, `<div class="panneau" style="text-align:center"><span class="tag">Mission accomplie</span><h2>Bravo ${PRENOM} !</h2></div>
+    <aside class="bravo"><img src="${IMG.fantome}" alt="Filou déguisé en fantôme"><p>Bravo ! Filou a retrouvé tous ses amis. C'est la fête ! Colorie ta citrouille dorée.</p></aside>
+    <div class="zones"><section class="zone">${consigne(1,'colorie','Colorie la fête de la forêt.')}<div class="contenu">${svg(200,240,s,'La fête à colorier')}</div></section></div>`, '--repere:var(--or)');
+}
+
+
+/* ---------- Activité bonus : marionnettes et masque ---------- */
+function decoupe(cx, cy, r){ /* trait de découpe en pointillés + ciseaux */
+  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${T}" stroke-width="1.4" stroke-dasharray="4 3"/>`
+    + place(PICTOS.ciseaux, cx+r*0.62, cy-r*0.98, 12, 12, '0 0 48 48');
+}
+function marionnette(k, cx, cy, r){
+  let s = decoupe(cx, cy, r);
+  if(k==='filou') s += `<image href="${IMG.cape}" x="${cx-r*0.72}" y="${cy-r*0.86}" width="${r*1.44}" height="${r*1.44}" preserveAspectRatio="xMidYMid meet" style="filter:var(--image-filtre)"/>`;
+  else if(k==='libre') s += `<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="${r*0.22}" fill="var(--doux)" font-family="Andika, sans-serif">Dessine un ami</text>`;
+  else s += dessin(k, cx-r*0.66, cy-r*0.8, r*1.32, r*1.2, true);
+  const nom = k==='filou' ? 'FILOU' : k==='libre' ? '' : maj(k);
+  if(nom) s += `<text x="${cx}" y="${cy+r*0.72}" text-anchor="middle" font-size="${Math.min(r*0.2, r*1.5/nom.length)}" font-weight="700" fill="${T}" font-family="Andika, sans-serif">${nom}</text>`;
+  return s;
+}
+function planchePantins(liste, cols, r){
+  const lignes=Math.ceil(liste.length/cols), pasX=200/cols, pasY=2*r+14; let s='';
+  liste.forEach((k,i)=>{ s+=marionnette(k, pasX*(i%cols)+pasX/2, Math.floor(i/cols)*pasY+r+6, r); });
+  return svg(200, lignes*pasY+4, s, 'Marionnettes à découper');
+}
+function masque(){
+  let s = `<path d="M34 62 L24 6 L76 40 Z M166 62 L176 6 L124 40 Z" fill="var(--papier)" stroke="${T}" stroke-width="3.4" stroke-linejoin="round"/>
+  <path d="M38 52 L32 20 L62 40 M162 52 L168 20 L138 40" fill="none" stroke="${T}" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M30 52 Q100 10 170 52 Q186 92 142 120 Q118 138 100 150 Q82 138 58 120 Q14 92 30 52 Z" fill="var(--papier)" stroke="${T}" stroke-width="3.4" stroke-linejoin="round"/>
+  <path d="M62 98 Q100 78 138 98 Q122 130 100 146 Q78 130 62 98 Z" fill="none" stroke="${T}" stroke-width="1.8"/>
+  <ellipse cx="100" cy="138" rx="9" ry="6.5" fill="${T}"/>
+  <ellipse cx="72" cy="74" rx="15" ry="10" fill="none" stroke="${T}" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <ellipse cx="128" cy="74" rx="15" ry="10" fill="none" stroke="${T}" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="100" y="58" text-anchor="middle" font-size="6.5" fill="var(--doux)" font-family="Andika, sans-serif">yeux : découpés par l'adulte</text>`;
+  [[50,104],[150,104],[86,40],[114,40],[100,28]].forEach(([x,y],i)=>{ const c=['var(--gommette-a)','var(--gommette-b)','var(--gommette-c)'][i%3];
+    s+=`<circle cx="${x}" cy="${y}" r="6" fill="${c}" fill-opacity=".14" stroke="${c}" stroke-width="1.4" stroke-dasharray="3 2.5"/>`; });
+  [[26,74],[174,74]].forEach(([x,y])=>{ s+=`<circle cx="${x}" cy="${y}" r="3.2" fill="none" stroke="${T}" stroke-width="1.4"/><path d="M${x-2} ${y} h4 M${x} ${y-2} v4" stroke="${T}" stroke-width="1"/>`; });
+  return svg(200,154,s,'Masque de Filou');
+}
+function pageBonusIntro(num){
+  return feuilleP(num, `<div class="panneau"><span class="tag">Activité bonus, à faire ensemble</span><h2>La fête de Filou en marionnettes</h2></div>
+    <div class="recit"><p>Fabrique les amis de Filou, puis raconte ses aventures ! Et pour la fête, déguise-toi avec le masque de Filou.</p></div>
+    <div class="etapes">
+      <div class="etape"><span class="n">1</span>${picto('colorie')}<span>Je colorie mes marionnettes.</span></div>
+      <div class="etape"><span class="n">2</span>${picto('ciseaux')}<span>Je découpe sur les pointillés, avec un adulte.</span></div>
+      <div class="etape"><span class="n">3</span>${picto('paille')}<span>Je colle chaque ami sur une paille.</span></div>
+      <div class="etape"><span class="n">4</span>${picto('bouche')}<span>Je raconte l'histoire avec mes amis !</span></div>
+    </div>
+    <aside class="histoire">${picto('livre')}<div><h3>Idées de jeux</h3><p>Rejoue l'histoire de la mission du jour. Joue aux devinettes : « Elle vole la nuit, qui est-ce ? ». Fais parler chaque ami : « Bonjour, je suis le chat ! »</p></div></aside>
+    <p class="parent"><b>Matériel :</b> papier épais (160 à 200 g) pour les patrons, crayons, ciseaux à bouts ronds, colle, pailles ou bâtonnets, élastique pour le masque.<br><b>Pour Clara :</b> elle colorie ses grandes marionnettes et décore le masque avec des gommettes ; l'adulte découpe et colle. Gardez les petites pièces hors de sa portée.</p>`, '--repere:var(--or)');
+}
+function pageMarionnettes(num, enfant){
+  const grand = enfant==='Clara';
+  const liste = grand ? ['filou','chat','fantome','citrouille'] : ['filou','chat','chauveSouris','fantome','araignee','citrouille','sorciere','libre'];
+  return feuilleP(num, `<div class="entete"><div class="panneau"><span class="tag">Activité bonus</span><h2>${grand?'Les grandes marionnettes':'Les marionnettes'}</h2></div><div class="prenom">Pour<b>${enfant}</b></div></div>
+    <div class="zones"><section class="zone">${consigne(1,'colorie', grand ? 'Colorie tes amis.' : 'Colorie, puis découpe sur les pointillés.')}<div class="contenu">${planchePantins(liste, 2, grand?44:31)}</div></section></div>`, '--repere:var(--or)');
+}
+function pageMasque(num){
+  return feuilleP(num, `<div class="panneau"><span class="tag">Activité bonus</span><h2>Le masque de Filou</h2></div>
+    <div class="zones"><section class="zone"><div class="consignes">${consigne(1,'colorie','Colorie le masque.')}${consigne(2,'colle','Colle une gommette sur chaque rond.')}</div><div class="contenu">${masque()}</div></section></div>
+    <p class="parent"><b>Pour l'adulte :</b> imprimez cette page une fois par enfant. Découpez le contour et les yeux, percez les deux petits ronds et passez un élastique. Collez le masque sur du carton fin s'il est trop souple.</p>`, '--repere:var(--or)');
+}
+
+/* ---------- Assemblage (ordre de 03-analyse-fonctionnelle, §4) ---------- */
+function composer(){
+  const pages=[]; const add=(html,label)=>pages.push({html,label});
+  let n=1;
+  add(pageCouverture(n++),'Page de garde');
+  add(pageOuverture(n++),"Ouverture"); add(pageCitrouilles(n++),'Mes citrouilles');
+  [1,2].forEach(s=>{
+    add(pageImagier(n++,s,0),`Imagier, semaine ${s}`); add(pageImagier(n++,s,1),`Imagier, semaine ${s} (suite)`);
+    MISSIONS.filter(m=>m.s===s).forEach(m=>{ add(pageActivites(n++,m),`Mission ${m.n} : activités`); add(pageCreative(n++,m),`Mission ${m.n} : histoire et coloriage`); });
+  });
+  add(pageFinale(n++),'Mission finale'); add(pageBravo(n++),'Bravo');
+  /* activité bonus, imprimée à part */
+  add(pageBonusIntro('Bonus 1'),'Bonus : mode d’emploi'); add(pageMarionnettes('Bonus 2','Clara'),'Bonus : grandes marionnettes de Clara');
+  add(pageMasque('Bonus 3'),'Bonus : masque de Filou');
+  return pages;
+}
+const PAGES = composer();
+const LEGENDES = ['Page de garde','Ouverture et Mes citrouilles','Imagier, semaine 1',
+  ...MISSIONS.slice(0,5).map(m=>`Mission ${m.n} : ${m.titre}`),'Imagier, semaine 2',
+  ...MISSIONS.slice(5).map(m=>`Mission ${m.n} : ${m.titre}`),'Mission finale et Bravo','Bonus : mode d’emploi et grandes marionnettes','Bonus : masque de Filou'];
+
+function rendre(){
+  const spreads=[[0]]; for(let i=1;i<PAGES.length;i+=2) spreads.push([i,i+1].filter(j=>j<PAGES.length));
+  document.getElementById('pages').innerHTML = spreads.map((sp,si)=>`<div class="spread" data-spread="${si}">
+    <div class="spread-pages">${sp.map(i=>`<div class="pw"><div class="page-label">${i<29?'Page '+(i+1)+' : ':''}${PAGES[i].label}</div><div class="pw-cadre">${PAGES[i].html}</div></div>`).join('')}</div>
+    <div class="legende">${sp[0]<29?'p. '+sp.map(i=>i+1).join('–')+' · ':''}${LEGENDES[si]}</div></div>`).join('');
+  document.getElementById('aller').innerHTML = `<option value="">Aller à…</option>` + PAGES.map((p,i)=>`<option value="${i<29?'p'+(i+1):'pBonus'+(i-28)}">${i<29?'Page '+(i+1)+' : ':''}${p.label}</option>`).join('');
+}
+rendre();
+
+/* Échelle d'affichage : la page garde toujours sa taille réelle (794 px), on la réduit visuellement */
+function echelle(){
+  const planche = document.body.classList.contains('vue-planche');
+  const dispo = document.documentElement.clientWidth - 24;
+  const s = planche ? Math.min(0.22, (dispo/2 - 12)/794) : Math.min(0.81, dispo/794);
+  document.documentElement.style.setProperty('--s', s.toFixed(4));
+}
+/* Ajustement : si un texte dépasse de son bloc, on réduit les polices de la page jusqu'à ce que tout rentre */
+const BLOCS = '.explique,.histoire,.case,.carte,.recit,.bravo,.etape,.consigne,.parent';
+const deborde = b => b.scrollHeight>b.clientHeight+3 || b.scrollWidth>b.clientWidth+3;
+function ajuster(){
+  document.querySelectorAll('.page').forEach(page=>{
+    page.style.setProperty('--kp',1);
+    /* 1. chaque bloc réduit son propre texte s'il dépasse */
+    page.querySelectorAll(BLOCS).forEach(b=>{ let k=1; b.style.setProperty('--kb',1);
+      while(deborde(b) && k>0.55){ k-=0.03; b.style.setProperty('--kb',k.toFixed(2)); } });
+    /* 2. si la page entière déborde encore, on réduit tout un peu */
+    const f=page.querySelector('.feuille'); let kp=1;
+    while(deborde(f) && kp>0.7){ kp-=0.03; page.style.setProperty('--kp',kp.toFixed(2)); }
+  });
+}
+echelle(); ajuster();
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(ajuster);
+window.addEventListener('load', ajuster);
+window.addEventListener('resize', echelle);
+document.querySelectorAll('input[name=impression]').forEach(i=>i.addEventListener('change',e=>{ document.documentElement.dataset.impression=e.target.value; }));
+document.querySelectorAll('input[name=vue]').forEach(i=>i.addEventListener('change',e=>{ document.body.classList.toggle('vue-planche', e.target.value==='planche'); echelle(); }));
+document.getElementById('aller').addEventListener('change',e=>{ if(!e.target.value) return; document.querySelector('input[name=vue][value=pages]').click(); document.getElementById(e.target.value).scrollIntoView({behavior:'smooth',block:'start'}); e.target.value=''; });
+document.getElementById('pages').addEventListener('click',e=>{ if(!document.body.classList.contains('vue-planche')) return; const pg=e.target.closest('.pw-cadre'); if(!pg) return;
+  document.querySelector('input[name=vue][value=pages]').click(); document.body.classList.remove('vue-planche'); echelle(); setTimeout(()=>pg.scrollIntoView({block:'start'}),30); });
+document.getElementById('imprimer').addEventListener('click',()=>{ try{ window.print(); }catch(err){} });
+
+</script>
+</body>
+</html>
