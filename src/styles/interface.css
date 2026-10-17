@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Polices de l'interface, reprises du prototype (reference/) */
+@theme {
+  --font-sans: Andika, "Trebuchet MS", Verdana, sans-serif;
+  --font-titre: Grandstander, Andika, sans-serif;
+}
