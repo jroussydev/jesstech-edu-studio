@@ -29,6 +29,8 @@ Vite + React + TypeScript + Tailwind (interface uniquement). Pages imprimées en
 - En fin de session, proposer une entrée pour `docs/journal/developpement.md`.
 - Avant chaque étape : expliquer brièvement le plan (fichiers créés ou modifiés, et pourquoi), puis coder.
 - Petites étapes testables ; à la fin de chaque étape, proposer un message de commit et attendre ma validation avant de committer.
+- Découper chaque étape en sous-étapes courtes, avec un commit proposé à la fin de chacune.
+- Modifier les fichiers avec l’outil d’édition plutôt qu’avec de grosses commandes shell, pour que je voie chaque diff.
 - Commits : préfixes `feat`, `fix`, `refactor`, `docs`, `chore`, messages en français.
 - Ne pas ajouter de ligne Co-Authored-By aux commits : la collaboration est indiquée dans le README.
 - Répondre en français.
