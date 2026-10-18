@@ -3,9 +3,10 @@
 import type { JSX } from 'react';
 import type { Rng } from '../lib/rng.ts';
 import type { ActiviteConfig, ConsigneActivite, Mission, Profil, Theme } from '../types.ts';
+import { trouveLeMeme } from './trouveLeMeme.tsx';
 
 export interface ContexteActivite {
-  rng: Rng;             // déjà initialisé avec la bonne graine (RG3)
+  rng: Rng;             // neuf à chaque appel de rendre(), initialisé avec la graine de l'activité (RG3)
   demi: boolean;        // placée à côté d'un autre bloc (RG2)
   profil: Profil;
   theme: Theme;
@@ -20,7 +21,9 @@ export interface Generateur {
 }
 
 // Rempli au fil des générateurs portés du prototype (étape 4).
-export const REGISTRE: Record<string, Generateur> = {};
+export const REGISTRE: Record<string, Generateur> = {
+  [trouveLeMeme.type]: trouveLeMeme,
+};
 
 /** Générateur d'un type d'activité ; signale un type absent du registre. */
 export function generateurPour(type: string): Generateur {

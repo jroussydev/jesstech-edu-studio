@@ -57,7 +57,7 @@ jesstech-edu-studio/
 │   │   ├── labyrinthe.tsx
 │   │   ├── chemin.tsx
 │   │   └── …
-│   ├── illustrations/            Fantome.tsx, Citrouille.tsx, Chat.tsx…
+│   ├── illustrations/            Fantome.tsx, Moulin.tsx, Citrouille.tsx… ; index.tsx (cadre et mots de chaque dessin), Dessin.tsx, Place.tsx
 │   ├── lib/                      rng.ts, melange.ts, echelle.ts
 │   ├── types.ts                  modèle de données
 │   └── styles/
@@ -213,7 +213,7 @@ export interface Face {
 ## 4. Contrat d'un générateur d'activité
 ```ts
 export interface ContexteActivite {
-  rng: Rng;             // déjà initialisé avec la bonne graine (RG3)
+  rng: Rng;             // neuf à chaque appel de rendre(), initialisé avec la graine de l'activité (RG3)
   demi: boolean;        // placée à côté d'un autre bloc (RG2)
   profil: Profil;
   theme: Theme;

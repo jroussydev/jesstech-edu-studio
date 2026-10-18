@@ -6,7 +6,6 @@ import { FilouExplique } from '../composants/FilouExplique.tsx';
 import { NoteParent } from '../composants/NoteParent.tsx';
 import { ZoneActivite } from '../composants/ZoneActivite.tsx';
 import { imageTheme } from '../donnees.ts';
-import { creerRng } from '../lib/rng.ts';
 import type { CompositionMission, Mission, Profil, Theme } from '../types.ts';
 
 interface PageActivitesProps {
@@ -46,15 +45,16 @@ export function PageActivites({ mission, composition, profil, theme, folio }: Pa
                 );
               }
               const config = composition.activites[bloc.index];
-              const contexte = {
-                rng: creerRng(graineActivite(mission, bloc.index, config)),
-                demi: rangee.demi,
-                profil,
-                theme,
-                mission,
-                filou,
-              };
-              return <ZoneActivite key={bloc.index} numero={bloc.numero} config={config} contexte={contexte} />;
+              const contexte = { demi: rangee.demi, profil, theme, mission, filou };
+              return (
+                <ZoneActivite
+                  key={bloc.index}
+                  numero={bloc.numero}
+                  config={config}
+                  graine={graineActivite(mission, bloc.index, config)}
+                  contexte={contexte}
+                />
+              );
             })}
           </div>
         ))}
