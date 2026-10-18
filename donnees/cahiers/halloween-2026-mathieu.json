@@ -1,0 +1,18 @@
+{
+  "id": "halloween-2026-mathieu",
+  "profil": "mathieu",
+  "theme": "halloween",
+  "missions": [4],
+  "format": "A4",
+  "impression": "couleur",
+  "composition": {
+    "4": {
+      "disposition": [["explique", 2], [0], [1]],
+      "activites": [
+        { "type": "trouveLeMeme", "variante": "détails fins (GS)" },
+        { "type": "compter", "largeur": "demi", "variante": "jusqu'à 10", "params": { "objet": "fantome" } },
+        { "type": "labyrinthe", "largeur": "demi", "variante": "grille carrée", "params": { "arrivee": "moulin" } }
+      ]
+    }
+  }
+}

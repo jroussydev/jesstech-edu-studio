@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-18 — Composition des missions dans le cahier, consignes déduites par les générateurs
+Décision : les activités et la disposition de chaque mission ne sont plus dans `missions.json` (le thème), mais dans le JSON du cahier, champ `composition` (`CompositionMission` par numéro de mission). Une activité (`ActiviteConfig`) se limite à `type` (id du jeu du catalogue), `largeur`, `variante` (une des variantes du jeu), `params` et `graine` : exactement ce que `composer.ts` produira. La consigne (picto + phrase) n'est plus écrite : chaque générateur la déduit avec `consigne(config)`. Le générateur ne recopie ni le nom ni les niveaux du jeu, qui restent dans le catalogue. Une étape « Composition automatique du cahier » est ajoutée après les boutons ↻ (`04-architecture.md` §7).
+Pourquoi : le choix des jeux dépend de l'enfant (classe, difficultés, RG14 à RG20) et « Régénérer » écrit la graine dans le cahier (RG3) ; écrire la composition à la main dès maintenant sous sa forme finale évite de la réécrire quand `composer.ts` arrivera. Une consigne calculée reste toujours cohérente avec ses paramètres (« Entoure le nombre de fantômes. »).
+Écarté : activités par profil dans `missions.json` ; picto et phrase écrits dans chaque activité.
+
 ## 2026-10-18 — A5 imprimé par deux sur A4 paysage, deux assemblages
 Décision : les pages restent en portrait. En A5, deux pages sont imprimées côte à côte sur une feuille A4 paysage, avec un choix « Assemblage » dans la barre d'impression : « Une feuille par jour » (couverture seule, puis paires 2-3, 4-5… ; une mission par feuille, recto seul, RG21) ou « Livret plié » (imposition recto verso, complété au multiple de 4 par des pages « Mes dessins » et une 4ᵉ de couverture, RG22). L'aperçu montre la feuille telle qu'elle sortira. L'ordre des pages sur les feuilles est calculé par une fonction pure de `src/cahier/`, testée avec Vitest. Le mode livret (F15) passe de « plus tard » à la V1.
 Pourquoi : on imprime sur du papier A4. La feuille par jour donne une mission à poser sur la table chaque jour ; le livret donne un vrai petit cahier.

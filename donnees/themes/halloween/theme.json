@@ -1,0 +1,28 @@
+{
+  "id": "halloween",
+  "titre": "Le cahier d'Halloween de Filou",
+  "sousTitre": "2 semaines d'aventures, de jeux et de coloriages",
+  "couverture": "couverture.jpg",
+  "couleursSemaines": ["--semaine-1", "--semaine-2"],
+  "symboleProgression": "citrouille",
+  "mots": [
+    { "id": "citrouille", "maj": "CITROUILLE", "min": "citrouille", "image": "citrouille" },
+    { "id": "chat", "maj": "CHAT", "min": "chat", "image": "chat" },
+    { "id": "chauveSouris", "maj": "CHAUVE-SOURIS", "min": "chauve-souris", "image": "chauveSouris" },
+    { "id": "fantome", "maj": "FANTÔME", "min": "fantôme", "image": "fantome" },
+    { "id": "lune", "maj": "LUNE", "min": "lune", "image": "lune" },
+    { "id": "bonbon", "maj": "BONBON", "min": "bonbon", "image": "bonbon" },
+    { "id": "sorciere", "maj": "SORCIÈRE", "min": "sorcière", "image": "sorciere" },
+    { "id": "chapeau", "maj": "CHAPEAU", "min": "chapeau", "image": "chapeau" },
+    { "id": "balai", "maj": "BALAI", "min": "balai", "image": "balai" },
+    { "id": "araignee", "maj": "ARAIGNÉE", "min": "araignée", "image": "araignee" },
+    { "id": "toile", "maj": "TOILE", "min": "toile", "image": "toile" },
+    { "id": "feuille", "maj": "FEUILLE", "min": "feuille", "image": "feuille" }
+  ],
+  "costumes": [
+    { "missions": [0, 1, 2], "image": "filou-citrouille.png", "libelle": "Filou avec une citrouille sur la tête" },
+    { "missions": [3, 4, 5], "image": "filou-cape.png", "libelle": "Filou avec sa cape" },
+    { "missions": [6, 7, 8, 9], "image": "filou-sorcier.png", "libelle": "Filou en sorcier" },
+    { "missions": [10], "image": "filou-fantome.png", "libelle": "Filou en fantôme" }
+  ]
+}

@@ -1,6 +1,6 @@
 # 04 — Architecture · JessTech Edu Studio V1
 
-> Version 0.5 — 18/10/2026 — statut : à valider
+> Version 0.6 — 18/10/2026 — statut : à valider
 
 ## 1. Décisions techniques
 | Décision | Choix | Pourquoi |
@@ -30,8 +30,10 @@ jesstech-edu-studio/
 │   │   ├── Reduction.tsx         contenu à taille réelle réduit par transform: scale()
 │   │   └── TaillePapier.tsx      @page { size } selon le format (A4 portrait ou paysage)
 │   ├── hooks/                    useEchelle.ts, useAjustementTexte.ts
+│   ├── donnees.ts                seul lecteur des JSON de donnees/ (types, URL des images)
 │   ├── cahier/                   logique pure, testable sans React
-│   │   ├── composer.ts           cahier + profil + thème → Page[]
+│   │   ├── composer.ts           catalogue + profil + thème → composition (RG14 à RG20), puis Page[]
+│   │   ├── mission.ts            costume de Filou (RG8), graine d'une activité (RG3)
 │   │   ├── pagination.ts         RG1, RG2, RG10
 │   │   ├── assemblage.ts         pages → faces de feuille (A4, A5 feuille par jour RG21, livret RG22)
 │   │   └── controles.ts          RG7 (répétition des mots)
@@ -68,8 +70,10 @@ jesstech-edu-studio/
     │   ├── theme.json
     │   ├── missions.json
     │   └── images/               couverture.jpg, filou-citrouille.png, filou-cape.png…
-    └── cahiers/                  halloween-2026-mathieu.json, halloween-2026-clara.json
+    └── cahiers/                  halloween-2026-mathieu.json, halloween-2026-clara.json (avec la composition)
 ```
+
+Le **thème** (`theme.json`, `missions.json`) contient ce qui est rédigé : titres, mots, « Filou t'explique », histoires, notes parent, graines. Le **cahier** (`cahiers/*.json`) contient ce qui est choisi pour un enfant : la composition de chaque mission (activités et disposition). Elle est écrite à la main en V1 et sera produite par `composer.ts` ensuite, sous la même forme ; « Régénérer » y écrit les graines (RG3).
 
 ## 3. Modèle de données (`src/types.ts`)
 ```ts
@@ -103,7 +107,7 @@ export interface Profil {
   adaptations: Adaptations;
 }
 
-export interface Mot { maj: string; min: string; image: string }
+export interface Mot { id: string; maj: string; min: string; image: string }  // image : clé d'illustration
 
 export interface Costume { missions: number[]; image: string; libelle: string }
 
@@ -140,14 +144,30 @@ export interface Jeu {
 
 export type Largeur = 'pleine' | 'demi';
 
+/** Une activité choisie pour une mission : exactement ce que composer.ts produira depuis le catalogue.
+    La consigne n'y est pas : le générateur la déduit du type, de la variante et des paramètres. */
 export interface ActiviteConfig {
-  type: string;                        // clé du registre
+  type: string;                        // id du jeu dans le catalogue = clé du registre
   largeur?: Largeur;                   // défaut : 'pleine'
-  picto: string;
-  consigne: string;
-  graine?: number;                     // écrite par « Régénérer »
-  params?: Record<string, unknown>;    // ex. { colonnes: 5, lignes: 6 }
-  variante?: string;                   // forme tirée sans remise dans le cahier (RG14)
+  variante: string;                    // une des variantes du jeu dans le catalogue, tirée sans remise (RG14)
+  params?: Record<string, unknown>;    // objets du thème, ex. { objet: 'fantome' }
+  graine?: number;                     // écrite par « Régénérer » ; sinon graine de la mission + rang × 97 (RG3)
+}
+
+export type PictoId =
+  | 'entoure' | 'compte' | 'chemin' | 'relie' | 'colorie' | 'colle'
+  | 'livre' | 'ciseaux' | 'paille' | 'bouche' | 'oreille';
+
+/** Consigne d'une activité : un pictogramme + une phrase, une seule action (RG6). */
+export interface ConsigneActivite { picto: PictoId; texte: string }
+
+/** Rangées de 1 ou 2 blocs : 'explique' (Filou t'explique) ou index d'activité (RG2). */
+export type Disposition = ('explique' | number)[][];
+
+/** Choix des activités d'une mission pour un cahier : écrit à la main en V1, produit par composer.ts ensuite. */
+export interface CompositionMission {
+  disposition: Disposition;
+  activites: ActiviteConfig[];
 }
 
 export interface TexteParProfil { [profil: ProfilId]: string }
@@ -159,11 +179,9 @@ export interface Mission {
   mots: string[];                      // clés vers Theme.mots
   explique: Record<ProfilId, { texte: string; question?: string }>;
   histoire: TexteParProfil;
-  activites: Record<ProfilId, ActiviteConfig[]>;
   creative: Record<ProfilId, ActiviteConfig[]>;
   parent: TexteParProfil;
   graine: number;
-  disposition?: ('explique' | number)[][]; // rangées : 'explique' ou index d'activité
 }
 
 export interface Cahier {
@@ -173,6 +191,7 @@ export interface Cahier {
   missions: number[];                  // ordre, finale incluse
   format: Format;
   impression: ModeImpression;
+  composition: Record<number, CompositionMission>;  // par numéro de mission
 }
 
 export type Page =
@@ -193,21 +212,22 @@ export interface Face {
 ## 4. Contrat d'un générateur d'activité
 ```ts
 export interface ContexteActivite {
-  rng: () => number;    // déjà initialisé avec la bonne graine
-  demi: boolean;        // placé côte à côte (RG2)
+  rng: Rng;             // déjà initialisé avec la bonne graine (RG3)
+  demi: boolean;        // placée à côté d'un autre bloc (RG2)
   profil: Profil;
   theme: Theme;
   mission: Mission;
+  filou: string;        // URL de l'image de Filou dans le costume de la mission (RG8)
 }
 
 export interface Generateur {
-  type: string;
-  libelle: string;
-  niveaux: Niveau[];
-  rendre(config: ActiviteConfig, ctx: ContexteActivite): JSX.Element; // renvoie un <svg>
+  type: string;                                        // id du jeu dans le catalogue
+  consigne(config: ActiviteConfig): ConsigneActivite;  // picto + phrase, déduits des paramètres
+  rendre(config: ActiviteConfig, ctx: ContexteActivite): JSX.Element;  // renvoie un <svg>
 }
 ```
 Ajouter une activité = créer un fichier dans `src/activites/` et l'inscrire dans `registre.ts`. Rien d'autre à modifier.
+Le nom, les niveaux et les variantes d'un jeu restent dans le catalogue (source de vérité) : le générateur ne les recopie pas. Ce qui dépend du tirage (positions, nombres, murs du labyrinthe) est calculé par une fonction pure testée, à côté du générateur.
 
 ## 5. Flux
 ```
@@ -240,9 +260,17 @@ Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-m
    8. ✅ `completerLivret` et `facesLivret` (RG22), testés.
    9. ✅ Livret à l'écran et à l'impression.
    10. ✅ Journal.
-4. **Contenu** : porter depuis le prototype `Panneau`, `Consigne`, `FilouExplique`, puis `PageActivites` de la mission 4, affichée dans l'aperçu.
+4. **Contenu** : la page activités de la mission 4 de Mathieu, identique au PDF imprimé (Clara viendra ensuite) :
+   1. Données de la mission 4 (thème, profil, cahier avec sa composition) et contrat des générateurs.
+   2. `Panneau`, `EnTetePage`, `Consigne`, `Picto`, `FilouExplique`, `NoteParent` ; `PageActivites` selon la disposition (RG2).
+   3. Illustrations de la mission 4 et activité « trouve le même ».
+   4. Activité « compter » (tirage pur et testé).
+   5. Activité « labyrinthe » (génération pure et testée).
+   6. `useAjustementTexte` (RG13).
+   7. Journal.
 5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.
 6. **Boutons ↻** : régénération des activités de la page affichée.
+7. **Composition automatique du cahier** : `composer.ts` choisit les jeux de chaque mission dans le catalogue selon la classe et les difficultés de l'enfant (RG15 à RG20) et tire les variantes sans répétition (RG14, RG19). Il produit la composition sous la forme écrite à la main jusque-là (`CompositionMission`) : les pages et les générateurs n'ont rien à changer.
 
 Commits prévus (étape 3, un par sous-étape) :
 - `feat: coquille de l'interface en trois zones`

@@ -40,7 +40,7 @@ export interface Profil {
   adaptations: Adaptations;
 }
 
-export interface Mot { maj: string; min: string; image: string }
+export interface Mot { id: string; maj: string; min: string; image: string }  // image : clé d'illustration
 
 export interface Costume { missions: number[]; image: string; libelle: string }
 
@@ -74,14 +74,30 @@ export interface Jeu {
 
 export type Largeur = 'pleine' | 'demi';
 
+/** Une activité choisie pour une mission : exactement ce que composer.ts produira depuis le catalogue.
+    La consigne n'y est pas : le générateur la déduit du type, de la variante et des paramètres. */
 export interface ActiviteConfig {
-  type: string;                        // clé du registre
+  type: string;                        // id du jeu dans le catalogue = clé du registre
   largeur?: Largeur;                   // défaut : 'pleine'
-  picto: string;
-  consigne: string;
-  graine?: number;                     // écrite par « Régénérer »
-  params?: Record<string, unknown>;    // ex. { colonnes: 5, lignes: 6 }
-  variante?: string;                   // forme tirée sans remise dans le cahier (RG14)
+  variante: string;                    // une des variantes du jeu dans le catalogue, tirée sans remise (RG14)
+  params?: Record<string, unknown>;    // objets du thème, ex. { objet: 'fantome' }
+  graine?: number;                     // écrite par « Régénérer » ; sinon graine de la mission + rang × 97 (RG3)
+}
+
+export type PictoId =
+  | 'entoure' | 'compte' | 'chemin' | 'relie' | 'colorie' | 'colle'
+  | 'livre' | 'ciseaux' | 'paille' | 'bouche' | 'oreille';
+
+/** Consigne d'une activité : un pictogramme + une phrase, une seule action (RG6). */
+export interface ConsigneActivite { picto: PictoId; texte: string }
+
+/** Rangées de 1 ou 2 blocs : 'explique' (Filou t'explique) ou index d'activité (RG2). */
+export type Disposition = ('explique' | number)[][];
+
+/** Choix des activités d'une mission pour un cahier : écrit à la main en V1, produit par composer.ts ensuite. */
+export interface CompositionMission {
+  disposition: Disposition;
+  activites: ActiviteConfig[];
 }
 
 export interface TexteParProfil { [profil: ProfilId]: string }
@@ -93,11 +109,9 @@ export interface Mission {
   mots: string[];                      // clés vers Theme.mots
   explique: Record<ProfilId, { texte: string; question?: string }>;
   histoire: TexteParProfil;
-  activites: Record<ProfilId, ActiviteConfig[]>;
   creative: Record<ProfilId, ActiviteConfig[]>;
   parent: TexteParProfil;
   graine: number;
-  disposition?: ('explique' | number)[][]; // rangées : 'explique' ou index d'activité
 }
 
 export interface Cahier {
@@ -107,6 +121,7 @@ export interface Cahier {
   missions: number[];                  // ordre, finale incluse
   format: Format;
   impression: ModeImpression;
+  composition: Record<number, CompositionMission>;  // par numéro de mission
 }
 
 export type Page =

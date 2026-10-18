@@ -1,0 +1,22 @@
+[
+  {
+    "numero": 4,
+    "semaine": 1,
+    "titre": "Le fantôme du vieux moulin",
+    "mots": ["fantome"],
+    "explique": {
+      "mathieu": {
+        "texte": "Le fantôme n'existe pas en vrai. C'est un personnage pour les histoires. On peut se déguiser en fantôme avec un drap blanc.",
+        "question": "Il existe en vrai, le fantôme ?"
+      }
+    },
+    "histoire": {
+      "mathieu": "Filou entend « bouh ! » près du vieux moulin. C'est un petit fantôme tout blanc. Le fantôme n'a pas d'amis, alors il est triste. Filou l'invite à la fête : le fantôme est content !"
+    },
+    "creative": {},
+    "parent": {
+      "mathieu": "Lisez l'encadré, puis posez la question. Faites répéter « fantôme ». Pendant les jeux, nommez chaque image avec lui."
+    },
+    "graine": 404
+  }
+]

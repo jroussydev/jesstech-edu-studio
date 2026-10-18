@@ -1,0 +1,14 @@
+{
+  "id": "mathieu",
+  "prenom": "Mathieu",
+  "age": 5,
+  "niveau": "GS",
+  "adaptations": {
+    "difficultes": ["vocabulaire", "consignes"],
+    "consigne": "picto",
+    "activitesParPage": { "A4": 3, "A5": 2 },
+    "densite": "faible",
+    "repetitionMots": 4,
+    "motAColorier": true
+  }
+}
