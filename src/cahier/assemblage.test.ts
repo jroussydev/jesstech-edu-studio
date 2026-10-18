@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { Face } from '../types.ts';
-import { facesA4, facesParJour, tailleFace, taillePapier } from './assemblage.ts';
+import type { Face, Page } from '../types.ts';
+import { completerLivret, facesA4, facesLivret, facesParJour, tailleFace, taillePapier } from './assemblage.ts';
 
 /** Numéros de page présents sur les faces, sans les moitiés blanches, triés. */
 function pagesPlacees(faces: Face[]): number[] {
@@ -79,5 +79,74 @@ describe('facesParJour', () => {
       expect(pagesPlacees(faces)).toEqual(de1A(n));
       expect(faces.every((face) => face.cote === 'recto')).toBe(true);
     }
+  });
+});
+
+describe('completerLivret', () => {
+  const DESSINS: Page = { type: 'dessins' };
+  const QUATRIEME: Page = { type: 'quatrieme' };
+  const cahier = (n: number): Page[] => Array.from({ length: n }, () => ({ type: 'ouverture' }));
+
+  it('passe les 29 pages du cahier à 32 : pages 30 et 31 « Mes dessins », page 32 en 4ᵉ de couverture', () => {
+    const livret = completerLivret(cahier(29), DESSINS, QUATRIEME);
+    expect(livret).toHaveLength(32);
+    expect(livret.slice(29)).toEqual([DESSINS, DESSINS, QUATRIEME]);
+  });
+
+  it('n\'ajoute que la 4ᵉ de couverture quand elle suffit à atteindre le multiple de 4', () => {
+    const livret = completerLivret(cahier(31), DESSINS, QUATRIEME);
+    expect(livret).toHaveLength(32);
+    expect(livret.slice(31)).toEqual([QUATRIEME]);
+  });
+
+  it('passe un cahier de 32 pages à 36, car la 4ᵉ de couverture prend une page de plus', () => {
+    const livret = completerLivret(cahier(32), DESSINS, QUATRIEME);
+    expect(livret).toHaveLength(36);
+    expect(livret.slice(32)).toEqual([DESSINS, DESSINS, DESSINS, QUATRIEME]);
+  });
+
+  it('garde les pages du cahier au début, dans l\'ordre, sans les modifier', () => {
+    const pages = cahier(29);
+    const livret = completerLivret(pages, DESSINS, QUATRIEME);
+    expect(livret.slice(0, 29)).toEqual(pages);
+    expect(pages).toHaveLength(29);
+  });
+});
+
+describe('facesLivret', () => {
+  it('imprime un livret de 32 pages sur 8 feuilles recto verso', () => {
+    const faces = facesLivret(32);
+    expect(faces).toHaveLength(16);
+    expect(faces.filter((face) => face.cote === 'recto')).toHaveLength(8);
+  });
+
+  it('suit l\'ordre de pliage, de la feuille extérieure à la feuille du milieu', () => {
+    const faces = facesLivret(32);
+    expect(faces.slice(0, 4)).toEqual([
+      { pages: [32, 1], cote: 'recto' },
+      { pages: [2, 31], cote: 'verso' },
+      { pages: [30, 3], cote: 'recto' },
+      { pages: [4, 29], cote: 'verso' },
+    ]);
+    expect(faces.slice(-2)).toEqual([
+      { pages: [18, 15], cote: 'recto' },
+      { pages: [16, 17], cote: 'verso' },
+    ]);
+  });
+
+  it('met toujours une page paire à gauche, pour garder chaque mission en double page (RG10)', () => {
+    for (const face of facesLivret(32)) {
+      expect((face.pages[0] ?? 1) % 2).toBe(0);
+    }
+  });
+
+  it('imprime chaque page exactement une fois', () => {
+    for (const n of [4, 8, 32, 36]) {
+      expect(pagesPlacees(facesLivret(n))).toEqual(de1A(n));
+    }
+  });
+
+  it('refuse un nombre de pages qui n\'est pas un multiple de 4', () => {
+    expect(() => facesLivret(29)).toThrow();
   });
 });

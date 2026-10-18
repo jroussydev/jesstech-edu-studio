@@ -30,3 +30,30 @@ export function facesParJour(nbPages: number): Face[] {
   }
   return faces;
 }
+
+/**
+ * A5, livret plié (RG22) : complète le cahier au multiple de 4 pages avec des pages « Mes dessins »,
+ * puis la 4ᵉ de couverture, toujours en dernier. Générique : sert aux vraies pages comme aux pages de test.
+ */
+export function completerLivret<T>(pages: readonly T[], dessins: T, quatrieme: T): T[] {
+  const total = Math.ceil((pages.length + 1) / 4) * 4;
+  const nbDessins = total - pages.length - 1;
+  return [...pages, ...Array.from({ length: nbDessins }, () => dessins), quatrieme];
+}
+
+/**
+ * A5, livret plié (RG22) : imposition d'un livret de N pages (N multiple de 4).
+ * Feuille k : recto = N − 2k | 1 + 2k, verso = 2 + 2k | N − 1 − 2k.
+ * Empilées dans l'ordre, pliées et agrafées au milieu, les feuilles donnent les pages 1 à N.
+ */
+export function facesLivret(nbPages: number): Face[] {
+  if (nbPages % 4 !== 0) {
+    throw new Error(`Un livret plié compte un multiple de 4 pages (reçu : ${nbPages}).`);
+  }
+  const faces: Face[] = [];
+  for (let k = 0; k < nbPages / 4; k++) {
+    faces.push({ pages: [nbPages - 2 * k, 1 + 2 * k], cote: 'recto' });
+    faces.push({ pages: [2 + 2 * k, nbPages - 1 - 2 * k], cote: 'verso' });
+  }
+  return faces;
+}
