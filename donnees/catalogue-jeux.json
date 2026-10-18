@@ -326,7 +326,11 @@
       "habillages": [
         { "id": "traitsSimples", "nom": "traits simples", "themes": ["tous"], "encre": "faible", "niveaux": "PS-GS" },
         { "id": "cheminDeTerre", "nom": "chemin de terre", "themes": ["tous", "nature"], "encre": "moyenne", "niveaux": "PS-GS" },
-        { "id": "haie", "nom": "haie", "themes": ["nature", "jardin"], "encre": "moyenne", "niveaux": "MS-GS" }
+        { "id": "pointilles", "nom": "chemin à pointillés", "themes": ["tous"], "encre": "faible", "niveaux": "PS-GS" },
+        { "id": "riviere", "nom": "rivière", "themes": ["nature", "eau"], "encre": "forte", "niveaux": "PS-GS" },
+        { "id": "haie", "nom": "haie", "themes": ["nature", "jardin"], "encre": "moyenne", "niveaux": "MS-GS" },
+        { "id": "pasJaponais", "nom": "pas japonais", "themes": ["nature", "jardin"], "encre": "moyenne", "niveaux": "MS-GS" },
+        { "id": "chateauEnPierres", "nom": "château en pierres", "themes": ["château", "halloween"], "encre": "forte", "niveaux": "MS-GS" }
       ],
       "dejaCode": true,
       "nouveau": false

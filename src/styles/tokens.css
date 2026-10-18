@@ -32,6 +32,11 @@
   --terre-bord: #8A5A30;
   --haie: #7FAF55;
   --haie-fonce: #3F6B2A;
+  --pierre: #D8CFC2;
+  --pierre-bord: #6E655A;
+  --eau: #9CCBEA;
+  --eau-bord: #3D7DB0;
+  --mur-clair: #CDBBA7;
   /* Ombres translucides : identiques en couleur et en noir et blanc */
   --veinure: rgba(0, 0, 0, 0.05);      /* veines du panneau de bois */
   --ombre-texte: rgba(0, 0, 0, 0.18);  /* relief du titre sur le panneau */
@@ -63,4 +68,9 @@
   --terre-bord: #555;
   --haie: #C4C4C4;
   --haie-fonce: #444;
+  --pierre: #E0E0E0;
+  --pierre-bord: #555;
+  --eau: #D9D9D9;
+  --eau-bord: #555;
+  --mur-clair: #BDBDBD;
 }

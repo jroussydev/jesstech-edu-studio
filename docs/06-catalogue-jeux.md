@@ -265,9 +265,15 @@ Un **habillage** est une variante d'affichage d'un jeu : la structure ne change 
 |---|---|---|---|---|
 | traits simples | les murs en trait fin (dessin du prototype) | tous | faible | PS-GS |
 | chemin de terre | les couloirs en chemin bordé | tous, nature | moyenne | PS-GS |
+| chemin à pointillés | tous les couloirs en pointillés, murs fins et clairs : l'enfant cherche son chemin et repasse les pointillés qu'il emprunte | tous | faible | PS-GS |
+| rivière | les couloirs en eau bordée, avec des vaguelettes | nature, eau | forte | PS-GS |
 | haie | les murs épais et arrondis, en feuillage | nature, jardin | moyenne | MS-GS |
+| pas japonais | des pierres plates le long des couloirs, sans murs | nature, jardin | moyenne | MS-GS |
+| château en pierres | les murs épais en pierres de taille, angles droits | château, halloween | forte | MS-GS |
 
-À venir : pas japonais, rivière, château en pierres, chemin à pointillés (4.5 bis) ; puis les formes rondes (toile d'araignée) et en forme d'objet (citrouille), qui sont des variantes.
+L'ordre du tableau est celui du catalogue, donc celui de l'attribution (RG14).
+
+À venir : les formes rondes (toile d'araignée) et en forme d'objet (citrouille), qui sont des variantes. Idée de variante facile pour la TPS et la PS : « chemin solution en pointillés » (seul le bon chemin est à repasser).
 
 ## 7. Règles de composition d'un cahier
 

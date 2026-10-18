@@ -72,6 +72,23 @@ export function tracerMurs({ colonnes, lignes, cellules }: Labyrinthe, { cote, o
 
 export interface Point { x: number; y: number }
 
+/** Murs un par un (segments d'une case de long), dans l'ordre de tracerMurs. */
+export function murs({ colonnes, lignes, cellules }: Labyrinthe, { cote, ox, oy }: Grille): [Point, Point][] {
+  const segments: [Point, Point][] = [];
+  for (let y = 0; y < lignes; y++) {
+    for (let x = 0; x < colonnes; x++) {
+      const c = cellules[y * colonnes + x];
+      const X = ox + x * cote;
+      const Y = oy + y * cote;
+      if (c.n) segments.push([{ x: X, y: Y }, { x: X + cote, y: Y }]);
+      if (c.w) segments.push([{ x: X, y: Y }, { x: X, y: Y + cote }]);
+      if (y === lignes - 1 && c.s) segments.push([{ x: X, y: Y + cote }, { x: X + cote, y: Y + cote }]);
+      if (x === colonnes - 1 && c.e) segments.push([{ x: X + cote, y: Y }, { x: X + cote, y: Y + cote }]);
+    }
+  }
+  return segments;
+}
+
 /** Centre d'une case dans le SVG. */
 export function centre({ colonnes }: Labyrinthe, { cote, ox, oy }: Grille, i: number): Point {
   return { x: ox + (i % colonnes) * cote + cote / 2, y: oy + Math.floor(i / colonnes) * cote + cote / 2 };

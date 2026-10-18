@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-18 — « Chemin à pointillés » : tous les couloirs à repasser
+Décision : l'habillage « chemin à pointillés » met des pointillés dans tous les couloirs et garde les murs en trait fin et clair ; l'enfant cherche son chemin et ne repasse que les pointillés qu'il emprunte. Les quatre habillages de la 4.5 bis (pointillés, rivière, pas japonais, château en pierres) sont dessinés sans tirage aléatoire : la graine ne sert qu'à la structure.
+Pourquoi : le labyrinthe garde sa difficulté et devient aussi un exercice de graphisme ; les murs clairs le gardent lisible.
+Écarté : les murs en pointillés ; le seul chemin solution en pointillés, gardé comme idée de variante facile pour la TPS et la PS (`06-catalogue-jeux.md` §6 bis).
+
 ## 2026-10-18 — Habillages du labyrinthe, séparés de sa structure
 Décision : le labyrinthe sépare sa structure (`lib/labyrinthe.ts` : murs, couloirs, impasses, algorithme du prototype inchangé) de son dessin, l'**habillage**. Les habillages d'un jeu sont décrits dans le catalogue (`habillages` : id, nom, thèmes, encre, niveaux) et dessinés par un composant chacun (`activites/labyrinthe/`). Une activité porte un champ `habillage` : écrit dans le cahier, ou attribué par `attribuerHabillages` (`cahier/habillages.ts`, appelé par `composer.ts` plus tard), dans l'ordre du catalogue parmi ceux conseillés pour la classe, sans répétition dans un cahier (RG14 étendue). « Traits simples », le dessin du prototype, reste un habillage à part entière : le plus économe en encre. La mission 4 de Mathieu passe en « chemin de terre ». Le labyrinthe affiche « Départ » et « Arrivée » et pose jusqu'à 3 décorations du thème (`theme.json`, `decorations`) dans des impasses, tirées après les murs.
 Pourquoi : des labyrinthes plus jolis et variés sans toucher à l'algorithme ni aux tests des murs ; les étiquettes permettront de choisir selon le thème, l'encre et la classe.

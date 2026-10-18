@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { couloirs, genererLabyrinthe, impasses, tracerMurs, type Labyrinthe } from './labyrinthe.ts';
+import { couloirs, genererLabyrinthe, impasses, murs, tracerMurs, type Labyrinthe } from './labyrinthe.ts';
 import { creerRng } from './rng.ts';
 
 // Grille du prototype : cases de 22, grille décalée de 38 à gauche et de 6 en haut.
@@ -58,6 +58,16 @@ describe('genererLabyrinthe et tracerMurs', () => {
 
   it('est reproductible', () => {
     expect(genererLabyrinthe(5, 6, creerRng(7))).toEqual(genererLabyrinthe(5, 6, creerRng(7)));
+  });
+});
+
+describe('murs', () => {
+  it('décrit exactement les murs de tracerMurs, dans le même ordre', () => {
+    const labyrinthe = genererLabyrinthe(5, 6, creerRng(598));
+    const d = murs(labyrinthe, GRILLE)
+      .map(([a, b]) => (a.y === b.y ? `M${a.x} ${a.y}h${b.x - a.x}` : `M${a.x} ${a.y}v${b.y - a.y}`))
+      .join('');
+    expect(d).toBe(MURS_PROTOTYPE_5X6);
   });
 });
 
