@@ -1,0 +1,54 @@
+/* Couleurs des pages imprimées, reprises du prototype (reference/).
+   Seul fichier où une couleur est écrite en dur : les pages n'utilisent que ces variables.
+   Le mode noir et blanc redéfinit les mêmes variables. */
+
+:root {
+  --papier: #FFFFFF;
+  --trait: #3A2A1F;
+  --bois-fonce: #6B4423;
+  --bois: #9C6B3C;
+  --bois-clair: #C8975A;
+  --panneau-texte: #FFF6E6;
+  --citrouille: #E57A2E;
+  --mousse: #6E9A47;
+  --or: #E8B547;
+  --echarpe: #4C7AB3;
+  --violet: #6A4C93;
+  --peau: #F6D9C0;
+  --fantome: #FFFFFF;
+  --encadre: #FBF1E1;
+  --histoire: #EEF4E6;
+  --chemin: #F6DFBC;
+  --doux: #7A6555;
+  --gommette-a: #E57A2E;
+  --gommette-b: #4C7AB3;
+  --gommette-c: #6E9A47;
+  --semaine-1: #E57A2E;
+  --semaine-2: #4C7AB3;
+  --repere: var(--semaine-1);
+  --image-filtre: none;
+}
+
+:root[data-impression="nb"] {
+  --trait: #222;
+  --bois-fonce: #333;
+  --bois: #BDBDBD;
+  --bois-clair: #E2E2E2;
+  --panneau-texte: #1E1E1E;
+  --citrouille: #9E9E9E;
+  --mousse: #6F6F6F;
+  --or: #CFCFCF;
+  --echarpe: #7A7A7A;
+  --violet: #5A5A5A;
+  --peau: #EEEEEE;
+  --encadre: #F2F2F2;
+  --histoire: #F2F2F2;
+  --chemin: #E4E4E4;
+  --doux: #555;
+  --gommette-a: #666;
+  --gommette-b: #666;
+  --gommette-c: #666;
+  --semaine-1: #444;
+  --semaine-2: #444;
+  --image-filtre: grayscale(1) contrast(1.05);
+}

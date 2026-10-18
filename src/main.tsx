@@ -7,6 +7,7 @@ import '@fontsource/andika/700.css'
 import '@fontsource/grandstander/600.css'
 import '@fontsource/grandstander/800.css'
 import './styles/interface.css'
+import './styles/tokens.css'
 import { App } from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
