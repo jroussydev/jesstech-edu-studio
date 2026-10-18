@@ -1,0 +1,40 @@
+/* Règles d'impression des pages, reprises du prototype (reference/).
+   .feuille : une page du cahier (composant Feuille, étape 3).
+   .interface-seulement : tout ce qui ne doit pas sortir sur le papier (barre de réglages…). */
+
+body {
+  /* Imprime les fonds et les couleurs tels quels, sans les éclaircir. */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@media print {
+  /* A4 par défaut ; la taille sera injectée selon le format choisi (étape 3). */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--papier);
+  }
+
+  .interface-seulement {
+    display: none !important;
+  }
+
+  /* La page garde sa taille réelle : la réduction à l'écran est annulée. */
+  .feuille {
+    transform: none !important;
+    box-shadow: none;
+    break-after: page;
+  }
+
+  /* Pas de page blanche après la dernière feuille. */
+  .feuille:last-child {
+    break-after: auto;
+  }
+}
