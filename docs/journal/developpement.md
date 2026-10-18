@@ -32,3 +32,21 @@ Reste à faire :
 Problèmes rencontrés :
 - Le dépôt contenait déjà le projet Vite, mais avec `@import "tailwindcss"` sans Tailwind installé (build cassé) : corrigé.
 - `04-architecture.md` prévoyait à la fois `public/fonts/` et `@fontsource` : `public/fonts/` abandonné.
+
+## 2026-10-18 — Étape 2 : modèle de données, aléatoire à graine, styles des pages
+Fait :
+- `src/types.ts` : modèle de données aligné sur `donnees/catalogue-jeux.json` (niveaux par classe, catégorie `EM`, marqueurs `dejaCode` et `nouveau` optionnels) et constante `FORMATS` (A4 794 × 1123 px, A5 559 × 794 px). `04-architecture.md` v0.3 et décision du jour.
+- Vitest 5 installé (`npm run test`, environnement `node`).
+- `src/lib/rng.ts` (mulberry32) et `src/lib/melange.ts` (Fisher-Yates) portés du prototype ; 8 tests, dont les tirages de la graine 404 figés sur ceux du prototype.
+- `src/styles/tokens.css` : couleurs des pages et redéfinition sous `data-impression="nb"`.
+- `src/styles/impression.css` : `@page` A4 sans marge, saut de page par `.feuille`, `.interface-seulement` masqué.
+
+Reste à faire :
+- Étape 3 : `Feuille.tsx` et une page vide A4/A5 qui s'imprime correctement ; injecter `@page { size }` selon le format ; vérifier si `.feuille` a besoin de `width: 210mm` à l'impression.
+- Variables d'interface (`--ui-*`, mode sombre) à placer dans `interface.css` quand l'interface sera construite.
+- Étape 4 : contrat `Generateur` / `ContexteActivite` (`React.JSX.Element`), puis `Panneau`, `Consigne`, `FilouExplique`, `PageActivites` de la mission 4.
+- Remplacer le favicon Vite par un pictogramme de Filou.
+
+Problèmes rencontrés :
+- `types.ts` de la doc ne correspondait pas au catalogue (niveaux, catégorie `EM`, champs en plus) : corrigé, voir `decisions.md`.
+- `vitest run` sans fichier de test se termine en erreur : normal, résolu dès les premiers tests.
