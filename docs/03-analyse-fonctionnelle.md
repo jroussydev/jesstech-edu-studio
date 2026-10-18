@@ -20,8 +20,8 @@ Un seul écran, en trois zones (maquette : `05-maquettes.md` §1) :
 
 | Zone | Contenu | Actions |
 |---|---|---|
-| En-tête + barre d'impression | Logo, titre, format, couleur / noir et blanc | Changer le format ; basculer couleur / noir et blanc ; imprimer le cahier entier |
-| Aperçu | Une page à la fois, à taille réelle réduite à l'écran ; compteur « page N / total » | Page précédente / suivante (◀ ▶) |
+| En-tête + barre d'impression | Logo, titre, format, couleur / noir et blanc ; en A5 seulement, assemblage (« Une feuille par jour » ou « Livret plié ») | Changer le format ; basculer couleur / noir et blanc ; choisir l'assemblage ; imprimer le cahier entier |
+| Aperçu | Une feuille à la fois, telle qu'elle sortira de l'imprimante, à taille réelle réduite à l'écran : en A4, une page ; en A5, la paire de pages côte à côte (RG21, RG22) ; compteur « page N / total » en A4, « feuille N / total » en A5 | Feuille précédente / suivante (◀ ▶) |
 | Panneaux | « L'enfant » (prénom, classe, difficultés), « Le cahier » (personnage, vacances), « Cette page » (un bouton ↻ par activité de la page affichée) | Modifier le profil ; choisir les vacances ; régénérer une activité (nouvelle graine, RG3) |
 
 Sur téléphone, les panneaux passent sous l'aperçu. L'en-tête, la barre, les panneaux et le compteur ne s'impriment jamais : seul le cahier sort sur le papier.
@@ -44,6 +44,8 @@ Une mission = une **double page** : activités à gauche (page paire), histoire 
 
 **Total : 29 pages par enfant.**
 
+À l'impression A5 (RG21, RG22) : en « une feuille par jour », 29 pages tiennent sur 15 feuilles A4 paysage (couverture seule, puis 2-3 à 28-29) ; en « livret plié », le cahier passe à 32 pages (pages 30 et 31 « Mes dessins », page 32 = 4ᵉ de couverture), soit 8 feuilles imprimées recto verso.
+
 ## 5. Règles de gestion
 | ID | Règle |
 |---|---|
@@ -60,6 +62,8 @@ Une mission = une **double page** : activités à gauche (page paire), histoire 
 | RG11 | **Images** : les illustrations bitmap (Filou, couverture) ne sont jamais déformées (`object-fit` / `preserveAspectRatio`). |
 | RG12 | **Fiche parent** : chaque page d'activités se termine par la note « Pour l'adulte » de la mission. |
 | RG13 | **Aucun texte hors de son bloc** : si un texte dépasse de son bloc (téléphone qui agrandit les polices, texte long), la taille de police de ce bloc est réduite automatiquement jusqu'à ce qu'il tienne (jusqu'à 55 %), puis celle de la page entière si besoin. En dernier recours, le bloc coupe son contenu plutôt que de déborder sur un autre. |
+| RG21 | **A5, une feuille par jour** : deux pages A5 en portrait côte à côte sur une feuille A4 paysage, recto seul. La couverture est seule sur la première feuille (moitié droite, la gauche reste blanche), puis les paires 2-3, 4-5, 6-7… : page paire à gauche, impaire à droite, donc une mission par feuille (RG10). Si le nombre de pages est pair, la dernière page est seule, à gauche. |
+| RG22 | **A5, livret plié** : le cahier est complété au multiple de 4 pages par des pages « Mes dessins » placées avant une 4ᵉ de couverture, toujours en dernière page. Imposition pour un livret de N pages, feuille k (k = 0, 1…, N/4 − 1) : recto = pages N − 2k à gauche et 1 + 2k à droite ; verso = pages 2 + 2k à gauche et N − 1 − 2k à droite. Impression recto verso, retournement sur le bord court ; les feuilles empilées dans l'ordre sont pliées et agrafées au milieu. Ouvert, le livret montre chaque mission en double page (RG10). |
 | RG14 à RG20 | **Composition du cahier** (forme jamais répétée, variété, équilibre des catégories, socle par niveau, priorité aux difficultés cochées, progression, supports) : voir `06-catalogue-jeux.md`, §7. |
 
 ## 6. Objets fonctionnels
@@ -71,5 +75,6 @@ Une mission = une **double page** : activités à gauche (page paire), histoire 
 | Activité | Un jeu généré | type, largeur, consigne, picto, paramètres |
 | Cahier | L'assemblage à imprimer | profil, thème, liste des missions, format et mode par défaut |
 | Page | Résultat du calcul de l'ordre | type de page, mission, activités placées |
+| Face | Une face de feuille imprimée (A5 : A4 paysage) | page de gauche, page de droite (ou vide), recto / verso |
 
 Le détail technique de ces objets est dans `04-architecture.md`.

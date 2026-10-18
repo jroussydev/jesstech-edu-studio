@@ -1,6 +1,6 @@
 # 01 — Cahier des charges · JessTech Edu Studio V1
 
-> Version 0.2 — 12/10/2026 — statut : à valider
+> Version 0.3 — 18/10/2026 — statut : à valider
 
 ## 1. Contexte
 Voir `00-vision.md` et `02-analyse-des-besoins.md`. Échéance ferme : **samedi 17 octobre 2026**.
@@ -35,8 +35,8 @@ Niveaux prévus dans le modèle (pour plus tard) : `TPS`, `MAT`, `CP-CE1`, `CE2-
 | F21 | Costume de Filou qui évolue au fil des missions (défini par le thème) | Important |
 | F22 | **Activité bonus à faire ensemble** : un bricolage lié au thème (patrons à imprimer, matériel de la maison, étapes en pictogrammes), version adaptée par âge, imprimé à part | Important |
 | F13 | Choix du mode d'impression au moment de l'export : couleur ou noir et blanc (V1 imprimée en couleur) | Indispensable |
-| F14 | Choix du format de page : A4 et A5 en V1 ; A3 et US Letter ensuite | Indispensable (A4, A5) |
-| F15 | Mode livret : 2 pages A5 imprimées sur une feuille A4, dans l'ordre de pliage | Plus tard |
+| F14 | Choix du format de page : A4 et A5 en V1 ; A3 et US Letter ensuite. Les pages sont toujours en portrait. En A4, une page par feuille A4 portrait ; en A5, deux pages côte à côte sur une feuille A4 paysage (F15) | Indispensable (A4, A5) |
+| F15 | Assemblage A5, choisi dans la barre d'impression : « Une feuille par jour » (couverture seule, puis paires 2-3, 4-5… : une mission par feuille, recto seul) ou « Livret plié » (imposition recto verso, pliée et agrafée au milieu, complétée au multiple de 4 avec des pages « Mes dessins » et une 4ᵉ de couverture). L'aperçu montre la paire de pages telle qu'elle sera sur la feuille | Indispensable (V1) |
 | F16 | Export PDF par lot | Plus tard |
 
 ## 4. Catalogue d'activités V1 (Halloween)
@@ -132,4 +132,4 @@ Sécurité : rien de petit à portée de Clara, découpage par l'adulte pour ell
 ## 9. Évolutions prévues après la base
 - **Décoration des pages** : frises et bordures du thème autour de chaque page (feuilles, citrouilles, branches).
 - **Histoire du jour en post-it** : encadré légèrement incliné, façon note collée sur la page.
-- Jeu des différences, mode livret, export PDF par lot (voir F15, F16).
+- Jeu des différences, export PDF par lot (voir F16).

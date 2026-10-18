@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-18 — A5 imprimé par deux sur A4 paysage, deux assemblages
+Décision : les pages restent en portrait. En A5, deux pages sont imprimées côte à côte sur une feuille A4 paysage, avec un choix « Assemblage » dans la barre d'impression : « Une feuille par jour » (couverture seule, puis paires 2-3, 4-5… ; une mission par feuille, recto seul, RG21) ou « Livret plié » (imposition recto verso, complété au multiple de 4 par des pages « Mes dessins » et une 4ᵉ de couverture, RG22). L'aperçu montre la feuille telle qu'elle sortira. L'ordre des pages sur les feuilles est calculé par une fonction pure de `src/cahier/`, testée avec Vitest. Le mode livret (F15) passe de « plus tard » à la V1.
+Pourquoi : on imprime sur du papier A4. La feuille par jour donne une mission à poser sur la table chaque jour ; le livret donne un vrai petit cahier.
+Écarté : imprimer une page A5 seule sur une feuille A4 (papier gâché) ; le livret seul (une feuille par jour est plus simple à distribuer).
+
 ## 2026-10-18 — Un seul écran, construit dès l'étape 3
 Décision : l'application tient en un seul écran (en-tête et barre d'impression, aperçu d'une page à la fois, panneaux de réglages), d'après l'esquisse du 18/10 (`05-maquettes.md`). La coquille de l'interface est construite à l'étape 3, avec `Feuille.tsx`, puis remplie dans l'ordre de la maquette.
 Pourquoi : vérifier chaque étape à l'écran plutôt que dans les tests seuls.
