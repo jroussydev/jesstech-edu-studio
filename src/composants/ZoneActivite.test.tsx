@@ -38,11 +38,20 @@ describe('ZoneActivite', () => {
 });
 
 describe('PageActivites, mission 4 de Mathieu', () => {
+  const html = renderToStaticMarkup(
+    <PageActivites mission={mission4} composition={CAHIER.composition[4]} profil={PROFIL} theme={THEME} folio={12} />,
+  );
+  // Zones dans l'ordre d'affichage : labyrinthe (1), trouve le même (2), compter (3).
+  const zones = html.split('<section class="zone').slice(1);
+
   it('place le modèle en 2ᵉ position, comme le PDF imprimé', () => {
-    const html = renderToStaticMarkup(
-      <PageActivites mission={mission4} composition={CAHIER.composition[4]} profil={PROFIL} theme={THEME} folio={12} />,
-    );
     const m = { yeux: 'rond', bouche: 'sourire', bras: true, noeud: true };
-    expect(fantomesProposes(html)).toEqual([{ ...m, bras: false }, m, { ...m, bouche: 'o' }, { ...m, noeud: false }]);
+    expect(fantomesProposes(zones[1])).toEqual([{ ...m, bras: false }, m, { ...m, bouche: 'o' }, { ...m, noeud: false }]);
+  });
+
+  it('fait compter 7 fantômes parmi 5, 8 et 7, comme le PDF imprimé', () => {
+    expect(zones[2]).toContain('Entoure le nombre de fantômes.');
+    expect(zones[2].match(/viewBox="0 0 100 110"/g)).toHaveLength(7);
+    expect([...zones[2].matchAll(/font-size="23"[^>]*>(\d+)</g)].map((r) => r[1])).toEqual(['5', '8', '7']);
   });
 });

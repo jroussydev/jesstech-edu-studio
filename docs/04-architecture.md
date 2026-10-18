@@ -52,6 +52,8 @@ jesstech-edu-studio/
 │   ├── composants/               Panneau, EnTetePage, Consigne, Picto, FilouExplique, ZoneActivite, Histoire, NoteParent
 │   ├── activites/                un fichier par générateur + registre
 │   │   ├── registre.ts
+│   │   ├── formes.tsx            Boite, Chiffre (formes communes)
+│   │   ├── parametres.ts         lecture des params d'une activité
 │   │   ├── trouveLeMeme.tsx
 │   │   ├── compter.tsx
 │   │   ├── labyrinthe.tsx
