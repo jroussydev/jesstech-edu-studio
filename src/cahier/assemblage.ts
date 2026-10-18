@@ -1,5 +1,5 @@
 // Place les pages du cahier sur les faces des feuilles imprimées (voir docs/03-analyse-fonctionnelle.md, RG21 et RG22).
-import { FORMATS, type Face, type Format } from '../types.ts';
+import { FORMATS, type Assemblage, type Face, type Format } from '../types.ts';
 
 /** Taille réelle d'une face imprimée, en px : A4 portrait, ou A4 paysage portant deux pages A5. */
 export function tailleFace(format: Format): { largeur: number; hauteur: number } {
@@ -56,4 +56,25 @@ export function facesLivret(nbPages: number): Face[] {
     faces.push({ pages: [2 + 2 * k, nbPages - 1 - 2 * k], cote: 'verso' });
   }
   return faces;
+}
+
+/** Faces à imprimer selon le format et, en A5, l'assemblage (en livret, nbPages est déjà complété). */
+export function calculerFaces(nbPages: number, format: Format, assemblage: Assemblage): Face[] {
+  if (format === 'A4') return facesA4(nbPages);
+  return assemblage === 'livret' ? facesLivret(nbPages) : facesParJour(nbPages);
+}
+
+/** Texte du compteur de l'aperçu, ex. « page 6 / 29 » ou « feuille 1 / 8, verso · pages 2 et 31 ». */
+export function libelleFace(faces: Face[], index: number, format: Format): string {
+  if (format === 'A4') return `page ${index + 1} / ${faces.length}`;
+
+  // En livret, les faces alternent recto et verso : deux faces par feuille.
+  const rectoVerso = faces.some((face) => face.cote === 'verso');
+  const feuille = rectoVerso ? Math.floor(index / 2) + 1 : index + 1;
+  const total = rectoVerso ? faces.length / 2 : faces.length;
+  const face = faces[index];
+  const numeros = face.pages.filter((numero) => numero !== null);
+  const pages = numeros.length > 1 ? `pages ${numeros.join(' et ')}` : `page ${numeros[0]}`;
+
+  return `feuille ${feuille} / ${total}${rectoVerso ? `, ${face.cote}` : ''} · ${pages}`;
 }

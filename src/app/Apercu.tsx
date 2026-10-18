@@ -1,40 +1,41 @@
 import { useState } from 'react';
-import { facesA4, facesParJour, tailleFace } from '../cahier/assemblage.ts';
+import { calculerFaces, completerLivret, libelleFace, tailleFace } from '../cahier/assemblage.ts';
 import { useEchelle } from '../hooks/useEchelle.ts';
 import { Face } from '../pages/Face.tsx';
 import { PageVide } from '../pages/PageVide.tsx';
-import type { Format } from '../types.ts';
-import { PAGES_FACTICES } from './pagesFactices.ts';
+import type { Assemblage, Format } from '../types.ts';
+import { PAGES_FACTICES, type PageFactice } from './pagesFactices.ts';
 import { Reduction } from './Reduction.tsx';
 
 // La feuille n'est jamais affichée à plus de 81 % de sa taille réelle (comme le prototype).
 const PLAFOND_ECHELLE = 0.81;
+
+const DESSINS: PageFactice = { titre: 'Mes dessins', detail: 'page libre' };
+const QUATRIEME: PageFactice = { titre: '4ᵉ de couverture', detail: 'dos du livret' };
 
 const BOUTON_PAGE =
   'interface-seulement rounded-full border border-ligne px-3 py-2 text-xl disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 
 interface ApercuProps {
   format: Format;
+  assemblage: Assemblage;
 }
 
-export function Apercu({ format }: ApercuProps) {
-  // En A5, seul l'assemblage « une feuille par jour » existe pour l'instant (livret : sous-étape 3.8).
-  const faces = format === 'A4' ? facesA4(PAGES_FACTICES.length) : facesParJour(PAGES_FACTICES.length);
+export function Apercu({ format, assemblage }: ApercuProps) {
+  // Le livret plié est complété au multiple de 4 pages (RG22).
+  const livret = format === 'A5' && assemblage === 'livret';
+  const pages = livret ? completerLivret(PAGES_FACTICES, DESSINS, QUATRIEME) : PAGES_FACTICES;
+  const faces = calculerFaces(pages.length, format, assemblage);
   const { largeur, hauteur } = tailleFace(format);
   const { ref, echelle } = useEchelle(largeur, PLAFOND_ECHELLE);
 
   // L'index demandé est ramené dans les bornes quand le nombre de faces change (A4 ↔ A5).
   const [indexDemande, setIndexDemande] = useState(0);
   const index = Math.min(indexDemande, faces.length - 1);
-
-  const numeros = faces[index].pages.filter((numero) => numero !== null);
-  const compteur =
-    format === 'A4'
-      ? `page ${index + 1} / ${faces.length}`
-      : `feuille ${index + 1} / ${faces.length} · ${numeros.length > 1 ? 'pages' : 'page'} ${numeros.join('–')}`;
+  const compteur = libelleFace(faces, index, format);
 
   const rendrePage = (numero: number) => {
-    const page = PAGES_FACTICES[numero - 1];
+    const page = pages[numero - 1];
     return <PageVide titre={page.titre} detail={`page ${numero} · ${page.detail}`} />;
   };
 

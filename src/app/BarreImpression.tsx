@@ -3,7 +3,7 @@ import { FORMATS, type Assemblage, type Format, type ModeImpression } from '../t
 const LISTE_FORMATS = Object.keys(FORMATS) as Format[];
 const LISTE_ASSEMBLAGES: { id: Assemblage; libelle: string; disponible: boolean }[] = [
   { id: 'jour', libelle: 'Une feuille par jour', disponible: true },
-  { id: 'livret', libelle: 'Livret plié (bientôt)', disponible: false },
+  { id: 'livret', libelle: 'Livret plié', disponible: true },
 ];
 const CHAMP =
   'rounded-full border border-ligne bg-barre px-3 py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
@@ -56,6 +56,9 @@ export function BarreImpression({
               <option key={a.id} value={a.id} disabled={!a.disponible}>{a.libelle}</option>
             ))}
           </select>
+          {assemblage === 'livret' && (
+            <span className="text-sm opacity-75">Recto verso, retournement sur le bord court</span>
+          )}
         </div>
       )}
 

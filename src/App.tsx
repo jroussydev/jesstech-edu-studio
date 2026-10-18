@@ -30,7 +30,7 @@ export function App() {
           onImpressionChange={setImpression}
           onAssemblageChange={setAssemblage}
         />
-        <Apercu format={format} />
+        <Apercu format={format} assemblage={assemblage} />
       </div>
       <Panneaux />
     </div>

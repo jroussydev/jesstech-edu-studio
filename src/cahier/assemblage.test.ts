@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import type { Face, Page } from '../types.ts';
-import { completerLivret, facesA4, facesLivret, facesParJour, tailleFace, taillePapier } from './assemblage.ts';
+import {
+  calculerFaces,
+  completerLivret,
+  facesA4,
+  facesLivret,
+  facesParJour,
+  libelleFace,
+  tailleFace,
+  taillePapier,
+} from './assemblage.ts';
 
 /** Numéros de page présents sur les faces, sans les moitiés blanches, triés. */
 function pagesPlacees(faces: Face[]): number[] {
@@ -148,5 +157,39 @@ describe('facesLivret', () => {
 
   it('refuse un nombre de pages qui n\'est pas un multiple de 4', () => {
     expect(() => facesLivret(29)).toThrow();
+  });
+});
+
+describe('calculerFaces', () => {
+  it('ignore l\'assemblage en A4 : une page par feuille', () => {
+    expect(calculerFaces(29, 'A4', 'livret')).toEqual(facesA4(29));
+  });
+
+  it('assemble une feuille par jour en A5', () => {
+    expect(calculerFaces(29, 'A5', 'jour')).toEqual(facesParJour(29));
+  });
+
+  it('impose le livret plié en A5', () => {
+    expect(calculerFaces(32, 'A5', 'livret')).toEqual(facesLivret(32));
+  });
+});
+
+describe('libelleFace', () => {
+  it('compte les pages en A4', () => {
+    expect(libelleFace(facesA4(29), 5, 'A4')).toBe('page 6 / 29');
+  });
+
+  it('compte les feuilles et nomme les deux pages en A5, une feuille par jour', () => {
+    expect(libelleFace(facesParJour(29), 3, 'A5')).toBe('feuille 4 / 15 · pages 6 et 7');
+  });
+
+  it('nomme une seule page quand l\'autre moitié est blanche', () => {
+    expect(libelleFace(facesParJour(29), 0, 'A5')).toBe('feuille 1 / 15 · page 1');
+  });
+
+  it('compte les feuilles et précise recto ou verso en livret', () => {
+    const faces = facesLivret(32);
+    expect(libelleFace(faces, 0, 'A5')).toBe('feuille 1 / 8, recto · pages 32 et 1');
+    expect(libelleFace(faces, 15, 'A5')).toBe('feuille 8 / 8, verso · pages 16 et 17');
   });
 });
