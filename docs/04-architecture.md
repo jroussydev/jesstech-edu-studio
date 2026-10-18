@@ -1,6 +1,6 @@
 # 04 — Architecture · JessTech Edu Studio V1
 
-> Version 0.2 — 17/10/2026 — statut : à valider
+> Version 0.3 — 18/10/2026 — statut : à valider
 
 ## 1. Décisions techniques
 | Décision | Choix | Pourquoi |
@@ -67,8 +67,15 @@ jesstech-edu-studio/
 ```ts
 export type Format = 'A4' | 'A5';
 export type ModeImpression = 'couleur' | 'nb';
-export type Niveau = 'TPS' | 'MAT' | 'CP-CE1' | 'CE2-CM2';
+// TPS sert aussi pour un enfant de 2 à 3 ans pas encore scolarisé.
+export type Niveau = 'TPS' | 'PS' | 'MS' | 'GS' | 'CP' | 'CE1' | 'CE2' | 'CM1' | 'CM2';
 export type ProfilId = string;
+
+/** Taille réelle d'une page en pixels CSS (96 dpi) */
+export const FORMATS: Record<Format, { largeur: number; hauteur: number }> = {
+  A4: { largeur: 794, hauteur: 1123 },
+  A5: { largeur: 559, hauteur: 794 },
+};
 
 export interface Adaptations {
   difficultes: Difficulte[];          // cases cochées par le parent
@@ -102,7 +109,7 @@ export interface Theme {
   costumes: Costume[];
 }
 
-export type Categorie = 'MF'|'GR'|'EC'|'LE'|'PH'|'VO'|'OR'|'CO'|'LO'|'NB'|'ES'|'TE'|'PV'|'AT'|'ME'|'MG'|'CR';
+export type Categorie = 'MF'|'GR'|'EC'|'LE'|'PH'|'VO'|'OR'|'CO'|'LO'|'NB'|'ES'|'TE'|'PV'|'AT'|'ME'|'MG'|'CR'|'EM';
 export type Difficulte = 'consignes'|'vocabulaire'|'expression'|'prononciation'|'sons'|'lecture'|'ecriture'|'motricite'|'attention'|'memoire'|'espace'|'nombres'|'visuel';
 
 /** Une entrée du catalogue (donnees/catalogue-jeux.json, voir docs/06) */
@@ -112,11 +119,14 @@ export interface Jeu {
   categorie: Categorie;          // ce qu'il travaille surtout
   secondaires: Categorie[];
   difficultes: Difficulte[];     // difficultés pour lesquelles il est conseillé
-  niveaux: string;               // ex. 'TPS-PS'
+  niveaux: string;               // plage de classes, ex. 'TPS-MS' ou 'GS'
   materiel: string;
   generation: 'auto' | 'pictos' | 'texte' | 'scene';
   support: 'fiche' | 'decoupe' | 'jeu' | 'vivre' | 'bricolage';
   variantes: string[];           // formes, de la plus simple à la plus difficile (RG14, RG19)
+  // Marqueurs de documentation, ignorés par le générateur.
+  dejaCode?: boolean;            // générateur déjà écrit dans le prototype
+  nouveau?: boolean;
 }
 
 export type Largeur = 'pleine' | 'demi';

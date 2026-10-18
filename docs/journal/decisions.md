@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-18 — Niveaux par classe et types alignés sur le catalogue
+Décision : `Niveau` liste les classes (`TPS`, `PS`, `MS`, `GS`, `CP` à `CM2`) ; `TPS` sert aussi pour un enfant de 2 à 3 ans pas encore scolarisé (Clara). `Jeu.niveaux` reste une plage de classes (`'TPS-MS'`). La catégorie `EM` (émotions et vivre ensemble) est ajoutée ; `dejaCode` et `nouveau` sont des marqueurs de documentation optionnels, ignorés par le générateur.
+Pourquoi : `types.ts` doit pouvoir lire `donnees/catalogue-jeux.json` tel qu'il est, et le profil de Mathieu dit « GS ».
+Écarté : niveaux larges (`MAT`, `CP-CE1`, `CE2-CM2`) qui ne correspondaient pas au catalogue.
+
 ## 2026-10-17 — Polices empaquetées par Vite depuis @fontsource
 Décision : Andika et Grandstander sont importées depuis les paquets `@fontsource` dans `main.tsx` ; Vite copie lui-même les `.woff2` dans le build. Plus de dossier `public/fonts/`.
 Pourquoi : un seul mécanisme, aucun fichier de police à copier ni à mettre à jour à la main, toujours aucun appel réseau à l'impression.
