@@ -38,12 +38,13 @@ body {
     transform: none !important;
   }
 
-  .feuille {
+  /* Une face par feuille de papier (en A5, les deux pages restent ensemble). */
+  .face {
     break-after: page;
   }
 
-  /* Pas de page blanche après la dernière feuille. */
-  .feuille:last-child {
+  /* Pas de page blanche après la dernière face. */
+  .face:last-child {
     break-after: auto;
   }
 }

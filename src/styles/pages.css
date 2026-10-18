@@ -9,6 +9,19 @@
   font-family: Andika, "Trebuchet MS", Verdana, sans-serif;
 }
 
+/* Face imprimée : A4 portrait (une page) ou A4 paysage coupé en deux moitiés (deux pages A5). */
+.face {
+  display: flex;
+  background: var(--papier);
+}
+
+.face-emplacement {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Origine en haut à gauche : le cadre réduit garde la page alignée. */
 .reduction {
   overflow: hidden;

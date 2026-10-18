@@ -1,5 +1,11 @@
 // Place les pages du cahier sur les faces des feuilles imprimées (voir docs/03-analyse-fonctionnelle.md, RG21 et RG22).
-import type { Face } from '../types.ts';
+import { FORMATS, type Face, type Format } from '../types.ts';
+
+/** Taille réelle d'une face imprimée, en px : A4 portrait, ou A4 paysage portant deux pages A5. */
+export function tailleFace(format: Format): { largeur: number; hauteur: number } {
+  const a4 = FORMATS.A4;
+  return format === 'A4' ? a4 : { largeur: a4.hauteur, hauteur: a4.largeur };
+}
 
 /** A4 : une page par feuille, recto seul. */
 export function facesA4(nbPages: number): Face[] {

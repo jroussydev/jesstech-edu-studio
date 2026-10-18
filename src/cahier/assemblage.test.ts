@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Face } from '../types.ts';
-import { facesA4, facesParJour } from './assemblage.ts';
+import { facesA4, facesParJour, tailleFace } from './assemblage.ts';
 
 /** Numéros de page présents sur les faces, sans les moitiés blanches, triés. */
 function pagesPlacees(faces: Face[]): number[] {
@@ -13,6 +13,16 @@ function pagesPlacees(faces: Face[]): number[] {
 function de1A(n: number): number[] {
   return Array.from({ length: n }, (_, i) => i + 1);
 }
+
+describe('tailleFace', () => {
+  it('imprime le format A4 sur une feuille A4 portrait', () => {
+    expect(tailleFace('A4')).toEqual({ largeur: 794, hauteur: 1123 });
+  });
+
+  it('imprime le format A5 sur une feuille A4 paysage', () => {
+    expect(tailleFace('A5')).toEqual({ largeur: 1123, hauteur: 794 });
+  });
+});
 
 describe('facesA4', () => {
   it('met une seule page par feuille, dans l\'ordre, au recto', () => {
