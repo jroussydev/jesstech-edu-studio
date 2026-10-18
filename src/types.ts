@@ -2,6 +2,7 @@
 
 export type Format = 'A4' | 'A5';
 export type ModeImpression = 'couleur' | 'nb';
+export type Assemblage = 'jour' | 'livret';   // A5 seulement (RG21, RG22)
 // TPS sert aussi pour un enfant de 2 à 3 ans pas encore scolarisé.
 export type Niveau = 'TPS' | 'PS' | 'MS' | 'GS' | 'CP' | 'CE1' | 'CE2' | 'CM1' | 'CM2';
 export const NIVEAUX: readonly Niveau[] = ['TPS', 'PS', 'MS', 'GS', 'CP', 'CE1', 'CE2', 'CM1', 'CM2'];
@@ -113,4 +114,11 @@ export type Page =
   | { type: 'imagier'; semaine: 1 | 2; cote: 'gauche' | 'droite' }
   | { type: 'activites'; mission: number; activites: ActiviteConfig[][] } // rangées
   | { type: 'creative'; mission: number }
-  | { type: 'finale' } | { type: 'bravo' } | { type: 'dessins' };
+  | { type: 'finale' } | { type: 'bravo' } | { type: 'dessins' } | { type: 'quatrieme' };
+
+/** Une face de feuille imprimée : numéros de page (1 = couverture), null = moitié blanche.
+    A4 : une page ; A5 : [gauche, droite] sur une feuille A4 paysage. */
+export interface Face {
+  pages: (number | null)[];
+  cote: 'recto' | 'verso';              // verso : livret seulement
+}
