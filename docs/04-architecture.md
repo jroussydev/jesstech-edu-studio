@@ -229,17 +229,17 @@ donnees/*.json ──► composer.ts ──► Page[] ──► assemblage.ts �
 Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-maquettes.md` §2), pour vérifier chaque étape à l'écran.
 1. ✅ Projet Vite React + TypeScript, Tailwind, polices `@fontsource` et TypeScript `strict`. Les dossiers de `src/` et `donnees/` sont créés au fil des étapes, quand ils reçoivent du code.
 2. ✅ `types.ts`, `lib/rng.ts`, `styles/tokens.css`, `styles/impression.css`.
-3. **Coquille de l'interface + Feuille A4/A5** :
+3. ✅ **Coquille de l'interface + Feuille A4/A5** :
    1. ✅ Coquille en trois zones, valeurs factices.
    2. ✅ Réglages Format et Couleur / Noir et blanc branchés.
-   3. Docs techniques de l'assemblage A5 (04, 05, 07).
-   4. `Feuille.tsx` à taille réelle, réduite par `useEchelle` → `calculerEchelle` (`lib/echelle.ts`, testé).
-   5. `cahier/assemblage.ts` : `facesParJour` (RG21), testé.
-   6. `Face.tsx`, 29 pages factices, navigation ◀ ▶ par face, choix Assemblage en A5.
-   7. Impression au bon format (A4 portrait, A4 paysage en A5).
-   8. `completerLivret` et `facesLivret` (RG22), testés.
-   9. Livret à l'écran et à l'impression.
-   10. Journal.
+   3. ✅ Docs techniques de l'assemblage A5 (04, 05, 07).
+   4. ✅ `Feuille.tsx` à taille réelle, réduite par `useEchelle` → `calculerEchelle` (`lib/echelle.ts`, testé).
+   5. ✅ `cahier/assemblage.ts` : `facesParJour` (RG21), testé.
+   6. ✅ `Face.tsx`, 29 pages factices, navigation ◀ ▶ par face, choix Assemblage en A5.
+   7. ✅ Impression au bon format (A4 portrait, A4 paysage en A5).
+   8. ✅ `completerLivret` et `facesLivret` (RG22), testés.
+   9. ✅ Livret à l'écran et à l'impression.
+   10. ✅ Journal.
 4. **Contenu** : porter depuis le prototype `Panneau`, `Consigne`, `FilouExplique`, puis `PageActivites` de la mission 4, affichée dans l'aperçu.
 5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.
 6. **Boutons ↻** : régénération des activités de la page affichée.

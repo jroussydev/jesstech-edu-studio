@@ -50,3 +50,25 @@ Reste à faire :
 Problèmes rencontrés :
 - `types.ts` de la doc ne correspondait pas au catalogue (niveaux, catégorie `EM`, champs en plus) : corrigé, voir `decisions.md`.
 - `vitest run` sans fichier de test se termine en erreur : normal, résolu dès les premiers tests.
+
+## 2026-10-18 — Étape 3 : coquille de l'interface + Feuille A4/A5
+Fait :
+- Doc : un seul écran en trois zones (03 §3, 04 §2 et §7, décision du jour), construit dans l'ordre de `05-maquettes.md` §2. Puis A5 imprimé par deux sur A4 paysage, avec deux assemblages : F14, F15, RG21, RG22, objet Face (01, 03, 04, 05, 07, décision du jour).
+- Coquille : `EnTete`, `BarreImpression`, `Apercu`, `Panneaux` (valeurs factices), couleurs d'interface `--ui-*` en clair et sombre déclarées comme couleurs Tailwind. Chaque champ a un `id`, un `name` et un label relié par `htmlFor` (issues Chrome corrigées).
+- Réglages branchés : Format, Couleur / Noir et blanc (`data-impression` sur `<html>`), Assemblage visible en A5 seulement.
+- `lib/echelle.ts` (`calculerEchelle`, testé) appelé par `hooks/useEchelle.ts` (`ResizeObserver`) ; `Reduction`, `Feuille`, `PageVide`, `styles/pages.css`.
+- `cahier/assemblage.ts` : `tailleFace`, `taillePapier`, `facesA4`, `facesParJour` (RG21), `completerLivret`, `facesLivret` (RG22), `calculerFaces`, `libelleFace`. 41 tests au total.
+- `Face` (A4 portrait, ou A4 paysage avec deux `Feuille` A5), 29 pages factices, navigation ◀ ▶ par face avec compteur.
+- Impression : toutes les faces rendues, seule la face courante visible à l'écran ; `@page` injecté par `TaillePapier` (A4 portrait ou paysage) ; zones de l'écran remises en bloc ; faces calées à 210 × 297 mm.
+- Livret plié de 32 pages imprimé (recto verso, bord court), plié et vérifié sur papier.
+
+Reste à faire :
+- Étape 4 : contrat `Generateur` / `ContexteActivite` (`React.JSX.Element`), puis `Panneau`, `Consigne`, `FilouExplique`, `PageActivites` de la mission 4 dans l'aperçu ; `useAjustementTexte` (RG13).
+- Étape 5 : formulaire (prénom, classe, difficultés) branché sur le profil. Étape 6 : boutons ↻.
+- Le style des pages portées du prototype va dans `pages.css` : à renommer la classe `.feuille` du prototype (contenu de page), déjà prise par le conteneur.
+- Remplacer le favicon Vite par un pictogramme de Filou ; logo provisoire `filou-cape.png`.
+
+Problèmes rencontrés :
+- 794 × 1123 px font 210,08 × 297,13 mm : sans calage en mm à l'impression, chaque face aurait poussé une page blanche (comme le prototype l'avait déjà résolu).
+- Le saut de page sur `.feuille` aurait coupé les deux pages A5 d'une même face : déplacé sur `.face`.
+- Ordre incertain entre variantes Tailwind `lg:` et `print:` : règles d'impression écrites hors couche dans `impression.css`, sur des classes nommées.
