@@ -1,6 +1,6 @@
 # 05 — Maquettes · JessTech Edu Studio
 
-> Version 0.2 — 18/10/2026 — statut : à valider
+> Version 0.3 — 18/10/2026 — statut : à valider
 
 ## 1. Interface de l'application (esquisse du 18/10/2026)
 Esquisse : `docs/maquettes/esquisse-interface-2026-10-18.jpg`
@@ -30,9 +30,10 @@ Un seul écran, en trois zones :
 | En-tête | Logo + titre « Générateur de cahiers de vacances » | Fixe |
 | Barre d'impression | Format (A4, A5) | Liste déroulante ; l'aperçu change de format |
 | | Couleur / Noir et blanc | Choix exclusif (boutons radio) ; bascule `data-impression` |
+| | Assemblage (A5 seulement) | Liste : « Une feuille par jour », « Livret plié » ; l'aperçu montre la feuille A4 paysage telle qu'elle sortira (RG21, RG22) |
 | | Imprimer | Lance l'impression du cahier entier (PDF via le navigateur) |
 | Aperçu | Page à taille réelle, réduite à l'écran | Affiche une page à la fois |
-| | ◀ ▶ | Page précédente / suivante ; compteur « page N / total » |
+| | ◀ ▶ | Feuille précédente / suivante ; compteur « page N / total » en A4, « feuille N / total » en A5 (avec recto / verso en livret) |
 | Panneau « L'enfant » | Prénom | Texte ; apparaît sur la couverture et les en-têtes |
 | | Classe | Liste : TPS, PS, MS, GS, CP… CM2 |
 | | Difficultés | Cases à cocher (les 13 difficultés du catalogue) |

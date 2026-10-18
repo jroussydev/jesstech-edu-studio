@@ -1,6 +1,6 @@
 # 07 — Feuille de route et idées · JessTech Edu Studio
 
-> Version 0.1 — 12/10/2026 — statut : à valider
+> Version 0.2 — 18/10/2026 — statut : à valider
 > Principe : tout ce qui est fait à la main pour le cahier de Toussaint doit pouvoir être **généré automatiquement** par l'application.
 
 ## 1. Parcours cible (V2)
@@ -77,7 +77,7 @@ Chaque cahier est livré avec **un bricolage à faire avec l'enfant**, sur le mo
 ## 7. Étapes
 | Version | Contenu | Données |
 |---|---|---|
-| **V1 (Toussaint 2026)** | Cahier Halloween de Mathieu et Clara, aperçu, impression, une activité bonus | Fichiers JSON |
-| **V1.1** | Décoration des pages, histoire en post-it, différences, mode livret, frappe les syllabes, smiley du jour | Fichiers JSON |
+| **V1 (Toussaint 2026)** | Cahier Halloween de Mathieu et Clara, aperçu, impression (A4, A5 feuille par jour ou livret plié), une activité bonus | Fichiers JSON |
+| **V1.1** | Décoration des pages, histoire en post-it, différences, frappe les syllabes, smiley du jour | Fichiers JSON |
 | **V2** | Formulaire enfant + besoins + jeux, génération automatique, cahiers enregistrés, aperçu modifiable | Node.js + PostgreSQL |
 | **V3** | Comptes parents, nouveaux thèmes (Noël, Pâques), textes générés, partage, offre commerciale | idem + paiement |

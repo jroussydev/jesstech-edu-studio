@@ -1,6 +1,6 @@
 # 04 — Architecture · JessTech Edu Studio V1
 
-> Version 0.4 — 18/10/2026 — statut : à valider
+> Version 0.5 — 18/10/2026 — statut : à valider
 
 ## 1. Décisions techniques
 | Décision | Choix | Pourquoi |
@@ -31,8 +31,10 @@ jesstech-edu-studio/
 │   ├── cahier/                   logique pure, testable sans React
 │   │   ├── composer.ts           cahier + profil + thème → Page[]
 │   │   ├── pagination.ts         RG1, RG2, RG10
+│   │   ├── assemblage.ts         pages → faces de feuille (A4, A5 feuille par jour RG21, livret RG22)
 │   │   └── controles.ts          RG7 (répétition des mots)
 │   ├── pages/                    un composant par type de page
+│   │   ├── Face.tsx              face de feuille imprimée : A4 portrait, ou A4 paysage avec 2 Feuille A5
 │   │   ├── Feuille.tsx           conteneur de page (cqw, format)
 │   │   ├── PageCouverture.tsx
 │   │   ├── PageOuverture.tsx
@@ -51,7 +53,7 @@ jesstech-edu-studio/
 │   │   ├── chemin.tsx
 │   │   └── …
 │   ├── illustrations/            Fantome.tsx, Citrouille.tsx, Chat.tsx…
-│   ├── lib/                      rng.ts, melange.ts
+│   ├── lib/                      rng.ts, melange.ts, echelle.ts
 │   ├── types.ts                  modèle de données
 │   └── styles/
 │       ├── interface.css         Tailwind, polices et couleurs de l'interface (clair / sombre)
@@ -70,6 +72,7 @@ jesstech-edu-studio/
 ```ts
 export type Format = 'A4' | 'A5';
 export type ModeImpression = 'couleur' | 'nb';
+export type Assemblage = 'jour' | 'livret';   // A5 seulement (RG21, RG22)
 // TPS sert aussi pour un enfant de 2 à 3 ans pas encore scolarisé.
 export type Niveau = 'TPS' | 'PS' | 'MS' | 'GS' | 'CP' | 'CE1' | 'CE2' | 'CM1' | 'CM2';
 export type ProfilId = string;
@@ -174,7 +177,14 @@ export type Page =
   | { type: 'imagier'; semaine: 1 | 2; cote: 'gauche' | 'droite' }
   | { type: 'activites'; mission: number; activites: ActiviteConfig[][] } // rangées
   | { type: 'creative'; mission: number }
-  | { type: 'finale' } | { type: 'bravo' } | { type: 'dessins' };
+  | { type: 'finale' } | { type: 'bravo' } | { type: 'dessins' } | { type: 'quatrieme' };
+
+/** Une face de feuille imprimée : numéros de page (1 = couverture), null = moitié blanche.
+    A4 : une page ; A5 : [gauche, droite] sur une feuille A4 paysage. */
+export interface Face {
+  pages: (number | null)[];
+  cote: 'recto' | 'verso';              // verso : livret seulement
+}
 ```
 
 ## 4. Contrat d'un générateur d'activité
@@ -198,24 +208,35 @@ Ajouter une activité = créer un fichier dans `src/activites/` et l'inscrire da
 
 ## 5. Flux
 ```
-donnees/*.json ──► composer.ts ──► Page[] ──► Apercu.tsx ──► <Feuille> × n ──► window.print()
-                     │
+donnees/*.json ──► composer.ts ──► Page[] ──► assemblage.ts ──► Face[] ──► Apercu.tsx ──► <Face> × n ──► window.print()
+                     │                                                                   └─ <Feuille> × 1 ou 2
                      ├─ pagination.ts  (activités par page, paires « demi », parité)
                      └─ controles.ts   (répétition des mots → avertissements)
 ```
-`composer.ts`, `pagination.ts` et `controles.ts` sont des fonctions pures : elles se testent avec Vitest sans navigateur.
+`composer.ts`, `pagination.ts`, `assemblage.ts` et `controles.ts` sont des fonctions pures : elles se testent avec Vitest sans navigateur.
 
 ## 6. Styles d'impression
 - `tokens.css` : variables de couleur sur `:root`, redéfinies sous `:root[data-impression="nb"]`.
-- `Feuille.tsx` : la page est toujours rendue **à sa taille réelle** (A4 = 794 × 1123 px à 96 dpi), avec `container-type: inline-size` et tout le contenu en `cqw`. À l'écran, elle est réduite par `transform: scale()`, jamais en changeant sa largeur : les polices ne descendent donc jamais sous la taille minimale imposée par les navigateurs mobiles.
+- `Feuille.tsx` : la page est toujours rendue **à sa taille réelle** (A4 = 794 × 1123 px, A5 = 559 × 794 px à 96 dpi), en portrait, avec `container-type: inline-size` et tout le contenu en `cqw`.
+- `Face.tsx` : une face de feuille imprimée. En A4, une `Feuille` portrait ; en A5, une feuille A4 paysage (1123 × 794 px) coupée en deux moitiés, chacune avec une `Feuille` A5 centrée. À l'écran, c'est la face qui est réduite par `transform: scale()`, jamais en changeant sa largeur : les polices ne descendent donc jamais sous la taille minimale imposée par les navigateurs mobiles. L'échelle vient de `calculerEchelle` (`lib/echelle.ts`, fonction pure testée), appelée par le hook `useEchelle`.
 - `useAjustementTexte` (hook) : après le chargement des polices, mesure chaque bloc de texte et réduit sa variable `--kb` tant qu'il déborde, puis `--kp` au niveau de la page (RG13).
-- `impression.css` : `@page { size: … ; margin: 0 }` injecté selon le format, `break-after: page` sur chaque feuille, interface masquée.
+- `impression.css` : `@page { size: … ; margin: 0 }` injecté selon le format (A4 portrait en A4, A4 paysage en A5), `break-after: page` sur chaque face, interface masquée. Le livret s'imprime en recto verso, retournement sur le bord court (RG22).
 
 ## 7. Plan de démarrage
 Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-maquettes.md` §2), pour vérifier chaque étape à l'écran.
 1. ✅ Projet Vite React + TypeScript, Tailwind, polices `@fontsource` et TypeScript `strict`. Les dossiers de `src/` et `donnees/` sont créés au fil des étapes, quand ils reçoivent du code.
 2. ✅ `types.ts`, `lib/rng.ts`, `styles/tokens.css`, `styles/impression.css`.
-3. **Coquille de l'interface + Feuille A4/A5** : les trois zones avec des valeurs factices ; Format et Couleur / Noir et blanc branchés ; `Feuille.tsx` rendue à taille réelle et réduite par `useEchelle` ; pages vides, navigation ◀ ▶ ; impression du cahier entier au bon format.
+3. **Coquille de l'interface + Feuille A4/A5** :
+   1. ✅ Coquille en trois zones, valeurs factices.
+   2. ✅ Réglages Format et Couleur / Noir et blanc branchés.
+   3. Docs techniques de l'assemblage A5 (04, 05, 07).
+   4. `Feuille.tsx` à taille réelle, réduite par `useEchelle` → `calculerEchelle` (`lib/echelle.ts`, testé).
+   5. `cahier/assemblage.ts` : `facesParJour` (RG21), testé.
+   6. `Face.tsx`, 29 pages factices, navigation ◀ ▶ par face, choix Assemblage en A5.
+   7. Impression au bon format (A4 portrait, A4 paysage en A5).
+   8. `completerLivret` et `facesLivret` (RG22), testés.
+   9. Livret à l'écran et à l'impression.
+   10. Journal.
 4. **Contenu** : porter depuis le prototype `Panneau`, `Consigne`, `FilouExplique`, puis `PageActivites` de la mission 4, affichée dans l'aperçu.
 5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.
 6. **Boutons ↻** : régénération des activités de la page affichée.
@@ -223,6 +244,11 @@ Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-m
 Commits prévus (étape 3, un par sous-étape) :
 - `feat: coquille de l'interface en trois zones`
 - `feat: réglages format et couleur / noir et blanc`
-- `feat: feuille A4/A5 à taille réelle réduite à l'écran`
-- `feat: navigation entre les pages de l'aperçu`
-- `feat: impression du cahier entier au bon format`
+- `docs: assemblage A5 dans l'architecture et la maquette`
+- `feat: feuille à taille réelle réduite à l'écran`
+- `feat: ordre des pages A5 en une feuille par jour`
+- `feat: aperçu feuille par feuille et navigation`
+- `feat: impression du cahier au bon format`
+- `feat: ordre des pages du livret plié`
+- `feat: aperçu et impression du livret plié`
+- `docs: journal de l'étape 3`
