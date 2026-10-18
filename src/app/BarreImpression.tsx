@@ -1,8 +1,15 @@
-import { FORMATS, type Format } from '../types.ts';
+import { FORMATS, type Format, type ModeImpression } from '../types.ts';
 
 const LISTE_FORMATS = Object.keys(FORMATS) as Format[];
 
-export function BarreImpression() {
+interface BarreImpressionProps {
+  format: Format;
+  impression: ModeImpression;
+  onFormatChange: (format: Format) => void;
+  onImpressionChange: (impression: ModeImpression) => void;
+}
+
+export function BarreImpression({ format, impression, onFormatChange, onImpressionChange }: BarreImpressionProps) {
   return (
     <div className="interface-seulement flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-ligne bg-barre px-4 py-2">
       <div className="flex items-center gap-2">
@@ -10,7 +17,8 @@ export function BarreImpression() {
         <select
           id="format"
           name="format"
-          defaultValue="A4"
+          value={format}
+          onChange={(e) => onFormatChange(e.target.value as Format)}
           className="rounded-full border border-ligne bg-barre px-3 py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           {LISTE_FORMATS.map((format) => (
@@ -22,11 +30,27 @@ export function BarreImpression() {
       <fieldset className="flex items-center gap-4">
         <legend className="sr-only">Mode d’impression</legend>
         <div className="flex items-center gap-1">
-          <input id="impression-couleur" type="radio" name="impression" value="couleur" defaultChecked className="accent-accent" />
+          <input
+            id="impression-couleur"
+            type="radio"
+            name="impression"
+            value="couleur"
+            checked={impression === 'couleur'}
+            onChange={() => onImpressionChange('couleur')}
+            className="accent-accent"
+          />
           <label htmlFor="impression-couleur">Couleur</label>
         </div>
         <div className="flex items-center gap-1">
-          <input id="impression-nb" type="radio" name="impression" value="nb" className="accent-accent" />
+          <input
+            id="impression-nb"
+            type="radio"
+            name="impression"
+            value="nb"
+            checked={impression === 'nb'}
+            onChange={() => onImpressionChange('nb')}
+            className="accent-accent"
+          />
           <label htmlFor="impression-nb">Noir et blanc</label>
         </div>
       </fieldset>
