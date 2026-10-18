@@ -38,4 +38,4 @@ Vite + React + TypeScript + Tailwind (interface uniquement). Pages imprimées en
 ## Commandes
 - `npm run dev` : serveur de développement
 - `npm run build` : build de production
-- `npm run test` : tests Vitest (logique pure de `src/cahier/`)
+- `npm run test` : tests Vitest (logique pure de `src/cahier/` et `src/lib/`)
