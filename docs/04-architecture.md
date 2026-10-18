@@ -35,6 +35,7 @@ jesstech-edu-studio/
 │   │   ├── composer.ts           catalogue + profil + thème → composition (RG14 à RG20), puis Page[]
 │   │   ├── mission.ts            costume de Filou (RG8), graine d'une activité (RG3)
 │   │   ├── pagination.ts         RG1, RG2, RG10
+│   │   ├── disposition.ts        rangées de la page activités, numéros des consignes (RG2, RG6)
 │   │   ├── assemblage.ts         pages → faces de feuille (A4, A5 feuille par jour RG21, livret RG22)
 │   │   └── controles.ts          RG7 (répétition des mots)
 │   ├── pages/                    un composant par type de page
@@ -48,7 +49,7 @@ jesstech-edu-studio/
 │   │   ├── PageCreative.tsx
 │   │   ├── PageFinale.tsx
 │   │   └── PageBravo.tsx
-│   ├── composants/               Panneau, Consigne, FilouExplique, Histoire, NoteParent, Picto
+│   ├── composants/               Panneau, EnTetePage, Consigne, Picto, FilouExplique, ZoneActivite, Histoire, NoteParent
 │   ├── activites/                un fichier par générateur + registre
 │   │   ├── registre.ts
 │   │   ├── trouveLeMeme.tsx

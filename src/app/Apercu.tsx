@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { calculerFaces, completerLivret, libelleFace, tailleFace } from '../cahier/assemblage.ts';
+import { CAHIER, MISSIONS, PROFIL, THEME } from '../donnees.ts';
 import { useEchelle } from '../hooks/useEchelle.ts';
 import { Face } from '../pages/Face.tsx';
+import { PageActivites } from '../pages/PageActivites.tsx';
 import { PageVide } from '../pages/PageVide.tsx';
 import type { Assemblage, Format } from '../types.ts';
 import { PAGES_FACTICES, type PageFactice } from './pagesFactices.ts';
@@ -34,8 +36,14 @@ export function Apercu({ format, assemblage }: ApercuProps) {
   const index = Math.min(indexDemande, faces.length - 1);
   const compteur = libelleFace(faces, index, format);
 
+  // En attendant composer.ts : les pages activités composées sont rendues en vrai, les autres restent des pages de test.
   const rendrePage = (numero: number) => {
     const page = pages[numero - 1];
+    const mission = MISSIONS.find((m) => m.numero === page.missionActivites);
+    const composition = mission && CAHIER.composition[mission.numero];
+    if (mission && composition) {
+      return <PageActivites mission={mission} composition={composition} profil={PROFIL} theme={THEME} folio={numero} />;
+    }
     return <PageVide titre={page.titre} detail={`page ${numero} · ${page.detail}`} />;
   };
 

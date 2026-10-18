@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import type { ActiviteConfig, Mission, Theme } from '../types.ts';
-import { costumePour, graineActivite } from './mission.ts';
+import { costumePour, graineActivite, motsDeMission } from './mission.ts';
 
 const THEME = {
+  id: 'halloween',
+  mots: [
+    { id: 'lune', maj: 'LUNE', min: 'lune', image: 'lune' },
+    { id: 'bonbon', maj: 'BONBON', min: 'bonbon', image: 'bonbon' },
+  ],
   costumes: [
     { missions: [0, 1, 2], image: 'filou-citrouille.png', libelle: 'citrouille' },
     { missions: [3, 4, 5], image: 'filou-cape.png', libelle: 'cape' },
@@ -23,6 +28,17 @@ describe('costumePour', () => {
 
   it('signale une mission sans costume', () => {
     expect(() => costumePour(THEME, 11)).toThrow();
+  });
+});
+
+describe('motsDeMission', () => {
+  it('donne les mots du jour dans l\'ordre de la mission', () => {
+    const mission = { mots: ['bonbon', 'lune'] } as Mission;
+    expect(motsDeMission(THEME, mission).map((m) => m.maj)).toEqual(['BONBON', 'LUNE']);
+  });
+
+  it('signale un mot absent du thème', () => {
+    expect(() => motsDeMission(THEME, { mots: ['dragon'] } as Mission)).toThrow();
   });
 });
 

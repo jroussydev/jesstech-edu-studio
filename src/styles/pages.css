@@ -38,6 +38,267 @@
   transform-origin: 0 0;
 }
 
+/* ---------- Pages du cahier, portées du prototype (reference/) ----------
+   La classe .feuille du prototype (contenu de la page) devient .page-contenu.
+   --kb (bloc) et --kp (page) réduisent les textes qui débordent (RG13). */
+
+.page-contenu {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2cqw;
+  padding: 5.5cqw 5.5cqw 3cqw;
+}
+
+.folio {
+  flex: none;
+  text-align: center;
+  font-size: calc(1.8cqw * var(--kp, 1) * var(--kb, 1));
+  color: var(--doux);
+  margin-top: -0.8cqw;
+}
+
+/* Panneau de bois du titre */
+.panneau {
+  position: relative;
+  background:
+    repeating-linear-gradient(176deg, transparent 0 1.6cqw, var(--veinure) 1.6cqw 1.8cqw),
+    linear-gradient(180deg, var(--bois-clair), var(--bois));
+  border: 0.5cqw solid var(--bois-fonce);
+  border-radius: 1.8cqw;
+  padding: 1cqw 4.2cqw 1.1cqw;
+  color: var(--panneau-texte);
+}
+
+/* Les deux clous du panneau */
+.panneau::before,
+.panneau::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1.4cqw;
+  height: 1.4cqw;
+  margin-top: -0.7cqw;
+  border-radius: 50%;
+  background: var(--bois-fonce);
+}
+
+.panneau::before { left: 1.4cqw; }
+.panneau::after { right: 1.4cqw; }
+
+.panneau h2 {
+  margin: 0;
+  font-family: Grandstander, Andika, sans-serif;
+  font-weight: 800;
+  font-size: calc(4cqw * var(--kp, 1) * var(--kb, 1));
+  line-height: 1.05;
+  text-shadow: 0 0.25cqw 0 var(--ombre-texte);
+}
+
+.tag {
+  display: inline-block;
+  margin-bottom: 0.3cqw;
+  padding: 0.2cqw 1.8cqw;
+  border-radius: 999px;
+  background: var(--repere);
+  color: var(--papier);
+  font-family: Grandstander, Andika, sans-serif;
+  font-weight: 600;
+  font-size: calc(2.2cqw * var(--kp, 1) * var(--kb, 1));
+}
+
+/* En-tête : panneau + prénom */
+.entete {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3cqw;
+}
+
+.entete .panneau { flex: 1; }
+
+.entete .prenom {
+  font-size: calc(2.4cqw * var(--kp, 1) * var(--kb, 1));
+  text-align: right;
+  line-height: 1.2;
+}
+
+.entete .prenom b {
+  display: block;
+  font-family: Grandstander, Andika, sans-serif;
+  font-size: calc(3.6cqw * var(--kp, 1) * var(--kb, 1));
+  color: var(--bois-fonce);
+}
+
+/* Filou t'explique */
+.explique {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+  background: var(--encadre);
+  border: 0.4cqw solid var(--bois-fonce);
+  border-radius: 2.6cqw;
+  padding: 1.4cqw 2.4cqw;
+}
+
+.explique .haut {
+  display: flex;
+  align-items: center;
+  gap: 1.8cqw;
+}
+
+.explique img {
+  flex: none;
+  width: 8.5cqw;
+  height: auto;
+  display: block;
+  filter: var(--image-filtre);
+}
+
+.explique h3 {
+  margin: 0;
+  font-family: Grandstander, Andika, sans-serif;
+  font-weight: 600;
+  font-size: calc(2.3cqw * var(--kp, 1) * var(--kb, 1));
+  color: var(--doux);
+}
+
+.explique p {
+  margin: 0;
+  font-size: calc(2.35cqw * var(--kp, 1) * var(--kb, 1));
+  line-height: 1.35;
+}
+
+.explique .question {
+  margin-top: 0.6cqw;
+  font-weight: 700;
+}
+
+.mot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.6cqw;
+  align-items: baseline;
+}
+
+.mot .maj {
+  font-weight: 700;
+  font-size: calc(3.4cqw * var(--kp, 1) * var(--kb, 1));
+  letter-spacing: 0.2cqw;
+  color: var(--bois-fonce);
+}
+
+.mot .min {
+  font-size: calc(2.6cqw * var(--kp, 1) * var(--kb, 1));
+  color: var(--bois-fonce);
+}
+
+/* Zones d'activités, en rangées de 1 ou 2 blocs (RG2) */
+.zones {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4cqw;
+}
+
+.rangee-zones {
+  min-height: 0;
+  display: flex;
+  gap: 2.4cqw;
+}
+
+.rangee-zones > .zone,
+.rangee-zones > .explique {
+  flex: 1;
+  min-width: 0;
+}
+
+.rangee-zones > .explique { justify-content: center; }
+
+.zone {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 0.35cqw solid var(--bois-fonce);
+  border-radius: 2.4cqw;
+  padding: 1.6cqw 2.2cqw;
+}
+
+.zone-en-attente {
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+  color: var(--doux);
+  font-size: calc(2.4cqw * var(--kp, 1) * var(--kb, 1));
+}
+
+/* Consigne : numéro + picto + phrase (RG6) */
+.consigne {
+  flex: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+  font-size: calc(2.4cqw * var(--kp, 1) * var(--kb, 1));
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.6cqw;
+}
+
+.rangee-zones.demi .consigne { align-items: flex-start; }
+
+.consigne .n {
+  flex: none;
+  width: 4cqw;
+  height: 4cqw;
+  border-radius: 50%;
+  background: var(--repere);
+  color: var(--papier);
+  display: grid;
+  place-items: center;
+  font-family: Grandstander, Andika, sans-serif;
+  font-size: calc(2.3cqw * var(--kp, 1) * var(--kb, 1));
+}
+
+.consigne svg {
+  flex: none;
+  width: 4.6cqw;
+  height: 4.6cqw;
+}
+
+.contenu {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenu > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Pour l'adulte (RG12) */
+.parent {
+  flex: none;
+  overflow: hidden;
+  margin: 0;
+  font-size: calc(1.95cqw * var(--kp, 1) * var(--kb, 1));
+  line-height: 1.35;
+  color: var(--doux);
+  border-top: 0.3cqw dashed var(--doux);
+  padding-top: 1cqw;
+}
+
+.parent b { color: var(--trait); }
+
 /* Page de test (PageVide) */
 .page-vide {
   height: 100%;

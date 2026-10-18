@@ -3,11 +3,12 @@
 export interface PageFactice {
   titre: string;
   detail: string;
+  missionActivites?: number;   // page activités de cette mission : rendue en vrai si sa composition existe
 }
 
 function mission(numero: number): PageFactice[] {
   return [
-    { titre: `Mission ${numero}`, detail: 'activités' },
+    { titre: `Mission ${numero}`, detail: 'activités', missionActivites: numero },
     { titre: `Mission ${numero}`, detail: 'histoire et création' },
   ];
 }

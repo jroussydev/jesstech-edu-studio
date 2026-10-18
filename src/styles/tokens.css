@@ -27,6 +27,9 @@
   --semaine-2: #4C7AB3;
   --repere: var(--semaine-1);
   --image-filtre: none;
+  /* Ombres translucides : identiques en couleur et en noir et blanc */
+  --veinure: rgba(0, 0, 0, 0.05);      /* veines du panneau de bois */
+  --ombre-texte: rgba(0, 0, 0, 0.18);  /* relief du titre sur le panneau */
 }
 
 :root[data-impression="nb"] {
