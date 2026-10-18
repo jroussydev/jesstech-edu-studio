@@ -1,0 +1,52 @@
+/* Pages du cahier, à l'écran comme à l'impression.
+   Tailles en cqw (relatives à la largeur de la page), couleurs du thème uniquement (tokens.css). */
+
+.feuille {
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--papier);
+  color: var(--trait);
+  font-family: Andika, "Trebuchet MS", Verdana, sans-serif;
+}
+
+/* Origine en haut à gauche : le cadre réduit garde la page alignée. */
+.reduction {
+  overflow: hidden;
+}
+
+.reduction-contenu {
+  transform-origin: 0 0;
+}
+
+/* Page de test (PageVide) */
+.page-vide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4cqw;
+  padding: 5.5cqw;
+  border: 0.8cqw dashed var(--bois-clair);
+}
+
+.page-vide-pastille {
+  width: 22cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--citrouille);
+}
+
+.page-vide h2 {
+  margin: 0;
+  font-family: Grandstander, Andika, sans-serif;
+  font-weight: 800;
+  font-size: 9cqw;
+  color: var(--bois-fonce);
+}
+
+.page-vide p {
+  margin: 0;
+  font-size: 3.5cqw;
+  color: var(--doux);
+}

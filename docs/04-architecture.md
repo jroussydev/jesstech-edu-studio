@@ -26,7 +26,8 @@ jesstech-edu-studio/
 │   │   ├── EnTete.tsx            logo + titre
 │   │   ├── BarreImpression.tsx   format, couleur / noir et blanc, imprimer
 │   │   ├── Apercu.tsx            une page à la fois, ◀ ▶, compteur
-│   │   └── Panneaux.tsx          L'enfant, Le cahier, Cette page
+│   │   ├── Panneaux.tsx          L'enfant, Le cahier, Cette page
+│   │   └── Reduction.tsx         contenu à taille réelle réduit par transform: scale()
 │   ├── hooks/                    useEchelle.ts, useAjustementTexte.ts
 │   ├── cahier/                   logique pure, testable sans React
 │   │   ├── composer.ts           cahier + profil + thème → Page[]
@@ -58,6 +59,7 @@ jesstech-edu-studio/
 │   └── styles/
 │       ├── interface.css         Tailwind, polices et couleurs de l'interface (clair / sombre)
 │       ├── tokens.css            couleurs (couleur + noir et blanc)
+│       ├── pages.css             styles des pages en cqw (écran et impression)
 │       └── impression.css        @page, sauts de page, masquage de l'interface
 └── donnees/
     ├── profils/                  mathieu.json, clara.json

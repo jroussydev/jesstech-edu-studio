@@ -8,6 +8,7 @@ import '@fontsource/grandstander/600.css'
 import '@fontsource/grandstander/800.css'
 import './styles/interface.css'
 import './styles/tokens.css'
+import './styles/pages.css'
 import './styles/impression.css'
 import { App } from './App.tsx'
 

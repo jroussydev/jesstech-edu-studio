@@ -27,9 +27,18 @@ body {
   }
 
   /* La page garde sa taille réelle : la réduction à l'écran est annulée. */
-  .feuille {
-    transform: none !important;
+  .reduction {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible;
     box-shadow: none;
+  }
+
+  .reduction-contenu {
+    transform: none !important;
+  }
+
+  .feuille {
     break-after: page;
   }
 
