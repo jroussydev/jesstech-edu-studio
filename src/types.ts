@@ -4,6 +4,7 @@ export type Format = 'A4' | 'A5';
 export type ModeImpression = 'couleur' | 'nb';
 // TPS sert aussi pour un enfant de 2 à 3 ans pas encore scolarisé.
 export type Niveau = 'TPS' | 'PS' | 'MS' | 'GS' | 'CP' | 'CE1' | 'CE2' | 'CM1' | 'CM2';
+export const NIVEAUX: readonly Niveau[] = ['TPS', 'PS', 'MS', 'GS', 'CP', 'CE1', 'CE2', 'CM1', 'CM2'];
 export type ProfilId = string;
 
 /** Taille réelle d'une page en pixels CSS (96 dpi) : la page est rendue à cette taille puis réduite par transform: scale(). */

@@ -1,7 +1,46 @@
 @import "tailwindcss";
 
-/* Polices de l'interface, reprises du prototype (reference/) */
-@theme {
+/* Couleurs de l'interface (pas des pages), reprises du prototype (reference/).
+   Mode sombre selon le système, ou forcé par data-theme sur <html>. */
+:root {
+  --ui-bg: #EFE8DC;
+  --ui-fg: #3A2A1F;
+  --ui-bar: #FFFDF8;
+  --ui-line: #D9C8AE;
+  --ui-accent: #6B4423;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ui-bg: #1E1915;
+    --ui-fg: #F1E8DA;
+    --ui-bar: #2A231D;
+    --ui-line: #46392D;
+    --ui-accent: #E8B547;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ui-bg: #1E1915;
+  --ui-fg: #F1E8DA;
+  --ui-bar: #2A231D;
+  --ui-line: #46392D;
+  --ui-accent: #E8B547;
+}
+
+/* Remplacé par le papier à l'impression (impression.css). */
+body {
+  background: var(--ui-bg);
+  color: var(--ui-fg);
+}
+
+/* Polices et couleurs de l'interface utilisables en classes Tailwind (bg-fond, text-accent…) */
+@theme inline {
   --font-sans: Andika, "Trebuchet MS", Verdana, sans-serif;
   --font-titre: Grandstander, Andika, sans-serif;
+  --color-fond: var(--ui-bg);
+  --color-texte: var(--ui-fg);
+  --color-barre: var(--ui-bar);
+  --color-ligne: var(--ui-line);
+  --color-accent: var(--ui-accent);
 }
