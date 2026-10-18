@@ -26,9 +26,8 @@ export function Apercu({ format }: ApercuProps) {
   // L'index demandé est ramené dans les bornes quand le nombre de faces change (A4 ↔ A5).
   const [indexDemande, setIndexDemande] = useState(0);
   const index = Math.min(indexDemande, faces.length - 1);
-  const face = faces[index];
 
-  const numeros = face.pages.filter((numero) => numero !== null);
+  const numeros = faces[index].pages.filter((numero) => numero !== null);
   const compteur =
     format === 'A4'
       ? `page ${index + 1} / ${faces.length}`
@@ -40,7 +39,7 @@ export function Apercu({ format }: ApercuProps) {
   };
 
   return (
-    <section aria-label="Aperçu de la feuille" className="flex flex-1 items-center justify-center gap-3 p-4">
+    <section aria-label="Aperçu de la feuille" className="apercu flex flex-1 items-center justify-center gap-3 p-4">
       <button
         type="button"
         aria-label="Feuille précédente"
@@ -50,9 +49,12 @@ export function Apercu({ format }: ApercuProps) {
       >
         ◀
       </button>
-      <div ref={ref} className="flex min-w-0 flex-1 flex-col items-center gap-2">
+      <div ref={ref} className="apercu-feuille flex min-w-0 flex-1 flex-col items-center gap-2">
+        {/* Toutes les faces sont rendues pour l'impression ; seule la face courante est visible à l'écran. */}
         <Reduction largeur={largeur} hauteur={hauteur} echelle={echelle}>
-          <Face format={format} face={face} rendrePage={rendrePage} />
+          {faces.map((face, i) => (
+            <Face key={i} format={format} face={face} rendrePage={rendrePage} cacheeAEcran={i !== index} />
+          ))}
         </Reduction>
         <p className="interface-seulement text-sm opacity-75">{compteur}</p>
       </div>

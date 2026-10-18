@@ -7,6 +7,11 @@ export function tailleFace(format: Format): { largeur: number; hauteur: number }
   return format === 'A4' ? a4 : { largeur: a4.hauteur, hauteur: a4.largeur };
 }
 
+/** Papier à indiquer à @page { size } : toujours du A4, en paysage pour porter deux pages A5. */
+export function taillePapier(format: Format): 'A4 portrait' | 'A4 landscape' {
+  return format === 'A4' ? 'A4 portrait' : 'A4 landscape';
+}
+
 /** A4 : une page par feuille, recto seul. */
 export function facesA4(nbPages: number): Face[] {
   return Array.from({ length: nbPages }, (_, i) => ({ pages: [i + 1], cote: 'recto' }));

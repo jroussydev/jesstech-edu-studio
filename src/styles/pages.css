@@ -15,6 +15,13 @@
   background: var(--papier);
 }
 
+/* L'aperçu montre une face à la fois ; toutes les faces sortent à l'impression. */
+@media screen {
+  .face-cachee-ecran {
+    display: none;
+  }
+}
+
 .face-emplacement {
   flex: 1;
   display: flex;

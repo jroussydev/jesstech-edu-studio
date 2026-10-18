@@ -1,6 +1,8 @@
-/* Règles d'impression des pages, reprises du prototype (reference/).
-   .feuille : une page du cahier (composant Feuille, étape 3).
-   .interface-seulement : tout ce qui ne doit pas sortir sur le papier (barre de réglages…). */
+/* Règles d'impression, reprises du prototype (reference/).
+   .face : une feuille de papier (composant Face) ; .reduction : cadre réduit de l'aperçu.
+   .interface-seulement : tout ce qui ne doit pas sortir sur le papier (barre de réglages…).
+   .ecran, .ecran-colonne, .apercu, .apercu-feuille : zones de l'écran, remises en bloc simple.
+   Ces règles sont hors couche : elles l'emportent sur les utilitaires Tailwind. */
 
 body {
   /* Imprime les fonds et les couleurs tels quels, sans les éclaircir. */
@@ -9,9 +11,8 @@ body {
 }
 
 @media print {
-  /* A4 par défaut ; la taille sera injectée selon le format choisi (étape 3). */
+  /* La taille (A4 portrait ou paysage) est injectée selon le format par TaillePapier. */
   @page {
-    size: A4;
     margin: 0;
   }
 
@@ -24,6 +25,16 @@ body {
 
   .interface-seulement {
     display: none !important;
+  }
+
+  /* Plus de grille ni de marges d'écran : les faces s'enchaînent depuis le coin de la feuille. */
+  .ecran,
+  .ecran-colonne,
+  .apercu,
+  .apercu-feuille {
+    display: block;
+    min-height: 0;
+    padding: 0;
   }
 
   /* La page garde sa taille réelle : la réduction à l'écran est annulée. */
@@ -41,6 +52,19 @@ body {
   /* Une face par feuille de papier (en A5, les deux pages restent ensemble). */
   .face {
     break-after: page;
+    overflow: hidden;
+  }
+
+  /* 794 × 1123 px font 210,08 × 297,13 mm : on cale la face au millimètre près,
+     sinon chaque face déborde et pousse une page blanche (comme le prototype). */
+  .face-A4 {
+    width: 210mm !important;
+    height: 297mm !important;
+  }
+
+  .face-A5 {
+    width: 297mm !important;
+    height: 210mm !important;
   }
 
   /* Pas de page blanche après la dernière face. */

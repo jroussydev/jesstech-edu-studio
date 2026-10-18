@@ -27,7 +27,8 @@ jesstech-edu-studio/
 │   │   ├── BarreImpression.tsx   format, couleur / noir et blanc, imprimer
 │   │   ├── Apercu.tsx            une page à la fois, ◀ ▶, compteur
 │   │   ├── Panneaux.tsx          L'enfant, Le cahier, Cette page
-│   │   └── Reduction.tsx         contenu à taille réelle réduit par transform: scale()
+│   │   ├── Reduction.tsx         contenu à taille réelle réduit par transform: scale()
+│   │   └── TaillePapier.tsx      @page { size } selon le format (A4 portrait ou paysage)
 │   ├── hooks/                    useEchelle.ts, useAjustementTexte.ts
 │   ├── cahier/                   logique pure, testable sans React
 │   │   ├── composer.ts           cahier + profil + thème → Page[]

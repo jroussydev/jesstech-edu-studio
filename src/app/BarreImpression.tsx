@@ -89,6 +89,7 @@ export function BarreImpression({
 
       <button
         type="button"
+        onClick={() => window.print()}
         className="ml-auto rounded-full border border-accent px-4 py-1 hover:bg-accent hover:text-barre focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         Imprimer
