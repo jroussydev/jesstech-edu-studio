@@ -1,6 +1,6 @@
 # 03 — Analyse fonctionnelle · JessTech Edu Studio V1
 
-> Version 0.1 — 12/10/2026 — statut : à valider
+> Version 0.2 — 18/10/2026 — statut : à valider
 > Entrées : `00-vision.md`, `01-cahier-des-charges.md`, `02-analyse-des-besoins.md`, aperçu « cahier-halloween-apercu.html ».
 
 ## 1. Acteur et périmètre
@@ -16,12 +16,16 @@ Un seul acteur en V1 : **le parent** (moi). Il prépare les données, prévisual
 Pas d'éditeur visuel en V1 : la saisie se fait dans les JSON.
 
 ## 3. Écrans
-| Écran | Contenu | Actions |
-|---|---|---|
-| Accueil | Liste des cahiers disponibles (un par enfant et par thème) | Ouvrir un cahier |
-| Aperçu | Barre de réglages + toutes les pages, dans l'ordre d'impression | Changer enfant / format / mode ; régénérer une activité ; imprimer |
+Un seul écran, en trois zones (maquette : `05-maquettes.md` §1) :
 
-La barre de réglages et les libellés « Page activités », « Page créative » ne s'impriment jamais.
+| Zone | Contenu | Actions |
+|---|---|---|
+| En-tête + barre d'impression | Logo, titre, format, couleur / noir et blanc | Changer le format ; basculer couleur / noir et blanc ; imprimer le cahier entier |
+| Aperçu | Une page à la fois, à taille réelle réduite à l'écran ; compteur « page N / total » | Page précédente / suivante (◀ ▶) |
+| Panneaux | « L'enfant » (prénom, classe, difficultés), « Le cahier » (personnage, vacances), « Cette page » (un bouton ↻ par activité de la page affichée) | Modifier le profil ; choisir les vacances ; régénérer une activité (nouvelle graine, RG3) |
+
+Sur téléphone, les panneaux passent sous l'aperçu. L'en-tête, la barre, les panneaux et le compteur ne s'impriment jamais : seul le cahier sort sur le papier.
+L'écran est construit dans l'ordre de `05-maquettes.md` §2 (coquille, aperçu, contenu, formulaire, boutons ↻) pour vérifier chaque étape à l'écran.
 
 ## 4. Ordre des pages du cahier
 Une mission = une **double page** : activités à gauche (page paire), histoire et création à droite (page impaire). L'ordre est calculé pour que chaque mission tombe toujours sur une double page.

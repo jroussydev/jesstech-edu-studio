@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-18 — Un seul écran, construit dès l'étape 3
+Décision : l'application tient en un seul écran (en-tête et barre d'impression, aperçu d'une page à la fois, panneaux de réglages), d'après l'esquisse du 18/10 (`05-maquettes.md`). La coquille de l'interface est construite à l'étape 3, avec `Feuille.tsx`, puis remplie dans l'ordre de la maquette.
+Pourquoi : vérifier chaque étape à l'écran plutôt que dans les tests seuls.
+Écarté : un écran d'accueil listant les cahiers, puis un aperçu de toutes les pages à la suite.
+
 ## 2026-10-18 — Niveaux par classe et types alignés sur le catalogue
 Décision : `Niveau` liste les classes (`TPS`, `PS`, `MS`, `GS`, `CP` à `CM2`) ; `TPS` sert aussi pour un enfant de 2 à 3 ans pas encore scolarisé (Clara). `Jeu.niveaux` reste une plage de classes (`'TPS-MS'`). La catégorie `EM` (émotions et vivre ensemble) est ajoutée ; `dejaCode` et `nouveau` sont des marqueurs de documentation optionnels, ignorés par le générateur.
 Pourquoi : `types.ts` doit pouvoir lire `donnees/catalogue-jeux.json` tel qu'il est, et le profil de Mathieu dit « GS ».

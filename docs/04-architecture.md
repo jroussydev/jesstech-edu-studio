@@ -1,6 +1,6 @@
 # 04 — Architecture · JessTech Edu Studio V1
 
-> Version 0.3 — 18/10/2026 — statut : à valider
+> Version 0.4 — 18/10/2026 — statut : à valider
 
 ## 1. Décisions techniques
 | Décision | Choix | Pourquoi |
@@ -21,10 +21,13 @@ jesstech-edu-studio/
 ├── public/                       favicon
 ├── src/
 │   ├── main.tsx                  imports des polices et des styles
-│   ├── App.tsx                   accueil + routage simple
-│   ├── app/                      interface (Tailwind)
-│   │   ├── BarreReglages.tsx
-│   │   └── Apercu.tsx
+│   ├── App.tsx                   écran unique : état des réglages, trois zones
+│   ├── app/                      interface (Tailwind), voir 05-maquettes.md §1
+│   │   ├── EnTete.tsx            logo + titre
+│   │   ├── BarreImpression.tsx   format, couleur / noir et blanc, imprimer
+│   │   ├── Apercu.tsx            une page à la fois, ◀ ▶, compteur
+│   │   └── Panneaux.tsx          L'enfant, Le cahier, Cette page
+│   ├── hooks/                    useEchelle.ts, useAjustementTexte.ts
 │   ├── cahier/                   logique pure, testable sans React
 │   │   ├── composer.ts           cahier + profil + thème → Page[]
 │   │   ├── pagination.ts         RG1, RG2, RG10
@@ -51,7 +54,7 @@ jesstech-edu-studio/
 │   ├── lib/                      rng.ts, melange.ts
 │   ├── types.ts                  modèle de données
 │   └── styles/
-│       ├── interface.css         Tailwind + polices de l'interface
+│       ├── interface.css         Tailwind, polices et couleurs de l'interface (clair / sombre)
 │       ├── tokens.css            couleurs (couleur + noir et blanc)
 │       └── impression.css        @page, sauts de page, masquage de l'interface
 └── donnees/
@@ -208,14 +211,18 @@ donnees/*.json ──► composer.ts ──► Page[] ──► Apercu.tsx ─�
 - `useAjustementTexte` (hook) : après le chargement des polices, mesure chaque bloc de texte et réduit sa variable `--kb` tant qu'il déborde, puis `--kp` au niveau de la page (RG13).
 - `impression.css` : `@page { size: … ; margin: 0 }` injecté selon le format, `break-after: page` sur chaque feuille, interface masquée.
 
-## 7. Plan de démarrage (mardi 13)
-1. Projet Vite React + TypeScript (déjà créé au premier commit), puis Tailwind, polices `@fontsource` et TypeScript `strict`. Les dossiers de `src/` et `donnees/` sont créés au fil des étapes, quand ils reçoivent du code.
-2. `types.ts`, `lib/rng.ts`, `styles/tokens.css`, `styles/impression.css`.
-3. `Feuille.tsx` + une page vide A4/A5 qui s'imprime correctement.
-4. Porter depuis l'aperçu : `Panneau`, `Consigne`, `FilouExplique`, puis `PageActivites` de la mission 4.
+## 7. Plan de démarrage
+Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-maquettes.md` §2), pour vérifier chaque étape à l'écran.
+1. ✅ Projet Vite React + TypeScript, Tailwind, polices `@fontsource` et TypeScript `strict`. Les dossiers de `src/` et `donnees/` sont créés au fil des étapes, quand ils reçoivent du code.
+2. ✅ `types.ts`, `lib/rng.ts`, `styles/tokens.css`, `styles/impression.css`.
+3. **Coquille de l'interface + Feuille A4/A5** : les trois zones avec des valeurs factices ; Format et Couleur / Noir et blanc branchés ; `Feuille.tsx` rendue à taille réelle et réduite par `useEchelle` ; pages vides, navigation ◀ ▶ ; impression du cahier entier au bon format.
+4. **Contenu** : porter depuis le prototype `Panneau`, `Consigne`, `FilouExplique`, puis `PageActivites` de la mission 4, affichée dans l'aperçu.
+5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.
+6. **Boutons ↻** : régénération des activités de la page affichée.
 
-Commits prévus :
-- `chore: installe tailwind et les polices andika et grandstander`
-- `feat: modèle de données et générateur aléatoire à graine`
-- `feat: feuille imprimable A4/A5 et thème couleur / noir et blanc`
-- `feat: page activités de la mission 4`
+Commits prévus (étape 3, un par sous-étape) :
+- `feat: coquille de l'interface en trois zones`
+- `feat: réglages format et couleur / noir et blanc`
+- `feat: feuille A4/A5 à taille réelle réduite à l'écran`
+- `feat: navigation entre les pages de l'aperçu`
+- `feat: impression du cahier entier au bon format`
