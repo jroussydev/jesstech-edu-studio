@@ -27,6 +27,11 @@
   --semaine-2: #4C7AB3;
   --repere: var(--semaine-1);
   --image-filtre: none;
+  /* Habillages du labyrinthe */
+  --terre: #EBCB9B;
+  --terre-bord: #8A5A30;
+  --haie: #7FAF55;
+  --haie-fonce: #3F6B2A;
   /* Ombres translucides : identiques en couleur et en noir et blanc */
   --veinure: rgba(0, 0, 0, 0.05);      /* veines du panneau de bois */
   --ombre-texte: rgba(0, 0, 0, 0.18);  /* relief du titre sur le panneau */
@@ -54,4 +59,8 @@
   --semaine-1: #444;
   --semaine-2: #444;
   --image-filtre: grayscale(1) contrast(1.05);
+  --terre: #EDEDED;
+  --terre-bord: #555;
+  --haie: #C4C4C4;
+  --haie-fonce: #444;
 }

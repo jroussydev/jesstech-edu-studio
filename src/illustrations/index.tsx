@@ -1,5 +1,10 @@
 import type { JSX } from 'react';
+import { Araignee } from './Araignee.tsx';
+import { Bonbon } from './Bonbon.tsx';
+import { ChauveSouris } from './ChauveSouris.tsx';
+import { Citrouille } from './Citrouille.tsx';
 import { Fantome } from './Fantome.tsx';
+import { Lune } from './Lune.tsx';
 import { Moulin } from './Moulin.tsx';
 
 // Dessins du thème, par clé (Mot.image ou paramètre d'activité), repris du prototype (OBJ).
@@ -14,6 +19,41 @@ export interface Illustration {
 
 // Rempli au fil des activités portées (étape 4).
 export const ILLUSTRATIONS: Record<string, Illustration> = {
+  citrouille: {
+    dessiner: (aColorier) => <Citrouille aColorier={aColorier} />,
+    viewBox: '0 0 100 90',
+    singulier: 'citrouille',
+    pluriel: 'citrouilles',
+    article: 'la',
+  },
+  chauveSouris: {
+    dessiner: (aColorier) => <ChauveSouris aColorier={aColorier} />,
+    viewBox: '0 6 100 64',
+    singulier: 'chauve-souris',
+    pluriel: 'chauves-souris',
+    article: 'la',
+  },
+  araignee: {
+    dessiner: (aColorier) => <Araignee aColorier={aColorier} />,
+    viewBox: '0 0 100 92',
+    singulier: 'araignée',
+    pluriel: 'araignées',
+    article: "l'",
+  },
+  bonbon: {
+    dessiner: (aColorier) => <Bonbon aColorier={aColorier} />,
+    viewBox: '0 0 100 60',
+    singulier: 'bonbon',
+    pluriel: 'bonbons',
+    article: 'le',
+  },
+  lune: {
+    dessiner: (aColorier) => <Lune aColorier={aColorier} />,
+    viewBox: '0 0 100 100',
+    singulier: 'lune',
+    pluriel: 'lunes',
+    article: 'la',
+  },
   fantome: {
     dessiner: (aColorier) => <Fantome bras aColorier={aColorier} />,
     viewBox: '0 0 100 110',

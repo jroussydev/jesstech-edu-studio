@@ -4,6 +4,7 @@ import type { JSX } from 'react';
 import type { Rng } from '../lib/rng.ts';
 import type { ActiviteConfig, ConsigneActivite, Mission, Profil, Theme } from '../types.ts';
 import { compter } from './compter.tsx';
+import { labyrinthe } from './labyrinthe/index.tsx';
 import { trouveLeMeme } from './trouveLeMeme.tsx';
 
 export interface ContexteActivite {
@@ -25,6 +26,7 @@ export interface Generateur {
 export const REGISTRE: Record<string, Generateur> = {
   [trouveLeMeme.type]: trouveLeMeme,
   [compter.type]: compter,
+  [labyrinthe.type]: labyrinthe,
 };
 
 /** Générateur d'un type d'activité ; signale un type absent du registre. */

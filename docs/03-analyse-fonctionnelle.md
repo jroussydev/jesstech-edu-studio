@@ -72,7 +72,7 @@ Une mission = une **double page** : activités à gauche (page paire), histoire 
 | Profil | L'enfant et ses adaptations | prénom, âge, niveau, adaptations |
 | Thème | Le pack d'un cahier | titre, palette, mots, costumes de Filou, symbole de progression, trame |
 | Mission | Un épisode de l'aventure | numéro, semaine, titre, mot(s), « Filou t'explique », histoire, activités, page créative, note parent, graine |
-| Activité | Un jeu du catalogue choisi pour une mission | type (id du jeu), largeur, variante, paramètres, graine ; la consigne (picto + phrase) est déduite par le générateur |
+| Activité | Un jeu du catalogue choisi pour une mission | type (id du jeu), largeur, variante, habillage (variante d'affichage, jamais répétée dans un cahier), paramètres, graine ; la consigne (picto + phrase) est déduite par le générateur |
 | Cahier | L'assemblage à imprimer pour un enfant | profil, thème, liste des missions, format et mode par défaut, composition de chaque mission (activités et disposition) |
 | Page | Résultat du calcul de l'ordre | type de page, mission, activités placées |
 | Face | Une face de feuille imprimée (A5 : A4 paysage) | page de gauche, page de droite (ou vide), recto / verso |

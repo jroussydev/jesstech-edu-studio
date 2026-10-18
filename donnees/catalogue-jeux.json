@@ -323,6 +323,11 @@
         "avec objets à ramasser",
         "grand labyrinthe final"
       ],
+      "habillages": [
+        { "id": "traitsSimples", "nom": "traits simples", "themes": ["tous"], "encre": "faible", "niveaux": "PS-GS" },
+        { "id": "cheminDeTerre", "nom": "chemin de terre", "themes": ["tous", "nature"], "encre": "moyenne", "niveaux": "PS-GS" },
+        { "id": "haie", "nom": "haie", "themes": ["nature", "jardin"], "encre": "moyenne", "niveaux": "MS-GS" }
+      ],
       "dejaCode": true,
       "nouveau": false
     },

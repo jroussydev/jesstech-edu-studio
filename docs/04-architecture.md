@@ -1,6 +1,6 @@
 # 04 — Architecture · JessTech Edu Studio V1
 
-> Version 0.6 — 18/10/2026 — statut : à valider
+> Version 0.7 — 18/10/2026 — statut : à valider
 
 ## 1. Décisions techniques
 | Décision | Choix | Pourquoi |
@@ -36,6 +36,8 @@ jesstech-edu-studio/
 │   │   ├── mission.ts            costume de Filou (RG8), graine d'une activité (RG3)
 │   │   ├── pagination.ts         RG1, RG2, RG10
 │   │   ├── disposition.ts        rangées de la page activités, numéros des consignes (RG2, RG6)
+│   │   ├── habillages.ts         habillages manquants attribués sans répétition (RG14)
+│   │   ├── niveaux.ts            classe dans une plage du catalogue
 │   │   ├── assemblage.ts         pages → faces de feuille (A4, A5 feuille par jour RG21, livret RG22)
 │   │   └── controles.ts          RG7 (répétition des mots)
 │   ├── pages/                    un composant par type de page
@@ -56,11 +58,11 @@ jesstech-edu-studio/
 │   │   ├── parametres.ts         lecture des params d'une activité
 │   │   ├── trouveLeMeme.tsx
 │   │   ├── compter.tsx
-│   │   ├── labyrinthe.tsx
+│   │   ├── labyrinthe/           index.tsx (générateur) ; habillages.ts (registre) + un fichier par habillage
 │   │   ├── chemin.tsx
 │   │   └── …
 │   ├── illustrations/            Fantome.tsx, Moulin.tsx, Citrouille.tsx… ; index.tsx (cadre et mots de chaque dessin), Dessin.tsx, Place.tsx
-│   ├── lib/                      rng.ts, melange.ts, echelle.ts
+│   ├── lib/                      rng.ts, melange.ts, echelle.ts, labyrinthe.ts (structure : murs, couloirs, impasses)
 │   ├── types.ts                  modèle de données
 │   └── styles/
 │       ├── interface.css         Tailwind, polices et couleurs de l'interface (clair / sombre)
@@ -123,6 +125,16 @@ export interface Theme {
   symboleProgression: 'citrouille' | 'etoile' | 'gland';
   mots: Mot[];
   costumes: Costume[];
+  decorations: string[];               // clés d'illustration semées dans les jeux (impasses du labyrinthe)
+}
+
+/** Variante d'affichage d'un jeu (ex. labyrinthe en chemin de terre) : même structure, autre dessin. */
+export interface Habillage {
+  id: string;                          // clé du registre des habillages du jeu
+  nom: string;
+  themes: string[];                    // ambiances où il va bien ('tous', 'nature'…)
+  encre: 'faible' | 'moyenne' | 'forte';
+  niveaux: string;                     // plage de classes conseillée, ex. 'PS-GS'
 }
 
 export type Categorie = 'MF'|'GR'|'EC'|'LE'|'PH'|'VO'|'OR'|'CO'|'LO'|'NB'|'ES'|'TE'|'PV'|'AT'|'ME'|'MG'|'CR'|'EM';
@@ -140,6 +152,7 @@ export interface Jeu {
   generation: 'auto' | 'pictos' | 'texte' | 'scene';
   support: 'fiche' | 'decoupe' | 'jeu' | 'vivre' | 'bricolage';
   variantes: string[];           // formes, de la plus simple à la plus difficile (RG14, RG19)
+  habillages?: Habillage[];      // dessins possibles, jamais deux fois le même dans un cahier (RG14)
   // Marqueurs de documentation, ignorés par le générateur.
   dejaCode?: boolean;            // générateur déjà écrit dans le prototype
   nouveau?: boolean;
@@ -153,6 +166,7 @@ export interface ActiviteConfig {
   type: string;                        // id du jeu dans le catalogue = clé du registre
   largeur?: Largeur;                   // défaut : 'pleine'
   variante: string;                    // une des variantes du jeu dans le catalogue, tirée sans remise (RG14)
+  habillage?: string;                  // pour un jeu qui en a : écrit dans le cahier, sinon attribué sans répétition (RG14)
   params?: Record<string, unknown>;    // objets du thème, ex. { objet: 'fantome' }
   graine?: number;                     // écrite par « Régénérer » ; sinon graine de la mission + rang × 97 (RG3)
 }
@@ -268,7 +282,8 @@ Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-m
    2. `Panneau`, `EnTetePage`, `Consigne`, `Picto`, `FilouExplique`, `NoteParent` ; `PageActivites` selon la disposition (RG2).
    3. Illustrations de la mission 4 et activité « trouve le même ».
    4. Activité « compter » (tirage pur et testé).
-   5. Activité « labyrinthe » (génération pure et testée).
+   5. Activité « labyrinthe » : structure pure et testée (murs identiques au prototype), système d'habillages (attribués sans répétition, RG14), « traits simples », « chemin de terre » et « haie », « Départ », « Arrivée » et décorations dans les impasses.
+   5 bis. Habillages « pas japonais », « rivière », « château en pierres » et « chemin à pointillés ».
    6. `useAjustementTexte` (RG13).
    7. Journal.
 5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.

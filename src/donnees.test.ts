@@ -3,6 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import { costumePour } from './cahier/mission.ts';
 import { CAHIER, CATALOGUE, imageTheme, MISSIONS, PROFIL, THEME } from './donnees.ts';
+import { illustrationPour } from './illustrations/index.tsx';
 
 const compositions = Object.entries(CAHIER.composition).map(([numero, composition]) => ({
   numero: Number(numero),
@@ -32,6 +33,16 @@ describe('cahier de Mathieu', () => {
     }
   });
 
+  it('n\'écrit que des habillages du jeu, sans en répéter un (RG14)', () => {
+    const ecrits = compositions.flatMap(({ activites }) => activites.filter((a) => a.habillage));
+    for (const activite of ecrits) {
+      const habillages = CATALOGUE.find((j) => j.id === activite.type)?.habillages?.map((h) => h.id);
+      expect(habillages).toContain(activite.habillage);
+    }
+    const cles = ecrits.map((a) => `${a.type}/${a.habillage}`);
+    expect(new Set(cles).size).toBe(cles.length);
+  });
+
   it('place l\'encadré une fois et chaque activité une fois dans la disposition', () => {
     for (const { disposition, activites } of compositions) {
       const blocs = disposition.flat();
@@ -40,6 +51,12 @@ describe('cahier de Mathieu', () => {
       expect(index).toEqual(activites.map((_, i) => i));
       expect(disposition.every((rangee) => rangee.length === 1 || rangee.length === 2)).toBe(true);
     }
+  });
+});
+
+describe('thème', () => {
+  it('a une illustration pour chaque décoration', () => {
+    for (const cle of THEME.decorations) expect(() => illustrationPour(cle), cle).not.toThrow();
   });
 });
 

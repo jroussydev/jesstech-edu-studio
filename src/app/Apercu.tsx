@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { calculerFaces, completerLivret, libelleFace, tailleFace } from '../cahier/assemblage.ts';
-import { CAHIER, MISSIONS, PROFIL, THEME } from '../donnees.ts';
+import { attribuerHabillages } from '../cahier/habillages.ts';
+import { CAHIER, CATALOGUE, MISSIONS, PROFIL, THEME } from '../donnees.ts';
 import { useEchelle } from '../hooks/useEchelle.ts';
 import { Face } from '../pages/Face.tsx';
 import { PageActivites } from '../pages/PageActivites.tsx';
@@ -11,6 +12,9 @@ import { Reduction } from './Reduction.tsx';
 
 // La feuille n'est jamais affichée à plus de 81 % de sa taille réelle (comme le prototype).
 const PLAFOND_ECHELLE = 0.81;
+
+// En attendant composer.ts : la composition écrite à la main, habillages manquants attribués sans répétition (RG14).
+const COMPOSITION = attribuerHabillages(CAHIER.composition, CATALOGUE, PROFIL.niveau);
 
 const DESSINS: PageFactice = { titre: 'Mes dessins', detail: 'page libre' };
 const QUATRIEME: PageFactice = { titre: '4ᵉ de couverture', detail: 'dos du livret' };
@@ -40,7 +44,7 @@ export function Apercu({ format, assemblage }: ApercuProps) {
   const rendrePage = (numero: number) => {
     const page = pages[numero - 1];
     const mission = MISSIONS.find((m) => m.numero === page.missionActivites);
-    const composition = mission && CAHIER.composition[mission.numero];
+    const composition = mission && COMPOSITION[mission.numero];
     if (mission && composition) {
       return <PageActivites mission={mission} composition={composition} profil={PROFIL} theme={THEME} folio={numero} />;
     }

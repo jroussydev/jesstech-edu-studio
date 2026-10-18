@@ -11,7 +11,7 @@
       "activites": [
         { "type": "trouveLeMeme", "variante": "détails fins (GS)" },
         { "type": "compter", "largeur": "demi", "variante": "jusqu'à 10", "params": { "objet": "fantome" } },
-        { "type": "labyrinthe", "largeur": "demi", "variante": "grille carrée", "params": { "arrivee": "moulin" } }
+        { "type": "labyrinthe", "largeur": "demi", "variante": "grille carrée", "habillage": "cheminDeTerre", "params": { "arrivee": "moulin" } }
       ]
     }
   }

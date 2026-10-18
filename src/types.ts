@@ -53,6 +53,16 @@ export interface Theme {
   symboleProgression: 'citrouille' | 'etoile' | 'gland';
   mots: Mot[];
   costumes: Costume[];
+  decorations: string[];               // clés d'illustration semées dans les jeux (impasses du labyrinthe)
+}
+
+/** Variante d'affichage d'un jeu (ex. labyrinthe en chemin de terre) : même structure, autre dessin. */
+export interface Habillage {
+  id: string;                          // clé du registre des habillages du jeu
+  nom: string;
+  themes: string[];                    // ambiances où il va bien ('tous', 'nature'…)
+  encre: 'faible' | 'moyenne' | 'forte';
+  niveaux: string;                     // plage de classes conseillée, ex. 'PS-GS'
 }
 
 /** Une entrée du catalogue (donnees/catalogue-jeux.json, voir docs/06) */
@@ -67,6 +77,7 @@ export interface Jeu {
   generation: 'auto' | 'pictos' | 'texte' | 'scene';
   support: 'fiche' | 'decoupe' | 'jeu' | 'vivre' | 'bricolage';
   variantes: string[];           // formes, de la plus simple à la plus difficile (RG14, RG19)
+  habillages?: Habillage[];      // dessins possibles, jamais deux fois le même dans un cahier (RG14)
   // Marqueurs de documentation, ignorés par le générateur.
   dejaCode?: boolean;            // générateur déjà écrit dans le prototype
   nouveau?: boolean;
@@ -80,6 +91,7 @@ export interface ActiviteConfig {
   type: string;                        // id du jeu dans le catalogue = clé du registre
   largeur?: Largeur;                   // défaut : 'pleine'
   variante: string;                    // une des variantes du jeu dans le catalogue, tirée sans remise (RG14)
+  habillage?: string;                  // pour un jeu qui en a : écrit dans le cahier, sinon attribué sans répétition (RG14)
   params?: Record<string, unknown>;    // objets du thème, ex. { objet: 'fantome' }
   graine?: number;                     // écrite par « Régénérer » ; sinon graine de la mission + rang × 97 (RG3)
 }

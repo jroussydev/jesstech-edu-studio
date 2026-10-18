@@ -49,6 +49,13 @@ describe('PageActivites, mission 4 de Mathieu', () => {
     expect(fantomesProposes(zones[1])).toEqual([{ ...m, bras: false }, m, { ...m, bouche: 'o' }, { ...m, noeud: false }]);
   });
 
+  it('dessine le labyrinthe en chemin de terre, de Filou au moulin', () => {
+    expect(zones[0]).toContain('Trace le chemin de Filou jusqu&#x27;au moulin.');
+    expect(zones[0]).toContain('stroke="var(--terre)"');
+    expect(zones[0]).toContain('>Départ<');
+    expect(zones[0]).toContain('>Arrivée<');
+  });
+
   it('fait compter 7 fantômes parmi 5, 8 et 7, comme le PDF imprimé', () => {
     expect(zones[2]).toContain('Entoure le nombre de fantômes.');
     expect(zones[2].match(/viewBox="0 0 100 110"/g)).toHaveLength(7);

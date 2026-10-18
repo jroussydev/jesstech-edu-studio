@@ -1,6 +1,6 @@
 # 06 — Catalogue des jeux · JessTech Edu Studio
 
-> Version 0.2 — 17/10/2026 — statut : à valider
+> Version 0.3 — 18/10/2026 — statut : à valider
 > Données utilisables par l'application : `donnees/catalogue-jeux.json` (même contenu).
 
 Chaque jeu a **une catégorie** (ce qu'il travaille surtout), des **catégories secondaires**, et les **difficultés** pour lesquelles il est conseillé. Le parent coche les difficultés de son enfant ; l'application choisit les jeux qui correspondent.
@@ -200,7 +200,7 @@ TPS : 2 à 3 ans · PS : 3 à 4 ans · MS : 4 à 5 ans · GS : 5 à 6 ans.
 
 | Jeu | Travaille aussi | Difficultés | Niveaux | Support | Matériel | Génération | Variantes de forme |
 |---|---|---|---|---|---|---|---|
-| Trace le chemin dans le labyrinthe ✔ | GR, AT | espace, attention | PS-GS | fiche | crayon | auto | grille carrée · grille ronde · en forme d'objet · avec objets à ramasser · grand labyrinthe final |
+| Trace le chemin dans le labyrinthe ✔ | GR, AT | espace, attention | PS-GS | fiche | crayon | auto | grille carrée · grille ronde · en forme d'objet · avec objets à ramasser · grand labyrinthe final ; habillages : voir §6 bis |
 | Complète l'autre moitié | GR, PV | espace, visuel | GS | fiche | crayon | pictos | quadrillage 6×6 · quadrillage 8×8 · dessin à points |
 | Reproduis le dessin case par case | AT | espace, attention | GS | fiche | crayon | auto | 4×4 · 5×5 · 6×6 |
 | Sur, sous, devant, derrière, à côté | VO | espace, vocabulaire, consignes | PS-GS | fiche | crayon ou gommettes | pictos | sur / sous · devant / derrière · à côté / entre (GS) |
@@ -255,11 +255,25 @@ TPS : 2 à 3 ans · PS : 3 à 4 ans · MS : 4 à 5 ans · GS : 5 à 6 ans.
 
 ✔ = déjà codé dans les prototypes · 🆕 = ajouté dans la version 0.2.
 
+## 6 bis. Habillages
+
+Un **habillage** est une variante d'affichage d'un jeu : la structure ne change pas (mêmes murs, même solution), seul le dessin change. Une **variante** change la forme du jeu (grille carrée, grille ronde…) ; un habillage change son apparence. Chaque habillage porte des étiquettes : les **thèmes** où il va bien, la **consommation d'encre** (faible, moyenne, forte) et les **niveaux conseillés**. Toutes ses couleurs sont des variables de `tokens.css`, redéfinies en noir et blanc.
+
+**Labyrinthe** : départ (Filou) et arrivée (un objet du thème) sont étiquetés « Départ » et « Arrivée » ; jusqu'à 3 décorations du thème (`theme.json`, `decorations`) sont posées dans des impasses, jamais sur le bon chemin.
+
+| Habillage | Dessin | Thèmes | Encre | Niveaux |
+|---|---|---|---|---|
+| traits simples | les murs en trait fin (dessin du prototype) | tous | faible | PS-GS |
+| chemin de terre | les couloirs en chemin bordé | tous, nature | moyenne | PS-GS |
+| haie | les murs épais et arrondis, en feuillage | nature, jardin | moyenne | MS-GS |
+
+À venir : pas japonais, rivière, château en pierres, chemin à pointillés (4.5 bis) ; puis les formes rondes (toile d'araignée) et en forme d'objet (citrouille), qui sont des variantes.
+
 ## 7. Règles de composition d'un cahier
 
 | ID | Règle |
 |---|---|
-| RG14 | **Jamais deux fois la même forme** : dans un même cahier, deux occurrences d'un jeu utilisent deux variantes différentes (tirage sans remise parmi les variantes du jeu). Quand toutes les variantes ont servi, on change les paramètres (taille, nombre, objets). Exemple : « Suis le chemin avec ton doigt » est une vague, puis un zigzag, puis une spirale… |
+| RG14 | **Jamais deux fois la même forme** : dans un même cahier, deux occurrences d'un jeu utilisent deux variantes différentes (tirage sans remise parmi les variantes du jeu). Quand toutes les variantes ont servi, on change les paramètres (taille, nombre, objets). Exemple : « Suis le chemin avec ton doigt » est une vague, puis un zigzag, puis une spirale… De même, deux occurrences d'un jeu n'ont jamais le même **habillage** (§6 bis) : pris dans l'ordre du catalogue parmi ceux conseillés pour la classe, un nouveau tour ne commence que lorsque tous ont servi. |
 | RG15 | **Variété** : un même jeu apparaît au plus 2 fois par semaine, jamais deux missions de suite. |
 | RG16 | **Équilibre** : chaque semaine couvre au moins 5 catégories différentes. Chaque mission mélange au moins 2 catégories. |
 | RG17 | **Socle par niveau** : en GS, chaque mission contient un jeu d'écriture ou de graphisme ; en TPS, chaque mission contient un jeu de motricité fine. |
