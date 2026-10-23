@@ -271,7 +271,7 @@ Un **habillage** est une variante d'affichage d'un jeu : la structure ne change 
 | pas japonais | des pierres plates le long des couloirs, sans murs | nature, jardin | moyenne | MS-GS |
 | château en pierres | les murs épais en pierres de taille, angles droits | château, halloween | forte | MS-GS |
 
-L'ordre du tableau est celui du catalogue, donc celui de l'attribution (RG14).
+L'ordre du tableau est celui du catalogue.
 
 À venir : les formes rondes (toile d'araignée) et en forme d'objet (citrouille), qui sont des variantes. Idée de variante facile pour la TPS et la PS : « chemin solution en pointillés » (seul le bon chemin est à repasser).
 
@@ -279,7 +279,7 @@ L'ordre du tableau est celui du catalogue, donc celui de l'attribution (RG14).
 
 | ID | Règle |
 |---|---|
-| RG14 | **Jamais deux fois la même forme** : dans un même cahier, deux occurrences d'un jeu utilisent deux variantes différentes (tirage sans remise parmi les variantes du jeu). Quand toutes les variantes ont servi, on change les paramètres (taille, nombre, objets). Exemple : « Suis le chemin avec ton doigt » est une vague, puis un zigzag, puis une spirale… De même, deux occurrences d'un jeu n'ont jamais le même **habillage** (§6 bis) : pris dans l'ordre du catalogue parmi ceux conseillés pour la classe, un nouveau tour ne commence que lorsque tous ont servi. |
+| RG14 | **Jamais deux fois la même forme** : dans un même cahier, deux occurrences d'un jeu utilisent deux variantes différentes (tirage sans remise parmi les variantes du jeu). Quand toutes les variantes ont servi, on change les paramètres (taille, nombre, objets). Exemple : « Suis le chemin avec ton doigt » est une vague, puis un zigzag, puis une spirale… De même, deux occurrences d'un jeu n'ont jamais le même **habillage** (§6 bis) : tiré au hasard avec la graine du cahier, en un seul tirage pour tout le cahier, parmi ceux conseillés pour la classe, un nouveau tour ne commence que lorsque tous ont servi. Régénérer une activité ne change pas son habillage. |
 | RG15 | **Variété** : un même jeu apparaît au plus 2 fois par semaine, jamais deux missions de suite. |
 | RG16 | **Équilibre** : chaque semaine couvre au moins 5 catégories différentes. Chaque mission mélange au moins 2 catégories. |
 | RG17 | **Socle par niveau** : en GS, chaque mission contient un jeu d'écriture ou de graphisme ; en TPS, chaque mission contient un jeu de motricité fine. |

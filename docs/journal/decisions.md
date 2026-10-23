@@ -1,5 +1,10 @@
 # Journal des décisions
 
+## 2026-10-23 — Habillages tirés au hasard avec la graine
+Décision : `attribuerHabillages` ne prend plus les habillages dans l'ordre du catalogue. Les habillages manquants sont tirés au hasard en un seul tirage pour tout le cahier, avec la graine du cahier, parmi les habillages conseillés pour la classe qui n'ont pas encore servi (RG14). Un nouveau tour ne commence que lorsque tous ont servi. « Régénérer » (↻) change la graine de l'activité, donc le labyrinthe, jamais son habillage. À l'étape 7, le type `Cahier` reçoit un champ `graine`, utilisé pour ce tirage et par `composer.ts`. D'ici là, l'habillage de la mission 4 reste écrit dans le cahier.
+Pourquoi : avec l'ordre du catalogue, tous les cahiers commencent par les mêmes habillages ; le tirage avec la graine du cahier varie d'un cahier à l'autre tout en restant reproductible. Un seul tirage global garantit l'absence de répétition sur tout le cahier, et l'habillage reste stable quand on régénère une activité.
+Écarté : l'ordre du catalogue (décision du 2026-10-18) ; la graine de chaque activité, qui ferait changer l'habillage à chaque ↻ ; un tirage sans graine, impossible à reproduire.
+
 ## 2026-10-18 — « Chemin à pointillés » : tous les couloirs à repasser
 Décision : l'habillage « chemin à pointillés » met des pointillés dans tous les couloirs et garde les murs en trait fin et clair ; l'enfant cherche son chemin et ne repasse que les pointillés qu'il emprunte. Les quatre habillages de la 4.5 bis (pointillés, rivière, pas japonais, château en pierres) sont dessinés sans tirage aléatoire : la graine ne sert qu'à la structure.
 Pourquoi : le labyrinthe garde sa difficulté et devient aussi un exercice de graphisme ; les murs clairs le gardent lisible.

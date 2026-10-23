@@ -288,7 +288,7 @@ Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-m
    7. Journal.
 5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.
 6. **Boutons ↻** : régénération des activités de la page affichée.
-7. **Composition automatique du cahier** : `composer.ts` choisit les jeux de chaque mission dans le catalogue selon la classe et les difficultés de l'enfant (RG15 à RG20) et tire les variantes sans répétition (RG14, RG19). Il produit la composition sous la forme écrite à la main jusque-là (`CompositionMission`) : les pages et les générateurs n'ont rien à changer.
+7. **Composition automatique du cahier** : `composer.ts` choisit les jeux de chaque mission dans le catalogue selon la classe et les difficultés de l'enfant (RG15 à RG20) et tire les variantes sans répétition (RG14, RG19). `attribuerHabillages` passe du choix dans l'ordre du catalogue à un seul tirage avec la graine du cahier (champ `graine` ajouté au type `Cahier` à cette étape, utilisé aussi par `composer.ts`), stable quand on régénère (décision du 2026-10-23). Il produit la composition sous la forme écrite à la main jusque-là (`CompositionMission`) : les pages et les générateurs n'ont rien à changer.
 
 Commits prévus (étape 3, un par sous-étape) :
 - `feat: coquille de l'interface en trois zones`
