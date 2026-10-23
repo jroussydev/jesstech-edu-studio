@@ -15,10 +15,15 @@
   background: var(--papier);
 }
 
-/* L'aperçu montre une face à la fois ; toutes les faces sortent à l'impression. */
+/* L'aperçu montre une face à la fois ; toutes les faces sortent à l'impression.
+   Les faces cachées restent mises en page (empilées sous la face courante, invisibles)
+   pour que l'ajustement des textes puisse les mesurer (RG13). */
 @media screen {
   .face-cachee-ecran {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
   }
 }
 
@@ -35,6 +40,7 @@
 }
 
 .reduction-contenu {
+  position: relative;
   transform-origin: 0 0;
 }
 

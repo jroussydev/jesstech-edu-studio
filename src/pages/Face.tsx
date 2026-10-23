@@ -20,7 +20,7 @@ export function Face({ format, face, rendrePage, cacheeAEcran = false }: FacePro
       {/* La position (gauche, droite) est fixe sur la face : elle sert de clé. */}
       {face.pages.map((numero, position) => (
         <div key={position} className="face-emplacement">
-          {numero !== null && <Feuille format={format}>{rendrePage(numero)}</Feuille>}
+          {numero !== null && <Feuille format={format} cle={numero}>{rendrePage(numero)}</Feuille>}
         </div>
       ))}
     </div>

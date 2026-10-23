@@ -12,7 +12,7 @@ interface FilouExpliqueProps {
 /** Encadré « Filou t'explique » : le mot du jour et ce qu'il veut dire, lu par l'adulte (F12). */
 export function FilouExplique({ filou, libelleFilou, mots, texte, question }: FilouExpliqueProps) {
   return (
-    <aside className="explique">
+    <aside className="explique bloc-texte">
       <div className="haut">
         <img src={filou} alt={libelleFilou} />
         <div>
