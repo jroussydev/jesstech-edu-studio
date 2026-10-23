@@ -62,7 +62,7 @@ jesstech-edu-studio/
 │   │   ├── chemin.tsx
 │   │   └── …
 │   ├── illustrations/            Fantome.tsx, Moulin.tsx, Citrouille.tsx… ; index.tsx (cadre et mots de chaque dessin), Dessin.tsx, Place.tsx
-│   ├── lib/                      rng.ts, melange.ts, echelle.ts, labyrinthe.ts (structure : murs, couloirs, impasses)
+│   ├── lib/                      rng.ts, melange.ts, echelle.ts, ajustement.ts (réduction des textes, RG13), labyrinthe.ts (structure : murs, couloirs, impasses)
 │   ├── types.ts                  modèle de données
 │   └── styles/
 │       ├── interface.css         Tailwind, polices et couleurs de l'interface (clair / sombre)
@@ -259,7 +259,7 @@ donnees/*.json ──► composer.ts ──► Page[] ──► assemblage.ts �
 - `tokens.css` : variables de couleur sur `:root`, redéfinies sous `:root[data-impression="nb"]`.
 - `Feuille.tsx` : la page est toujours rendue **à sa taille réelle** (A4 = 794 × 1123 px, A5 = 559 × 794 px à 96 dpi), en portrait, avec `container-type: inline-size` et tout le contenu en `cqw`.
 - `Face.tsx` : une face de feuille imprimée. En A4, une `Feuille` portrait ; en A5, une feuille A4 paysage (1123 × 794 px) coupée en deux moitiés, chacune avec une `Feuille` A5 centrée. À l'écran, c'est la face qui est réduite par `transform: scale()`, jamais en changeant sa largeur : les polices ne descendent donc jamais sous la taille minimale imposée par les navigateurs mobiles. L'échelle vient de `calculerEchelle` (`lib/echelle.ts`, fonction pure testée), appelée par le hook `useEchelle`.
-- `useAjustementTexte` (hook) : après le chargement des polices, mesure chaque bloc de texte et réduit sa variable `--kb` tant qu'il déborde, puis `--kp` au niveau de la page (RG13).
+- `useAjustementTexte` (hook, appelé par `Feuille`) : avant l'affichage puis après le chargement des polices, mesure chaque bloc `.bloc-texte` (consigne, « Filou t'explique », note pour l'adulte) et réduit sa variable `--kb` tant qu'il déborde, puis `--kp` au niveau de la page (RG13). Le calcul est dans `lib/ajustement.ts` (fonction pure testée, réglages du prototype). Il est refait quand le format ou la clé de contenu de la `Feuille` change (numéro de page, et plus tard graines régénérées). Les faces cachées à l'écran sont en `visibility: hidden` et non `display: none` : elles restent mesurables, donc ajustées avant l'impression.
 - `impression.css` : `@page { size: … ; margin: 0 }` injecté selon le format (A4 portrait en A4, A4 paysage en A5), `break-after: page` sur chaque face, interface masquée. Le livret s'imprime en recto verso, retournement sur le bord court (RG22).
 
 ## 7. Plan de démarrage
@@ -277,15 +277,15 @@ Les étapes 3 et suivantes suivent l'ordre de construction de la maquette (`05-m
    8. ✅ `completerLivret` et `facesLivret` (RG22), testés.
    9. ✅ Livret à l'écran et à l'impression.
    10. ✅ Journal.
-4. **Contenu** : la page activités de la mission 4 de Mathieu, identique au PDF imprimé (Clara viendra ensuite) :
-   1. Données de la mission 4 (thème, profil, cahier avec sa composition) et contrat des générateurs.
-   2. `Panneau`, `EnTetePage`, `Consigne`, `Picto`, `FilouExplique`, `NoteParent` ; `PageActivites` selon la disposition (RG2).
-   3. Illustrations de la mission 4 et activité « trouve le même ».
-   4. Activité « compter » (tirage pur et testé).
-   5. Activité « labyrinthe » : structure pure et testée (murs identiques au prototype), système d'habillages (attribués sans répétition, RG14), « traits simples », « chemin de terre » et « haie », « Départ », « Arrivée » et décorations dans les impasses.
-   5 bis. Habillages « pas japonais », « rivière », « château en pierres » et « chemin à pointillés ».
-   6. `useAjustementTexte` (RG13).
-   7. Journal.
+4. ✅ **Contenu** : la page activités de la mission 4 de Mathieu, identique au PDF imprimé (Clara viendra ensuite) :
+   1. ✅ Données de la mission 4 (thème, profil, cahier avec sa composition) et contrat des générateurs.
+   2. ✅ `Panneau`, `EnTetePage`, `Consigne`, `Picto`, `FilouExplique`, `NoteParent` ; `PageActivites` selon la disposition (RG2).
+   3. ✅ Illustrations de la mission 4 et activité « trouve le même ».
+   4. ✅ Activité « compter » (tirage pur et testé).
+   5. ✅ Activité « labyrinthe » : structure pure et testée (murs identiques au prototype), système d'habillages (attribués sans répétition, RG14), « traits simples », « chemin de terre » et « haie », « Départ », « Arrivée » et décorations dans les impasses.
+   5 bis. ✅ Habillages « pas japonais », « rivière », « château en pierres » et « chemin à pointillés ».
+   6. ✅ `useAjustementTexte` (RG13) : calcul pur dans `lib/ajustement.ts`, puis hook branché sur `Feuille`.
+   7. ✅ Journal.
 5. **Formulaire** : prénom, classe et difficultés branchés sur le profil.
 6. **Boutons ↻** : régénération des activités de la page affichée.
 7. **Composition automatique du cahier** : `composer.ts` choisit les jeux de chaque mission dans le catalogue selon la classe et les difficultés de l'enfant (RG15 à RG20) et tire les variantes sans répétition (RG14, RG19). `attribuerHabillages` passe du choix dans l'ordre du catalogue à un seul tirage avec la graine du cahier (champ `graine` ajouté au type `Cahier` à cette étape, utilisé aussi par `composer.ts`), stable quand on régénère (décision du 2026-10-23). Il produit la composition sous la forme écrite à la main jusque-là (`CompositionMission`) : les pages et les générateurs n'ont rien à changer.

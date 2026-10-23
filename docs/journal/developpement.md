@@ -72,3 +72,23 @@ Problèmes rencontrés :
 - 794 × 1123 px font 210,08 × 297,13 mm : sans calage en mm à l'impression, chaque face aurait poussé une page blanche (comme le prototype l'avait déjà résolu).
 - Le saut de page sur `.feuille` aurait coupé les deux pages A5 d'une même face : déplacé sur `.face`.
 - Ordre incertain entre variantes Tailwind `lg:` et `print:` : règles d'impression écrites hors couche dans `impression.css`, sur des classes nommées.
+
+## 2026-10-18 au 2026-10-23 — Étape 4 : page activités de la mission 4
+Fait :
+- Composition des missions dans le JSON du cahier (`CompositionMission`), consignes déduites par chaque générateur, contrat `Generateur` / `ContexteActivite` (décision du 2026-10-18).
+- `Panneau`, `EnTetePage`, `Consigne`, `Picto`, `FilouExplique`, `NoteParent`, `ZoneActivite` ; `PageActivites` rangée selon la disposition (RG2, `cahier/disposition.ts`).
+- Illustrations de la mission 4 ; activités « trouve le même » et « compter », tirages purs et testés.
+- Labyrinthe : structure pure dans `lib/labyrinthe.ts` (murs identiques au prototype), séparée de son dessin. Sept habillages : traits simples, chemin de terre, haie, pas japonais, rivière, château en pierres, chemin à pointillés (tous les couloirs à repasser, murs clairs). « Départ », « Arrivée », décorations du thème dans les impasses. `attribuerHabillages` sans répétition (RG14).
+- Doc : habillages tirés au hasard avec la graine du cahier, en un seul tirage, stables quand on régénère ; champ `graine` du `Cahier` prévu à l'étape 7 (décision du 2026-10-23).
+- RG13 : `lib/ajustement.ts` (`deborde`, `reduireJusquaTenir`, testés) et `useAjustementTexte`, appelé par `Feuille`, refait quand le format ou le numéro de page change. Blocs repérés par la classe `.bloc-texte`. Vérifié à l'écran en A4 et en A5 avec une consigne allongée.
+
+Reste à faire :
+- Étape 5 : formulaire (prénom, classe, difficultés). La clé de contenu de `Feuille` devra changer avec ce qui modifie les textes (prénom, profil), sinon l'ajustement n'est pas refait. Étape 6 : boutons ↻, avec les graines dans la clé.
+- Étape 7 : champ `graine` du `Cahier`, `attribuerHabillages` tiré avec cette graine.
+- Pages de Clara ; autres types de pages (couverture, imagier, créative, finale) avec leurs blocs `.bloc-texte`.
+- Variante facile « chemin solution en pointillés » pour la TPS et la PS.
+- Remplacer le favicon Vite par un pictogramme de Filou.
+
+Problèmes rencontrés :
+- Les faces cachées à l'écran étaient en `display: none` : leurs textes ne se mesuraient pas, et seraient sortis non ajustés à l'impression. Elles sont maintenant en `visibility: hidden`, empilées sous la face courante.
+- Une coupure de courant pendant la correction de la doc des habillages : les trois fichiers vérifiés et réalignés avant le commit.
